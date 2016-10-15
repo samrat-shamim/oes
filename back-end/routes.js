@@ -8,5 +8,6 @@ module.exports = {
     '/getMany': require('./controllers/crud/getMany'),
     '/insert': require('./controllers/crud/insert'),
     '/update': require('./controllers/crud/update'),
-    '/connect': require('./controllers/connection/connect')
+    '/connect': require('./controllers/connection/connect'),
+    '/getConnection': require('./controllers/connection/getConnection')
 };
