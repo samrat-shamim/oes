@@ -1,0 +1,21 @@
+﻿{
+  "paths": {
+    "dynamic-form": "apps/infrastructure/dynamic-form/dynamic-form.config",
+    "dynamicFormController": "apps/infrastructure/dynamic-form/controllers/dynamic-form.controller",
+    "dynamicFormService": "apps/infrastructure/dynamic-form/services/dynamic-form.service"   
+
+  },
+
+
+  "dependencies": {
+    "dynamicFormController": {
+      "deps": [ "dynamic-form" ]
+    },
+    "dynamicFormService": {
+      "deps": [ "dynamic-form" ]
+    }
+  }
+
+
+
+}

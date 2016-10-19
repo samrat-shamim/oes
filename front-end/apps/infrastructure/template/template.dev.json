@@ -1,0 +1,11 @@
+{
+  "paths": {
+    "template": "apps/infrastructure/template/template.config",
+    "template-controller": "apps/infrastructure/template/controllers/template.controller",
+    "template-service": "apps/infrastructure/template/services/template-service.service"
+  },
+  "dependencies": {
+    "template-controller": [ "template", "template-service" ],
+    "template-service": ["template"]
+  }
+  }

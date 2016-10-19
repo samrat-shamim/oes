@@ -1,0 +1,29 @@
+﻿{
+  "websiteTitle": "Online Examination System",
+  "websiteQuotation": "",
+  "topbarRight":[
+    {
+      "title": "Login",
+      "state":"login",
+      "icon":"glyphicon glyphicon-log-in"
+    },
+    {
+      "title":"Register",
+      "state": "register",
+      "icon":"glyphicon glyphicon-registration-mark"
+    }
+  ],
+  "topbarLeft":[
+    {
+      "title": "Home",
+      "state": "home",
+      "icon": "glyphicon glyphicon-home"
+    },
+    {
+      "title": "About Us",
+      "state":"about-us",
+      "icon":"glyphicon glyphicon-info-sign"
+    }
+  ],
+  "leftNavbar": true
+}

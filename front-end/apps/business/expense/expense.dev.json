@@ -1,0 +1,29 @@
+﻿{
+  "paths": {
+    "expense": "apps/business/expense/expense.config",
+    "expenseController": "apps/business/expense/controllers/expense.controller"
+  },
+
+
+  "dependencies": {
+    "expenseController": {
+      "deps": ["expense"]
+    }
+  },
+  
+ "routes": {
+    "moduleName": "expense",
+    "states": [
+      {
+        "name": "expense",
+        "url": "/expense",
+        "templateUrl": "apps/business/expense/views/expense.view.html",
+        "controller": "expenseController",
+        "data": {
+          "roles": []
+        }
+      }
+    ]
+  }
+
+}

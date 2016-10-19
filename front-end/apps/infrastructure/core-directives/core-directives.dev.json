@@ -1,0 +1,15 @@
+﻿{
+  "paths": {
+    "core-directives": "apps/infrastructure/core-directives/core-directives.config",
+    "app-loader": "apps/infrastructure/core-directives/app-loader.directive"
+  },
+
+
+  "dependencies": {
+    "app-loader": {
+      "deps": [ "core-directives" ]
+    }
+
+  }
+
+}

@@ -1,0 +1,29 @@
+﻿{
+	"paths": {
+		"sample-one": "apps/business/sample-one/sample-one.config",
+		"sampleOneController": "apps/business/sample-one/controllers/sample-one.controller"
+	},
+
+
+	"dependencies": {
+		"sampleOneController": {
+			"deps": ["sample-one"]
+		}
+
+	},
+
+
+	"routes": {
+		"moduleName": "sample-one",
+		"states": [{
+			"name": "sample-one",
+      "url": "/sample-one",
+			"templateUrl": "apps/business/sample-one/views/sample-one.view.html",
+			"controller": "sampleOneController",
+			"data": {
+				"roles": ["user"]
+			}
+		}]
+	}
+
+}

@@ -1,0 +1,19 @@
+﻿{
+  "paths": {
+    "sample-navbar": "apps/infrastructure/sample-navbar/sample-navbar.config",
+    "sampleNavbarController": "apps/infrastructure/sample-navbar/controllers/sample-navbar.controller",
+    "sampleService": "apps/infrastructure/sample-navbar/services/sampleService.service"
+  },
+
+
+  "dependencies": {
+    "sampleNavbarController": {
+      "deps": [ "sample-navbar" ]
+    },
+    "sampleService": {
+      "deps": [ "sample-navbar" ]
+    }
+
+  }
+
+}

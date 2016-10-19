@@ -1,0 +1,29 @@
+﻿{
+  "paths": {
+    "login": "apps/business/login/login.config",
+    "loginController": "apps/business/login/controllers/login.controller"
+  },
+
+
+  "dependencies": {
+    "loginController": {
+      "deps": [ "login" ]
+    }
+
+  },
+
+
+  "routes": {
+    "moduleName": "login",
+    "states": [
+      {
+        "name": "login",
+        "url": "/login",
+        "templateUrl": "apps/business/login/views/login.view.html",
+        "controller": "loginController"
+      }
+    ]
+  }
+
+}
+

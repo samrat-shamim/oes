@@ -1,0 +1,55 @@
+﻿{
+  "websiteTitle": "Online Examination System",
+  "websiteQuotation": "",
+  "topbarRight":[
+    {
+      "title": "Logout",
+      "state":"logout",
+      "icon":"glyphicon glyphicon-log-out"
+    }
+  ],
+  "topbarLeft":[
+    {
+      "title": "Home",
+      "state": "home",
+      "icon": "glyphicon glyphicon-home"
+    },
+    {
+      "title": "About Us",
+      "state":"about-us",
+      "icon":"glyphicon glyphicon-info-sign"
+    }
+  ],
+  "leftNavbar": [
+    {
+      "title": "Question",
+      "menus": [
+        {
+          "title": "All questions",
+          "state": "all-questions",
+          "icon":""
+        },
+        {
+          "title": "Create question",
+          "state": "create-question",
+          "icon":""
+        }
+      ]
+    },
+    {
+      "title": "Course",
+      "menus": [
+        {
+          "title": "All courses",
+          "state": "all-courses",
+          "icon":""
+        },
+        {
+          "title": "Create course",
+          "state": "create-course",
+          "icon":""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+﻿{
+  "paths": {
+    "security": "apps/infrastructure/security/security.config",
+    "authorizer": "apps/infrastructure/security/factories/authorizer.factory",
+    "identifier": "apps/infrastructure/security/factories/identifier.factory"
+  },
+
+
+  "dependencies": {
+    "authorizer": {
+      "deps": [ "security" ]
+    },
+    "identifier": {
+      "deps": [ "security" ]
+    }
+
+  }
+
+}

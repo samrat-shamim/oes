@@ -1,0 +1,30 @@
+﻿{
+    "modules": [{
+        "name": "sample-one",
+        "type": "business"
+    }, {
+        "name": "sample-two",
+        "type": "business"
+    }, {
+        "name": "sample-navbar",
+        "type": "infrastructure"
+    }, {
+        "name": "core-directives",
+        "type": "infrastructure"
+    }, {
+        "name": "template",
+        "type": "infrastructure"
+    }, {
+        "name": "dynamic-form",
+        "type": "infrastructure"
+    }, {
+        "name": "expense",
+        "type": "business"
+    }, {
+        "name": "login",
+        "type": "business"
+    }, {
+        "name": "security",
+        "type": "infrastructure"
+    }]
+}

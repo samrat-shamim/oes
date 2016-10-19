@@ -1,0 +1,22 @@
+{
+  "paths": {
+    "hello": "apps/public/hello/hello.config",
+    "helloController": "apps/public/hello/controllers/hello.controller"
+  },
+  "dependencies": {
+    "helloController": {
+      "deps": [ "hello" ]
+    }
+  },
+  "routes": {
+    "moduleName": "hello",
+    "states": [
+      {
+        "name": "hello",
+        "url": "/hello",
+        "templateUrl": "src/AMS-Front/apps/public/hello/views/hello.view.html",
+        "controller": "helloController"
+      }
+    ]
+  }
+}

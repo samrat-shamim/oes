@@ -1,0 +1,41 @@
+﻿{
+  "paths": {
+    "sample-two": "apps/business/sample-two/sample-two.config",
+    "sampleTwoController": "apps/business/sample-two/controllers/sample-two.controller",
+    "termsAndServiceController": "apps/business/sample-two/controllers/terms-and-service.controller"
+  },
+
+
+  "dependencies": {
+    "sampleTwoController": {
+      "deps": [ "sample-two" ]
+    },
+    "termsAndServiceController": {
+      "deps": [ "sample-two" ]
+    }
+
+  },
+
+
+  "routes": {
+    "moduleName": "sample-two",
+    "states": [
+      {
+        "name": "sample-two",
+        "url": "/sample-two",
+        "templateUrl": "apps/business/sample-two/views/sample-two.view.html",
+        "controller": "sampleTwoController",
+        "data": {
+				"roles": ["user"]
+			}
+      },
+      {
+        "name": "terms-and-service",
+        "url": "/terms-and-service",
+        "templateUrl": "apps/business/sample-two/views/terms-and-service.view.html",
+        "controller": "termsAndServiceController"
+      }
+    ]
+  }
+
+}
