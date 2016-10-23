@@ -27,12 +27,12 @@
         {
           "title": "All questions",
           "state": "all-questions",
-          "icon":""
+          "icon":"glyphicon glyphicon-list-alt"
         },
         {
           "title": "Create question",
           "state": "create-question",
-          "icon":""
+          "icon":"glyphicon glyphicon-plus-sign"
         }
       ]
     },

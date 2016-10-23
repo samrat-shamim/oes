@@ -1,0 +1,83 @@
+﻿
+<div class="container">
+   <div>
+       <!--{{userGivenData}}-->
+
+       <form class="form-horizontal" role="form" ng-submit="submitForm(vm.userGivenData)">
+           <div>
+               <div ng-repeat="individualFieldInfo in vm.formInatiatingData">
+                   <!--{{{{individualFieldInfo}}}}-->
+                   
+
+                   <div class="form-group" ng-if="individualFieldInfo.type == 'text'">
+                       <div class="control-label col-sm-2">{{individualFieldInfo.fieldName}} : </div>
+                       <div class="col-sm-5">
+                           <input type="text" class="form-control" ng-model="vm.userGivenData[individualFieldInfo.fieldName]" />
+                       </div>
+
+                   </div>
+
+                   <div class="form-group" ng-if="individualFieldInfo.type == 'number'">
+                       <div class="control-label col-sm-2">{{individualFieldInfo.fieldName}} : </div>
+                       <div class="col-sm-5">
+                           <input type="number" class="form-control" ng-model="vm.userGivenData[individualFieldInfo.fieldName]" min="{{individualFieldInfo.min}}" max="individualFieldInfo.max">
+                       </div>
+
+                   </div>
+
+                   <div class="form-group" ng-if="individualFieldInfo.type == 'password'">
+                       <div class="control-label col-sm-2">{{individualFieldInfo.fieldName}} : </div>
+                       <div class="col-sm-5">
+                           <input type="password" class="form-control" ng-model="vm.userGivenData[individualFieldInfo.fieldName]">
+                       </div>
+
+                   </div>
+
+                   <div class="form-group" ng-if="individualFieldInfo.type == 'radio'">
+                       <div class="control-label col-sm-2">{{individualFieldInfo.fieldName}} : </div>
+                       <div class="col-sm-5">
+                           <div ng-repeat="radioButton in individualFieldInfo.value">
+                               <input type="radio" name="{{individualFieldInfo.fieldName}}" value="{{radioButton}}" ng-model="vm.userGivenData[individualFieldInfo.fieldName]"> {{radioButton}}<br>
+                           </div>
+                       </div>
+                   </div>
+
+
+
+
+                   <div class="form-group" ng-if="individualFieldInfo.type == 'dropDown'">
+                       <div class="control-label col-sm-2">{{individualFieldInfo.fieldName}} : </div>
+                       <div class="col-sm-5">
+                           <select class="form-control" ng-model="vm.userGivenData[individualFieldInfo.fieldName]" ng-options="x for x in individualFieldInfo.value"></select>
+                       </div>
+
+                   </div>
+
+                   <div class="form-group" ng-if="individualFieldInfo.type == 'textArea'">
+                       <div class="control-label col-sm-2">{{individualFieldInfo.fieldName}} : </div>
+                       <div class="col-sm-5">
+                           <textarea class="form-control" name="{{individualFieldInfo.fieldName}}" rows="{{individualFieldInfo.rows}}" cols="{{individualFieldInfo.cols}}" ng-model="vm.userGivenData[individualFieldInfo.fieldName]"></textarea>
+                       </div>
+
+                   </div>
+
+                   <div ng-if="individualFieldInfo.type == 'checkList'">
+                       <div class="control-label col-sm-2" class="checkbox">{{individualFieldInfo.fieldName}} : </div>
+                       <div class="col-sm-10">
+                           <div class="checkbox" ng-repeat="individualListItem in individualFieldInfo.list">
+
+                               <input type="checkbox" ng-model="vm.userGivenData[individualFieldInfo.fieldName][individualListItem.value]"> {{individualListItem.value}}
+
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+           </div>
+           <div class="control-label col-sm-2">
+               <input type="submit" class="btn btn-default">
+           </div>
+
+       </form>
+   </div>
+</div>

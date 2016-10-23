@@ -1,0 +1,42 @@
+﻿{
+	"paths": {
+		"question": "apps/business/question/question.config",
+		"questionsController": "apps/business/question/controllers/all-questions.controller",
+		"createQuestionController":"apps/business/question/controllers/create-question.controller"
+	},
+
+
+	"dependencies": {
+		"questionsController": {
+			"deps": ["question"]
+		},
+		"createQuestionController":{
+		  "deps": ["question"]
+		}
+
+	},
+
+
+	"routes": {
+		"moduleName": "question",
+		"states": [
+		  {
+			"name": "all-questions",
+      		"url": "/all-questions",
+			"templateUrl": "apps/business/question/views/all-questions.view.html",
+			"controller": "questionsController",
+			"data": {
+			}
+		},
+		  {
+			"name": "create-question",
+			"url": "/create-question",
+			"templateUrl": "apps/business/question/views/create-question.view.html",
+			"controller": "createQuestionController",
+			"data": {
+			}
+		  }
+		]
+	}
+
+}

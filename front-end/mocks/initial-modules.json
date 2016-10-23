@@ -11,14 +11,17 @@
     }, {
         "name": "core-directives",
         "type": "infrastructure"
+    },{
+        "name": "core-services",
+        "type": "infrastructure"
     }, {
         "name": "template",
         "type": "infrastructure"
     }, {
-        "name": "dynamic-form",
+        "name": "form-builder",
         "type": "infrastructure"
     }, {
-        "name": "expense",
+        "name": "question",
         "type": "business"
     }, {
         "name": "login",
@@ -26,5 +29,18 @@
     }, {
         "name": "security",
         "type": "infrastructure"
-    }]
+    },
+    {
+        "name": "formly-app",
+        "type": "infrastructure"
+    },
+    {
+        "name": "angular-data-table",
+        "type": "infrastructure"
+    },
+    {
+        "name": "file-uploader",
+        "type": "infrastructure"
+    }
+    ]
 }

@@ -14,6 +14,8 @@
     "lodash": "*",
     "method-override": "*",
     "mongoose": "*",
+    "multer": "^1.2.0",
+    "node-fs": "^0.1.7",
     "node-restful": "*",
     "nodemon": "^1.11.0"
   }

@@ -1,0 +1,16 @@
+﻿{
+  "paths": {
+    "file-uploader": "apps/infrastructure/file-uploader/file-uploader.config",
+    "angular-file-upload": "bower_components/angular-file-upload/dist/angular-file-upload.min"
+  },
+
+
+  "dependencies": {
+    "file-uploader": {
+      "deps":["angular-file-upload"]
+    },
+    "angular-file-upload": {
+      "deps":["angular"]
+    }
+  }
+}

@@ -42,7 +42,8 @@
                     </div>
                     <ul class="list-group" ng-show="menuExpanded[content.title]">
                         <li ng-repeat="item in content.menus" class="list-group-item">
-                            <a ng-href="#" ng-click="action(item.state)">{{item.title}}</a>
+                            <span ng-class="item.icon?item.icon: 'glyphicon glyphicon-circle-arrow-right'"></span>
+                            <a style="cursor: pointer" ng-click="action(item.state)">{{item.title}}</a>
                         </li>
                     </ul>
                 </div>

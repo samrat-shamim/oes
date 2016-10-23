@@ -1,0 +1,16 @@
+﻿{
+  "paths": {
+    "trNgGrid": "bower_components/tr-ng-grid/trNgGrid.min",
+    "angular-data-table": "apps/infrastructure/angular-data-table/angular-data-table.config"
+  },
+
+
+  "dependencies": {
+    "angular-data-table":{
+      "deps":["trNgGrid"]
+    },
+    "trNgGrid":{
+      "deps":["angular"]
+    }
+  }
+}

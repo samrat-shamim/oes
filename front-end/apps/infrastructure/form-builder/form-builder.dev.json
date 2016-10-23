@@ -1,0 +1,31 @@
+{
+  "paths": {
+    "form-builder": "apps/infrastructure/form-builder/form-builder.config",
+    "formBuilderController": "apps/infrastructure/form-builder/controllers/form-builder.controller",
+    "formBuilderService": "apps/infrastructure/form-builder/services/form-builder.service",
+    "fieldDirective": "apps/infrastructure/form-builder/directives/field-directive",
+    "formDirective": "apps/infrastructure/form-builder/directives/form-directive",
+    "angular-strap-tpl": "https://cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.10/angular-strap.compat.min"
+
+  },
+
+
+  "dependencies": {
+    "form-builder": {
+      "deps": ["angular-strap-tpl","angular_ui_bootstrap"]
+    },
+    "formBuilderController": {
+      "deps": [ "form-builder", "formBuilderService" ]
+    },
+    "formBuilderService": {
+      "deps": [ "form-builder" ]
+    },
+    "fieldDirective": {
+      "deps": [ "form-builder" ]
+    },
+    "formDirective": {
+      "deps": [ "form-builder" ]
+    },
+    "angular-strap-tpl": ["angular"]
+  }
+}

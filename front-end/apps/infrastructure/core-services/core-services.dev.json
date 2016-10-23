@@ -1,0 +1,15 @@
+﻿{
+  "paths": {
+    "core-services": "apps/infrastructure/core-services/core-services.config",
+    "data-manupulator": "apps/infrastructure/core-services/data-manupulator.service"
+  },
+
+
+  "dependencies": {
+    "data-manupulator": {
+      "deps": [ "core-services" ]
+    }
+
+  }
+
+}

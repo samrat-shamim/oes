@@ -90,9 +90,13 @@
             ];
 
         scope.action = function(route){
-
-            console.log(route);
-            $state.go("login");
+            if($state.includes(route))
+            {
+                console.log(route + " is avtive");
+                return;
+            }
+            else
+            $state.go(route);
         }
         function getTemplateConfig(){
             templateService.getTemplateConfig().then(function(config){
