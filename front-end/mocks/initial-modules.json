@@ -24,6 +24,9 @@
         "name": "question",
         "type": "business"
     }, {
+        "name": "subject",
+        "type": "business"
+    },{
         "name": "login",
         "type": "business"
     }, {

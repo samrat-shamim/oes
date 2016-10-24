@@ -1,7 +1,7 @@
 ﻿define(['angular'], function (angular) {
 
     var question = angular.module('question').controller('createQuestionController',
-        ['$scope', '$http','dataManupulator','FileUploader', function (scope, http, dataManupulator, FileUploader) {
+        ['$scope', '$http','$q','dataManupulator','FileUploader', function (scope, http,$q, dataManupulator, FileUploader) {
 
             scope.pageTitle = "Create Question";
 
@@ -25,8 +25,19 @@
           };
 
             scope.questionModel = {};
+          var subjects = [];
 
             scope.questionSchema = [
+              {
+                key: 'subject',
+                type: 'select',
+                templateOptions: {
+                  label: 'Subject',
+                  placeholder: 'Select a subject',
+                  options:subjects,
+                  required: true
+                }
+              },
                 {
                     key: 'title',
                     type: 'input',
@@ -127,6 +138,33 @@
                 model.entity = scope.questionModel;
                 dataManupulator.manupulate("insert",model);
             }
+          var getManyFilter = {
+            entityName: "subject",
+            pageNumber:1,
+            pageSize: 10
+          }
+
+
+
+          function getAllSubject(){
+           return $q(function (resolve, reject) {
+             dataManupulator.manupulate("getMany", getManyFilter).then(function(response){
+               response.data.data.forEach(function (item) {
+                 var subject = {
+                   name: item.title,
+                   value: item._id
+                 }
+                 console.log(subject);
+                 subjects.push(subject);
+               })
+               resolve(subjects);
+             }, function (err) {
+               reject(err);
+             })
+           })
+          }
+
+          getAllSubject();
 
 
 

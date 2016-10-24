@@ -1,0 +1,42 @@
+﻿{
+	"paths": {
+		"subject": "apps/business/subject/subject.config",
+		"subjectsController": "apps/business/subject/controllers/all-subjects.controller",
+		"createSubjectController":"apps/business/subject/controllers/create-subject.controller"
+	},
+
+
+	"dependencies": {
+		"subjectsController": {
+			"deps": ["subject"]
+		},
+		"createSubjectController":{
+		  "deps": ["subject"]
+		}
+
+	},
+
+
+	"routes": {
+		"moduleName": "subject",
+		"states": [
+		  {
+			"name": "all-subjects",
+      		"url": "/all-subjects",
+			"templateUrl": "apps/business/subject/views/all-subjects.view.html",
+			"controller": "subjectsController",
+			"data": {
+			}
+		},
+		  {
+			"name": "create-subject",
+			"url": "/create-subject",
+			"templateUrl": "apps/business/subject/views/create-subject.view.html",
+			"controller": "createSubjectController",
+			"data": {
+			}
+		  }
+		]
+	}
+
+}

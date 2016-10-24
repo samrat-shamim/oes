@@ -11,12 +11,6 @@ module.exports = {
     '/connect': require('./controllers/connection/connect'),
     '/getConnection': require('./controllers/connection/getConnection'),
     '/createAccount': require('./controllers/auth/createAccount'),
-    '/authenticate': require('./controllers/auth/authenticate')
-
-
-
-
-
-  /*,
-    './upload': require('./controllers/upload')*/
+    '/authenticate': require('./controllers/auth/authenticate'),
+    '/upload': require('./controllers/upload')
 };

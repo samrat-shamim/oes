@@ -1,24 +1,29 @@
 ﻿define(['angular'], function (angular) {
 
-    var question = angular.module('question').controller('questionsController',
+    var subject = angular.module('subject').controller('subjectsController',
         ['$scope', '$http','dataManupulator', function (scope, http, dataManupulator) {
 
             var getManyFilter = {
-                entityName: "question",
-                pageNumber:2,
+                entityName: "subject",
+                pageNumber:1,
                 pageSize: 10
             }
 
 
 
-            function getAllQuestion(){
+            function getAllSubject(){
                 dataManupulator.manupulate("getMany", getManyFilter).then(function(response){
-                    scope.allQuestions = response.data.data;
+                    scope.myItems = response.data.data;
                 })
             }
-            getAllQuestion();
+          getAllSubject();
 
-            scope.pageTitle = "All Questions";
+            scope.pageTitle = "All Subjects";
+            /*scope.myItems = [{name: "Moroni", age: 50},
+                {name: "Tiancum", age: 43},
+                {name: "Jacob", age: 27},
+                {name: "Nephi", age: 29},
+                {name: "Enos", age: 99}];*/
 
             scope.options = {
                 scrollbarV: false
@@ -31,6 +36,6 @@
         }]);
 
 
-    return question;
+    return subject;
 });
 

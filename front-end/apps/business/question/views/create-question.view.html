@@ -11,9 +11,7 @@
             <b>Option C Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('oc')"  type="file" nv-file-select uploader="uploader"/><br/>
             <b>Option D Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('od')"  type="file" nv-file-select uploader="uploader"/><br/>
           </div>
-
-
-            <button type="submit" class="btn btn-primary" ng-disabled="rentalForm.$invalid" ng-click="createQuestion()">Submit</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="questionForm.$invalid" ng-click="createQuestion()">Submit</button>
         </formly-form>
     </form>
 </div>

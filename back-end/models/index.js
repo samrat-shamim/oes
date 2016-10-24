@@ -3,5 +3,6 @@ module.exports = {
     examinee: require('./examinee'),
     user: require('./user'),
     connection: require('./connection'),
-    question: require('./question')
+    question: require('./question'),
+    subject: require('./subject')
 };
