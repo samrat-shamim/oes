@@ -51,15 +51,15 @@
                     options:[
                         {
                             name: "Primary",
-                            value: "primary"
+                            value: "Primary"
                         },
                         {
                             name: "Secondary",
-                            value: "secondary"
+                            value: "Secondary"
                         },
                         {
                             name: "Expert",
-                            value: "expert"
+                            value: "Expert"
                         }
                     ],
                     required: true

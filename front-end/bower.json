@@ -32,6 +32,7 @@
     "tr-ng-grid": "^3.1.7",
     "angular-file-upload": "^2.3.4",
     "angular-password": "^1.0.3",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "angular-modal": "^0.5.0"
   }
 }
