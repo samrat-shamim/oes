@@ -1,6 +1,6 @@
 ﻿define(['require'], function (require) {
 
-    var mainApp = angular.module('mainApp', ['ui.router', 'ui.bootstrap', 'oc.lazyLoad']);
+    var mainApp = angular.module('mainApp', ['ui.router', 'ui.bootstrap', 'oc.lazyLoad', 'ngStorage']);
 
     
     angular.module('mainApp').requires.push('sample-navbar');
@@ -12,6 +12,11 @@
 
     mainApp.config(['$urlRouterProvider','$stateProvider', '$httpProvider', '$controllerProvider', '$provide',
     function ($urlRouterProvider, $stateProvider, $httpProvider, $controllerProvider, $provide) {
+
+        $httpProvider.defaults.headers.common = {};
+        $httpProvider.defaults.headers.post = {};
+        $httpProvider.defaults.headers.put = {};
+        $httpProvider.defaults.headers.patch = {};
 
         mainApp.registerController = $controllerProvider.register;
         mainApp.$register = $provide;
@@ -107,54 +112,20 @@
                 },
                 templateUrl: appBaseUrl + "/others/access-denied.view.html"
             });
-            //.state('login', {
-            //    title: 'Log In',
-            //    url: '/login',
-            //    templateUrl: appBaseUrl + "/business/login/views/login.view.html",
-            //    controller: 'loginController',
-            //    caseInsensitiveMatch: true,
-            //    resolve: {
-            //        loadModule: [
-            //            '$ocLazyLoad', '$q', function($ocLazyLoad, $q) {
-            //                var deferred = $q.defer();
-            //                require(["loginController"], function() {
-            //                    $ocLazyLoad.inject('login');
-            //                    deferred.resolve();
-            //                });
-            //                return deferred.promise;
-            //            }
-            //        ]
-            //    }
-            //})
-            //.state('register', {
-            //    title: 'Sign Up',
-            //    url: '/register',
-            //    templateUrl: appBaseUrl + "/business/register/views/register.view.html",
-            //    controller: 'registerController',
-            //    caseInsensitiveMatch: true,
-            //    resolve: {
-            //        loadModule: [
-            //            '$ocLazyLoad', '$q', function($ocLazyLoad, $q) {
-            //                var deferred = $q.defer();
-            //                require(["registerController"], function() {
-            //                    $ocLazyLoad.inject('register');
-            //                    deferred.resolve();
-            //                });
-            //                return deferred.promise;
-            //            }
-            //        ]
-            //    }
-            //});
 
         $urlRouterProvider
             .otherwise('/login');
 
-        $httpProvider.interceptors.push(
+      /*  $httpProvider.interceptors.push(
            ['$q', '$location',
            function ($q, $location) {
                return {
                    request: function (config) {
 
+                       config.headers = config.headers || {};
+                       if ($localStorage.token) {
+                           config.headers.Authorization = 'Bearer ' + $localStorage.token;
+                       }
                        return config;
                    },
 
@@ -162,14 +133,18 @@
                        return result;
                    },
 
-                   responseError: function (rejection) {
-                       console.log('Failed with', rejection.status, 'status');
+                   responseError: function (response) {
+                       if(response.status === 401 || response.status === 403) {
+                           $location.path('/login');
+                       }
 
-                       return $q.reject(rejection);
+                       return $q.reject(response);
                    }
                }
-           }]);
+           }]);*/
     }]);
+
+
 
     mainApp.run(function ($rootScope, $state, identifier, authorizer) {
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
@@ -178,5 +153,17 @@
             if (identifier.isIdentityResolved()) authorizer.authorize();
         });
     });
+
+    angular.module('mainApp').run(signWithToken);
+
+    signWithToken.$inject = ["$http", "$q","$location", "$localStorage" ];
+
+    function signWithToken($http,$q, $location, $localStorage ){
+
+        if ($localStorage.token) {
+            $http.defaults.headers.common['authToken'] = $localStorage.token;
+        }
+
+    }
 
 })

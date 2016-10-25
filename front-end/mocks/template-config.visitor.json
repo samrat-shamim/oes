@@ -9,7 +9,7 @@
     },
     {
       "title":"Register",
-      "state": "register",
+      "state": "sign-up",
       "icon":"glyphicon glyphicon-registration-mark"
     }
   ],
@@ -25,5 +25,5 @@
       "icon":"glyphicon glyphicon-info-sign"
     }
   ],
-  "leftNavbar": true
+  "leftNavbar": false
 }

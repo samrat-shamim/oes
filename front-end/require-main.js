@@ -30,6 +30,7 @@ var jsPaths = {
     'angular_ui_bootstrap': 'bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
 
     'angular_ocLazyLoad': 'bower_components/oclazyload/dist/ocLazyLoad.min',
+    "ngStorage":"bower_components/ngstorage/ngStorage.min",
 
 
 
@@ -78,7 +79,7 @@ var shims = {
         deps: ['mainApp']
     },
     'mainApp': {
-        deps: ['angular', 'angular-ui-router', 'angular_ui_bootstrap', 'angular_ocLazyLoad']
+        deps: ['angular', 'angular-ui-router', 'angular_ui_bootstrap', 'angular_ocLazyLoad', 'ngStorage']
     },
     'appLoader': {
         deps:['mainApp']

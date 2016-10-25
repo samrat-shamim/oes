@@ -7,7 +7,7 @@ module.exports = function(app, route) {
     var schema = app.models[entityName];
     var model = mongoose.model(entityName, schema);
     model.findOne({
-      userName: req.body.userName
+      userEmail: req.body.userEmail
     }, function(err, user) {
 
       if (err) throw err;
@@ -33,7 +33,8 @@ module.exports = function(app, route) {
           res.json({
             success: true,
             message: 'Enjoy your token!',
-            token: token
+            token: token,
+            user: user
           });
         }
 

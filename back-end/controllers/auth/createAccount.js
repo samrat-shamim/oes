@@ -9,9 +9,9 @@ module.exports = function(app, route) {
       sendError();
     }
     var model = mongoose.model(entityName, schema);
-    model.findOne({userName:req.body.userName}, function (err, user) {
+    model.findOne({userEmail:req.body.userEmail}, function (err, user) {
       if(user){
-        message.text = "Username already exist";
+        message.text = "Email already exist";
         sendError(message);
       }else{
         message.text = "user created";

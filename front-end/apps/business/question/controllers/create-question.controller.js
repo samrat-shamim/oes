@@ -24,98 +24,125 @@
             scope.uploadingImgFor = info;
           };
 
-            scope.questionModel = {};
-          var subjects = [];
+        scope.questionModel = {
+            subject: "580de2b22b0786194c1ab760",
+            difficultyLevel: "primary",
+            correctAnswer: "optionA"
+        };
+        var subjects = [];
 
-            scope.questionSchema = [
-              {
-                key: 'subject',
+        scope.questionSchema = [
+          {
+            key: 'subject',
+            type: 'select',
+            templateOptions: {
+              label: 'Subject',
+              placeholder: 'Select a subject',
+              options:subjects,
+              required: true
+            }
+          },
+            {
+                key: 'difficultyLevel',
                 type: 'select',
                 templateOptions: {
-                  label: 'Subject',
-                  placeholder: 'Select a subject',
-                  options:subjects,
-                  required: true
+                    label: 'Difficulty Level',
+                    placeholder: 'Select a level',
+                    options:[
+                        {
+                            name: "Primary",
+                            value: "primary"
+                        },
+                        {
+                            name: "Secondary",
+                            value: "secondary"
+                        },
+                        {
+                            name: "Expert",
+                            value: "expert"
+                        }
+                    ],
+                    required: true
                 }
-              },
-                {
-                    key: 'title',
-                    type: 'input',
-                    templateOptions: {
-                        type: 'text',
-                        label: 'Question Title',
-                        placeholder: 'Enter the question',
-                        required: true
-                    }
-                },
-                {
-                    key: 'optionA',
-                    type: 'input',
-                    templateOptions: {
-                        type: 'text',
-                        label: 'Option A',
-                        placeholder: 'Enter option A',
-                        required: true
-                    }
-                },
-                {
-                    key: 'optionB',
-                    type: 'input',
-                    templateOptions: {
-                        type: 'text',
-                        label: 'Option B',
-                        placeholder: 'Enter option B',
-                        required: true
-                    }
-                },
-                {
-                    key: 'optionC',
-                    type: 'input',
-                    templateOptions: {
-                        type: 'text',
-                        label: 'Option C',
-                        placeholder: 'Enter option C',
-                        required: true
-                    }
-                },
-                {
-                    key: 'optionD',
-                    type: 'input',
-                    templateOptions: {
-                        type: 'text',
-                        label: 'Option D',
-                        placeholder: 'Enter option D',
-                        required: true
-                    }
-                },
-                {
-                    key: 'correctAnswer',
-                    type: 'select',
-                    templateOptions: {
-                        label: 'Correct Answer',
-                        placeholder: 'Select the correct answer',
-                        options:[
-                            {
-                                "name": "Option A",
-                                "value": "optionA"
-                            },
-                            {
-                                "name": "Option B",
-                                "value": "optionB"
-                            },
-                            {
-                                "name": "Option C",
-                                "value": "optionC"
-                            },
-                            {
-                                "name": "Option D",
-                                "value": "optionD"
-                            }
-                        ],
-                        required: true
-                    }
-                },
-            ]
+            },
+            {
+                key: 'title',
+                type: 'input',
+                templateOptions: {
+                    type: 'text',
+                    label: 'Question Title',
+                    placeholder: 'Enter the question',
+                    required: true
+                }
+            },
+            {
+                key: 'optionA',
+                type: 'input',
+                templateOptions: {
+                    type: 'text',
+                    label: 'Option A',
+                    placeholder: 'Enter option A',
+                    required: true
+                }
+            },
+            {
+                key: 'optionB',
+                type: 'input',
+                templateOptions: {
+                    type: 'text',
+                    label: 'Option B',
+                    placeholder: 'Enter option B',
+                    required: true
+                }
+            },
+            {
+                key: 'optionC',
+                type: 'input',
+                templateOptions: {
+                    type: 'text',
+                    label: 'Option C',
+                    placeholder: 'Enter option C',
+                    required: true
+                }
+            },
+            {
+                key: 'optionD',
+                type: 'input',
+                templateOptions: {
+                    type: 'text',
+                    label: 'Option D',
+                    placeholder: 'Enter option D',
+                    required: true
+                }
+            },
+            {
+                key: 'correctAnswer',
+                type: 'select',
+                templateOptions: {
+                    label: 'Correct Answer',
+                    placeholder: 'Select the correct answer',
+                    options:[
+                        {
+                            "name": "Option A",
+                            "value": "optionA"
+                        },
+                        {
+                            "name": "Option B",
+                            "value": "optionB"
+                        },
+                        {
+                            "name": "Option C",
+                            "value": "optionC"
+                        },
+                        {
+                            "name": "Option D",
+                            "value": "optionD"
+                        }
+                    ],
+                    required: true
+                }
+            },
+        ]
 
           function setImgPathToDatabase(res) {
             if(scope.uploadingImgFor == 'q'){
