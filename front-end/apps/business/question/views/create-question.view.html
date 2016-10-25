@@ -2,16 +2,16 @@
     <form novalidate>
         <h1>{{pageTitle}}</h1>
         <formly-form model="questionModel" fields="questionSchema" form="questionForm">
-            <button type="submit" class="btn btn-primary" ng-disabled="rentalForm.$invalid" ng-click="createQuestion()">Submit</button>
+          <button><span ng-class="imageInQuestion?'glyphicon glyphicon-remove-circle':'glyphicon glyphicon-picture'" ng-click="imageInQuestion=!imageInQuestion"></span></button>
+         <br/><br/>
+          <div ng-if="imageInQuestion">
+            <b>Question Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('q')" type="file" nv-file-select uploader="uploader"/><br/>
+            <b>Option A Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('oa')"  type="file" nv-file-select uploader="uploader"/><br/>
+            <b>Option B Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('ob')"  type="file" nv-file-select uploader="uploader"/><br/>
+            <b>Option C Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('oc')"  type="file" nv-file-select uploader="uploader"/><br/>
+            <b>Option D Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('od')"  type="file" nv-file-select uploader="uploader"/><br/>
+          </div>
+            <button type="submit" class="btn btn-primary" ng-disabled="questionForm.$invalid" ng-click="createQuestion()">Submit</button>
         </formly-form>
     </form>
-
-
-    <input type="file" nv-file-select uploader="uploader"/><br/>
-    <ul>
-        <li ng-repeat="item in uploader.queue">
-            Name: <span ng-bind="item.file.name"></span><br/>
-            <button ng-click="item.upload()">upload</button>
-        </li>
-    </ul>
 </div>

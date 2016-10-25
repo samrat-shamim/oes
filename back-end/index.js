@@ -3,14 +3,20 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var _ = require('lodash');
+var morgan      = require('morgan');
+var config = require('./config');
+
 
 // Create the application.
 var app = express();
+
+app.set('superSecret', config.secret);
 
 // Add Middleware necessary for REST API's
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
+app.use(morgan('dev'));
 
 // CORS Support
 app.use(function(req, res, next) {
@@ -33,30 +39,6 @@ mongoose.connection.once('open', function() {
         app.use(route, controller(app, route));
     });
 
-
-    var multer = require('multer');
-
-    var storage = multer.diskStorage({ //multers disk storage settings
-        destination: function (req, file, cb) {
-            cb(null, 'uploads/')
-        },
-        filename: function (req, file, cb) {
-            var datetimestamp = Date.now();
-            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
-        }
-    });
-    var upload = multer({ //multer settings
-        storage: storage
-    }).single('file');
-    app.post('/upload', function(req, res) {
-        upload(req,res,function(err){
-            if(err){
-                res.json({error_code:1,err_desc:err});
-                return;
-            }
-            res.json({error_code:0,err_desc:null});
-        });
-    });
     console.log('Listening on port 3000...');
     app.listen(3000);
 });

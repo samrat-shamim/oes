@@ -9,6 +9,8 @@ module.exports = {
     '/insert': require('./controllers/crud/insert'),
     '/update': require('./controllers/crud/update'),
     '/connect': require('./controllers/connection/connect'),
-    '/getConnection': require('./controllers/connection/getConnection')/*,
-    './upload': require('./controllers/upload')*/
+    '/getConnection': require('./controllers/connection/getConnection'),
+    '/createAccount': require('./controllers/auth/createAccount'),
+    '/authenticate': require('./controllers/auth/authenticate'),
+    '/upload': require('./controllers/upload')
 };

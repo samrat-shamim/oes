@@ -11,9 +11,11 @@
   "dependencies": {
     "body-parser": "*",
     "express": "*",
+    "jsonwebtoken": "^7.1.9",
     "lodash": "*",
     "method-override": "*",
     "mongoose": "*",
+    "morgan": "^1.7.0",
     "multer": "^1.2.0",
     "node-fs": "^0.1.7",
     "node-restful": "*",

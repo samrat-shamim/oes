@@ -42,6 +42,10 @@ var QuestionSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        subjectId:{
+          type: String,
+          required: true
+        },
         note:{
             type: String
         },
