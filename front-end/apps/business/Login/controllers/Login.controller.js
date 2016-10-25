@@ -4,6 +4,7 @@
         ['$rootScope', '$scope', '$state', '$localStorage',"identifier",'dataManupulator', function ($rootScope, scope, $state,$localStorage, identifier, dataManupulator) {
 
             var userInfo = {};
+          scope.pageTitle = "Login";
 
             scope.message = "Please Login";
             scope.login = function () {
@@ -25,6 +26,12 @@
                     }
                 });
             }
+            function init() {
+              if(identifier.isAuthenticated()){
+                $state.go('home');
+              }
+            }
+            init();
 
         }]);
 

@@ -2,7 +2,7 @@
 
     var mainApp = angular.module('mainApp', ['ui.router', 'ui.bootstrap', 'oc.lazyLoad', 'ngStorage']);
 
-    
+
     angular.module('mainApp').requires.push('sample-navbar');
     modules.forEach(function(module) {
         if (module.type == "infrastructure") {
@@ -66,7 +66,7 @@
                     });
                 });
             }
-            
+
         });
 
 
@@ -108,13 +108,14 @@
                 title: 'access-denied',
                 url: '/access-denied',
                 data: {
-                    
+
                 },
                 templateUrl: appBaseUrl + "/others/access-denied.view.html"
-            });
+            })
+        ;
 
         $urlRouterProvider
-            .otherwise('/login');
+            .otherwise('/access-denied');
 
       /*  $httpProvider.interceptors.push(
            ['$q', '$location',

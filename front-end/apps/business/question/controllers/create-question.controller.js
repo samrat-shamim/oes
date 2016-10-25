@@ -33,7 +33,7 @@
 
         scope.questionSchema = [
           {
-            key: 'subject',
+            key: 'subjectId',
             type: 'select',
             templateOptions: {
               label: 'Subject',

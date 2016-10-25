@@ -14,11 +14,13 @@ module.exports = function(app, route) {
         }
         var model = mongoose.model(entityName, schema);
         var document = new model(req.body.entity);
+      console.log("here");
         document.save(function(err, doc){
+          console.log(err);
             res.send(doc);
             next();
         });
-        function sendError(message){
+        function sendError(){
             res.send(message);
             next();
         }

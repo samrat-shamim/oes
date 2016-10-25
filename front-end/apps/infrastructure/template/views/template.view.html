@@ -12,13 +12,13 @@
                     <ul class="nav navbar-nav">
                         <!--<div class="collapse" id="CollapsingNavbar">-->
                         <li ng-repeat="item in config.topbarLeft">
-                            <a ng-href="#" ng-class="{active: $state.includes(item.state)}" ng-click="action(item.state)"><span ng-class="item.icon"></span> {{item.title}}</a>
+                            <a style="cursor: pointer" ng-class="{active: $state.includes(item.state)}" ng-click="action(item.state)"><span ng-class="item.icon"></span> {{item.title}}</a>
                         </li>
                         <!--</div>-->
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-repeat="item in config.topbarRight">
-                            <a href="#" ng-click="action(item.state)" ng-class="{active: $state.includes(item.state)}"><span ng-class="item.icon"></span> {{item.title}}</a>
+                            <a style="cursor: pointer" ng-click="action(item.state)" ng-class="{active: $state.includes(item.state)}"><span ng-class="item.icon"></span> {{item.title}}</a>
                         </li>
                     </ul>
                 </div>

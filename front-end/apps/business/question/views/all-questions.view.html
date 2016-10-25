@@ -3,8 +3,15 @@
     <!--<link href="bower_components/angular-data-table/release/material.css" rel="stylesheet"/>-->
 
     <h1>{{pageTitle}}</h1>
+  <div class="form-group">
+    <label>Filter By Subject</label>
+    <select class="form-control" ng-model="selectedSubject"
+            ng-options="subject as subject.title for subject in subjects" ng-change="updateTable()">
+    </select>
+  </div>
 
-    <table tr-ng-grid items='allQuestions' fields="['subject','title','optionA','optionB', 'optionC', 'optionD']">
+    <table tr-ng-grid items='allQuestions' page-items="5" total-items="totalItems"
+           fields="['subject','title','difficultyLevel']" on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
     </table>
 
    <!-- <dtable options="options" rows="data" class="material dt">

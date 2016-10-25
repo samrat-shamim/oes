@@ -13,7 +13,7 @@
         scope.$on("loggedout", function(e, ar){
             getTemplateConfig('visitor');
         })
-            
+
 
             scope.sideBarContents = [
                 {
@@ -93,12 +93,6 @@
             ];
 
         scope.action = function(route){
-            if($state.includes(route))
-            {
-                console.log(route + " is avtive");
-                return;
-            }
-            else
             $state.go(route);
         }
         function getTemplateConfig(role){
