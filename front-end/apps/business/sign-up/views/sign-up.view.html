@@ -1,0 +1,61 @@
+﻿<div class="full-width-div">
+    <!--<link href="apps/business/login/styles/login.css" rel="stylesheet" />-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <div id="loginbox" style="margin-top:50px;" class="mainbox  col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
+        <div class="panel panel-default">
+            <div style="padding-top:50px" class="panel-body">
+                <form id="signupform" name="signupform" class="form-horizontal" role="form">
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-user  hidden-xs"></i></span>
+                        <input ng-model="username" id="username" type="text" class="form-control" name="username" value="" placeholder="Username" required/>
+                        <span style="color:red" ng-show="signupform.username.$touched && signupform.username.$invalid">
+                            <span ng-show="signupform.username.$error.required">Username is required.</span>
+                        </span>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-envelope  hidden-xs"></i></span>
+                            <input ng-model="email" id="email" type="email" class="form-control" name="email" value="" placeholder="Email" required/>
+                        <span style="color:red" ng-show="signupform.email.$touched && signupform.email.$invalid">
+                            <span ng-show="signupform.email.$error.required">Email is required.</span>
+                            <span ng-show="signupform.email.$error.email">Email is not valid.</span>
+                        </span>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-phone  hidden-xs"></i></span>
+                        <input ng-model="phone" id="phone" type="text" class="form-control" name="phone" value="" placeholder="Phone Number" required/>
+                        <span style="color:red" ng-show="signupform.phone.$touched && signupform.phone.$invalid">
+                            <span ng-show="signupform.phone.$error.required">Phone number is required.</span>
+                        </span>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-lock  hidden-xs"></i></span>
+                        <input ng-model="password" id="password" type="password" class="form-control" name="password" placeholder="Password" required>
+                         <span style="color:red" ng-show="signupform.password.$touched && signupform.password.$invalid">
+                            <span ng-show="signupform.password.$error.required">Password is required.</span>
+                        </span>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-lock  hidden-xs"></i></span>
+                        <input match-password="password" ng-model="confirmPassword" id="confirmPassword" type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
+                         <span style="color:red" ng-show="signupform.confirmPassword.$touched && signupform.confirmPassword.$invalid">
+                            <span ng-show="signupform.confirmPassword.$error.required">Password confirmation is required.</span>
+                             <span ng-messages="signupform.confirmPassword.$error" ng-if="signupform.$submitted || signupform.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                                <span ng-message="passwordMatch" class="message slide-left">Your passwords did not match</span>
+                            </span>
+                        </span>
+                    </div>
+                    <div>
+                        <button ng-disabled="signupform.$invalid" ng-click="signup()" id="singlebutton" name="singlebutton" class="btn btn-success center-block">
+                            Sign Up
+                        </button>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

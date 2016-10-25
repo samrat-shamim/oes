@@ -5,10 +5,13 @@ var methodOverride = require('method-override');
 var _ = require('lodash');
 var morgan      = require('morgan');
 var config = require('./config');
+var cors = require('cors');
 
 
 // Create the application.
 var app = express();
+
+app.use(cors());
 
 app.set('superSecret', config.secret);
 
@@ -18,13 +21,15 @@ app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(morgan('dev'));
 
+/*
 // CORS Support
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'authToken, Content-Type');
     next();
 });
+*/
 
 // Connect to MongoDB
 mongoose.connect('mongodb://oes:oes123@ds033036.mlab.com:33036/oes');

@@ -12,5 +12,6 @@ module.exports = {
     '/getConnection': require('./controllers/connection/getConnection'),
     '/createAccount': require('./controllers/auth/createAccount'),
     '/authenticate': require('./controllers/auth/authenticate'),
-    '/upload': require('./controllers/upload')
+    '/upload': require('./controllers/upload'),
+    '/validateToken': require("./controllers/auth/validateToken")
 };

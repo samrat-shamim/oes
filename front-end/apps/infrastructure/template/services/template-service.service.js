@@ -15,14 +15,12 @@
            ]
        }
 
-       this.getTemplateConfig = function () {
+       this.getTemplateConfig = function (role) {
            return $q(function(resolve, reject){
-               $http.get("mocks/template-config.coordinator.json").success(function (response) {
-                   if(!identifier.isAuthenticated()){
-                       resolve(response);
-                   }else{
-                       reject("error");
-                   }
+               $http.get("mocks/template-config." + role + ".json").success(function (response) {
+                   resolve(response);
+               }, function (err) {
+                   reject(err);
                });
 
            })

@@ -18,9 +18,9 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    role:{
-        type: String,
-        required: true
+    roles:{
+        type: Array,
+        default:['user']
     },
     profilePicture:{
       type: String

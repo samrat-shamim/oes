@@ -1,15 +1,18 @@
 ﻿{
   "paths": {
     "login": "apps/business/login/login.config",
-    "loginController": "apps/business/login/controllers/login.controller"
+    "loginController": "apps/business/login/controllers/login.controller",
+    "logoutController": "apps/business/login/controllers/logout.controller"
   },
 
 
   "dependencies": {
     "loginController": {
       "deps": [ "login" ]
+    },
+    "logoutController": {
+      "deps": [ "login" ]
     }
-
   },
 
 
@@ -21,6 +24,12 @@
         "url": "/login",
         "templateUrl": "apps/business/login/views/login.view.html",
         "controller": "loginController"
+      },
+      {
+        "name": "logout",
+        "url": "/logout",
+        "templateUrl": "apps/business/login/views/logout.view.html",
+        "controller": "logoutController"
       }
     ]
   }

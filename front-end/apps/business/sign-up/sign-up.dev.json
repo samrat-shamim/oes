@@ -1,0 +1,33 @@
+﻿{
+  "paths": {
+    "sign-up": "apps/business/sign-up/sign-up.config",
+    "signUpController": "apps/business/sign-up/controllers/sign-up.controller",
+    "ngPassword":"bower_components/angular-password/angular-password.min"
+  },
+
+
+  "dependencies": {
+    "signUpController": {
+      "deps": [ "sign-up" ]
+    },
+    "sign-up":{
+      "deps":["ngPassword"]
+    }
+
+  },
+
+
+  "routes": {
+    "moduleName": "sign-up",
+    "states": [
+      {
+        "name": "sign-up",
+        "url": "/sign-up",
+        "templateUrl": "apps/business/sign-up/views/sign-up.view.html",
+        "controller": "signUpController"
+      }
+    ]
+  }
+
+}
+

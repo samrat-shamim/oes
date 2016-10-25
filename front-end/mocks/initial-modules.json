@@ -29,7 +29,11 @@
     },{
         "name": "login",
         "type": "business"
-    }, {
+    },
+    {
+        "name": "sign-up",
+        "type": "business"
+    },{
         "name": "security",
         "type": "infrastructure"
     },

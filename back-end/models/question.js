@@ -7,6 +7,10 @@ var QuestionSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        difficultyLevel: {
+            type: String,
+            required: true
+        },
         titleFigure:{
           type: String
         },

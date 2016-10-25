@@ -2,14 +2,17 @@
 
     var sideBar = angular.module('template').controller('templateController',
     [
-        '$rootScope', '$scope', '$state', '$location', "identifier", "templateService", function ($rootScope, scope, $state, $location, identifier, templateService) {
+        '$rootScope', '$scope', '$state', '$location',"$localStorage", "identifier", "templateService","dataManupulator",
+        function ($rootScope, scope, $state, $location,$localStorage, identifier, templateService, dataManupulator) {
             var vm = this;
 
-            scope.logout = function () {
-                identifier.authenticate(null);
-                $state.go('login');
-                $rootScope.$broadcast("loggedout");
-            }
+        scope.$on("loggedin", function(e, ar){
+            getTemplateConfig(ar.role);
+        })
+
+        scope.$on("loggedout", function(e, ar){
+            getTemplateConfig('visitor');
+        })
             
 
             scope.sideBarContents = [
@@ -98,8 +101,8 @@
             else
             $state.go(route);
         }
-        function getTemplateConfig(){
-            templateService.getTemplateConfig().then(function(config){
+        function getTemplateConfig(role){
+            templateService.getTemplateConfig(role).then(function(config){
                 scope.config=config;
                 angular.forEach(scope.config.leftNavbar, function (a) {
                     scope.menuExpanded[a.title] = false;
@@ -107,8 +110,22 @@
             })
         }
 
+
             function init() {
-                getTemplateConfig();
+                dataManupulator.manupulate("validateToken", {token: $localStorage.token}).then(function (response) {
+                    if(response.data.userEmail){
+                        identifier.authenticate({
+                            email: response.data.userEmail,
+                            roles: response.data.roles
+                        });
+                        getTemplateConfig('coordinator');
+                    }else{
+                        getTemplateConfig('visitor');
+                    }
+                }, function (err) {
+                    console.log(err);
+                    getTemplateConfig('visitor');
+                })
                 scope.$state = $state;
             }
 
