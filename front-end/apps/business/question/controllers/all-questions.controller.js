@@ -1,24 +1,46 @@
 ﻿define(['angular'], function (angular) {
 
     var question = angular.module('question').controller('questionsController',
-        ['$scope', '$http','dataManupulator', function (scope, http, dataManupulator) {
+        ['$scope', '$http','dataManupulator','btfModal','modalFactory', function (scope, http, dataManupulator, btfModal, modalFactory) {
           scope.totalItems=0;
           scope.subjects = [];
+            scope.pageSize = 10;
+            scope.selectedQuestions = [];
+            scope.$watchCollection("selectedQuestions", function(){
+                if(scope.selectedQuestions.length==1){
+                    scope.showMenu = true;
+                    scope.multiSelect = false;
+                }else if(scope.selectedQuestions.length>1){
+                    scope.showMenu = true;
+                    scope.multiSelect = true;
+                }else scope.showMenu = false;
+            });
+
+            scope.editSelected = function () {
+                var editModal = modalFactory.getModal();
+                editModal.activate();
+            }
 
             var getManyFilter = {
                 entityName: "question",
                 pageNumber:1,
-                pageSize: 8,
+                pageSize: scope.pageSize,
                 sort:{},
                 filters:{}
             }
 
-          var filter={
-            subjectId: scope.selectedSubject
-          };
-          scope.updateTable = function () {
-            console.log(filter);
-            console.log("here");
+          var filter={};
+          scope.updateTableBySubject = function (flag) {
+              if(flag){
+                  filter.subjectId = scope.selectedSubject._id
+              }
+              else{
+                  delete filter.subjectId;
+                  scope.selectedSubject = null;
+
+              };
+              scope.loadMore(0, 10,null, filter,null, null);
+
           }
 
             scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
@@ -28,7 +50,6 @@
               getManyFilter.sort.sortBy = orderBy;
               getManyFilter.filters = filter;
               getAllQuestion();
-              console.log("get more");
             }
 
             function makePartialSearchFilter(object) {
@@ -59,11 +80,13 @@
                     scope.allQuestions = response.data.data;
                   scope.totalItems = response.data.totalCount;
 
-                  scope.allQuestions.forEach(function (item, index) {
-                    dataManupulator.manupulate("getById",{entityName: 'subject', entityId: item.subjectId}).then(function (res) {
-                      scope.allQuestions[index].subject = res.data.title;
-                    })
-                  })
+                  if(angular.isArray(scope.allQuestions)){
+                      scope.allQuestions.forEach(function (item, index) {
+                          dataManupulator.manupulate("getById",{entityName: 'subject', entityId: item.subjectId}).then(function (res) {
+                              scope.allQuestions[index].subject = res.data.title;
+                          })
+                      })
+                  }
                 })
             }
             //getAllQuestion();

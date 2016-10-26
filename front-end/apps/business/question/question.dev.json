@@ -2,15 +2,27 @@
 	"paths": {
 		"question": "apps/business/question/question.config",
 		"questionsController": "apps/business/question/controllers/all-questions.controller",
-		"createQuestionController":"apps/business/question/controllers/create-question.controller"
+		"createQuestionController":"apps/business/question/controllers/create-question.controller",
+		"angular-modal":"bower_components/angular-modal/modal.min",
+		"modal-factory": "apps/business/question/factories/modal.factory",
+		"editQuestionModalController": "apps/business/question/controllers/editQuestionModal.controller"
 	},
 
 
 	"dependencies": {
 		"questionsController": {
-			"deps": ["question"]
+			"deps": ["question","modal-factory","editQuestionModalController"]
 		},
 		"createQuestionController":{
+		  "deps": ["question"]
+		},
+		"question": {
+		  "deps": ["angular-modal"]
+		},
+		"modal-factory": {
+		  "deps": ["question"]
+		},
+		"editQuestionModalController": {
 		  "deps": ["question"]
 		}
 
