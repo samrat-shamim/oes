@@ -1,0 +1,28 @@
+﻿<div class="">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Question Details</h4>
+    <button class="btn btn-warning close" type="button" ng-click="cancel()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+  </div>
+  <div  class="modal-body" id="modal-body">
+  <div class="row">
+    <div class="col-md-4 col-sm-4"><b>Subject:</b><br/> {{subject.title}}</div>
+    <div class="col-md-4 col-sm-4"></div>
+    <div class="col-md-4 col-sm-4"><b>Difficulty Level:</b><br/> {{question.difficultyLevel}}</div>
+    <div class="col-lg-10 col-md-10 col-sm-10">
+      <br/>
+      <h4>{{question.title}}</h4>
+    </div>
+
+    <div ng-if="question.titleFigure" class="col-lg-10 col-md-10 col-sm-10">
+      <img src="localhost:3000/file-1477480557088.png" alt="Question Figure" style="width:150px;height:150px">
+    </div>
+  </div>
+
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Done</button>
+  </div>
+</div>

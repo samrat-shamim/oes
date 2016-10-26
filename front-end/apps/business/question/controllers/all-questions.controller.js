@@ -1,7 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
     var question = angular.module('question').controller('questionsController',
-        ['$scope', '$http','dataManupulator','btfModal','modalFactory', function (scope, http, dataManupulator, btfModal, modalFactory) {
+        ['$scope', '$http',"$uibModal",'dataManupulator','btfModal','modalFactory','questionService',
+          function (scope, http,$uibModal, dataManupulator, btfModal, modalFactory, questionService) {
           scope.totalItems=0;
           scope.subjects = [];
             scope.pageSize = 10;
@@ -16,9 +17,52 @@
                 }else scope.showMenu = false;
             });
 
+            scope.$on("question-deleted", function (e, arg) {
+              if(arg.ids){
+                arg.ids.forEach(function (id) {
+                  scope.allQuestions.forEach(function (item, index) {
+                    if (item._id == id){
+                      delete scope.allQuestions[index];
+                      scope.totalItems--;
+                    }
+                  })
+                })
+              }
+            })
+
             scope.editSelected = function () {
-                var editModal = modalFactory.getModal();
-                editModal.activate();
+              questionService.setQuestionToBeEdited(scope.selectedQuestions[0]);
+             var modal= $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title-top',
+                ariaDescribedBy: 'modal-body-top',
+                templateUrl: 'apps/business/question/views/edit-question-modal.view.html',
+                controller: 'editQuestionController'
+              });
+              questionService.setModal(modal);
+            }
+            scope.viewSelected = function () {
+              questionService.setQuestionToBeViewed(scope.selectedQuestions[0]);
+              var modal= $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title-top',
+                ariaDescribedBy: 'modal-body-top',
+                templateUrl: 'apps/business/question/views/view-question-modal.view.html',
+                controller: 'viewQuestionController'
+              });
+              questionService.setModal(modal);
+            }
+
+            scope.deleteSelected = function () {
+              questionService.setQuestionsToBeDeleted(scope.selectedQuestions);
+              var modal= $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title-top',
+                ariaDescribedBy: 'modal-body-top',
+                templateUrl: 'apps/business/question/views/delete-question-confirmation-modal.view.html',
+                controller: 'deleteQuestionController'
+              });
+              questionService.setModal(modal);
             }
 
             var getManyFilter = {
@@ -43,13 +87,14 @@
 
           }
 
-            scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+          scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
               makePartialSearchFilter(filterByFields);
               getManyFilter.pageNumber = currentPage+1;
               getManyFilter.pageSize = pageItems;
               getManyFilter.sort.sortBy = orderBy;
               getManyFilter.filters = filter;
               getAllQuestion();
+            scope.selectedQuestions = [];
             }
 
             function makePartialSearchFilter(object) {

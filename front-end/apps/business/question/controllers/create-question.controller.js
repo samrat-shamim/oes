@@ -181,7 +181,6 @@
                    name: item.title,
                    value: item._id
                  }
-                 console.log(subject);
                  subjects.push(subject);
                })
                resolve(subjects);
@@ -232,7 +231,6 @@
             console.info('onCompleteAll');
           };
 
-          console.info('uploader', uploader);
         }]);
 
 
