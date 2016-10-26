@@ -1,9 +1,22 @@
 define(['angular'], function (angular) {
 
     var question = angular.module('question').controller('editQuestionController',
-        ['$scope', '$http','$q','dataManupulator','FileUploader', function (scope, http,$q, dataManupulator, FileUploader) {
+        ['$scope', '$http','$q','dataManupulator','FileUploader','questionService',
+          function (scope, http,$q, dataManupulator, FileUploader, questionService) {
 
             scope.pageTitle = "Create Question";
+            var questionToBeEdited;
+            var modalInstance;
+            function init() {
+              questionToBeEdited = questionService.getQuestionToBeEdited();
+              modalInstance = questionService.getModal();
+              scope.questionModel = questionToBeEdited;
+            }
+            init();
+
+            scope.cancel = function () {
+              modalInstance.close();
+            }
 
             var uploader= scope.uploader = new FileUploader({
                 url: "http://localhost:3000/upload",
@@ -24,11 +37,6 @@ define(['angular'], function (angular) {
                 scope.uploadingImgFor = info;
             };
 
-            scope.questionModel = {
-                subject: "580de2b22b0786194c1ab760",
-                difficultyLevel: "primary",
-                correctAnswer: "optionA"
-            };
             var subjects = [];
 
             scope.questionSchema = [
@@ -158,12 +166,14 @@ define(['angular'], function (angular) {
                 }
             }
 
-            scope.createQuestion = function(){
+            scope.editQuestion = function(){
                 var model = {
-                    "entityName": "question"
+                  "entityName": "question",
+                  "entityId": questionToBeEdited._id
                 };
                 model.entity = scope.questionModel;
-                dataManupulator.manupulate("insert",model);
+                dataManupulator.manupulate("update",model);
+              scope.cancel();
             }
             var getManyFilter = {
                 entityName: "subject",
@@ -181,7 +191,6 @@ define(['angular'], function (angular) {
                                 name: item.title,
                                 value: item._id
                             }
-                            console.log(subject);
                             subjects.push(subject);
                         })
                         resolve(subjects);
@@ -232,7 +241,6 @@ define(['angular'], function (angular) {
                 console.info('onCompleteAll');
             };
 
-            console.info('uploader', uploader);
         }]);
 
 

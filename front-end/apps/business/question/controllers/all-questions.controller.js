@@ -1,7 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
     var question = angular.module('question').controller('questionsController',
-        ['$scope', '$http',"$uibModal",'dataManupulator','btfModal','modalFactory', function (scope, http,$uibModal, dataManupulator, btfModal, modalFactory) {
+        ['$scope', '$http',"$uibModal",'dataManupulator','btfModal','modalFactory','questionService',
+          function (scope, http,$uibModal, dataManupulator, btfModal, modalFactory, questionService) {
           scope.totalItems=0;
           scope.subjects = [];
             scope.pageSize = 10;
@@ -17,13 +18,15 @@
             });
 
             scope.editSelected = function () {
-              $uibModal.open({
+              questionService.setQuestionToBeEdited(scope.selectedQuestions[0]);
+             var modal= $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title-top',
                 ariaDescribedBy: 'modal-body-top',
                 templateUrl: 'apps/business/question/views/edit-question-modal.view.html',
-                size:'lg'
+                controller: 'editQuestionController'
               });
+              questionService.setModal(modal);
             }
 
             var getManyFilter = {
@@ -48,13 +51,14 @@
 
           }
 
-            scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+          scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
               makePartialSearchFilter(filterByFields);
               getManyFilter.pageNumber = currentPage+1;
               getManyFilter.pageSize = pageItems;
               getManyFilter.sort.sortBy = orderBy;
               getManyFilter.filters = filter;
               getAllQuestion();
+            scope.selectedQuestions = [];
             }
 
             function makePartialSearchFilter(object) {

@@ -5,13 +5,14 @@
 		"createQuestionController":"apps/business/question/controllers/create-question.controller",
 		"angular-modal":"bower_components/angular-modal/modal.min",
 		"modal-factory": "apps/business/question/factories/modal.factory",
-		"editQuestionModalController": "apps/business/question/controllers/editQuestionModal.controller"
+		"editQuestionModalController": "apps/business/question/controllers/editQuestionModal.controller",
+    "questionService": "apps/business/question/services/question.service"
 	},
 
 
 	"dependencies": {
 		"questionsController": {
-			"deps": ["question","modal-factory","editQuestionModalController"]
+			"deps": ["question","modal-factory","editQuestionModalController","questionService"]
 		},
 		"createQuestionController":{
 		  "deps": ["question"]
@@ -23,8 +24,11 @@
 		  "deps": ["question"]
 		},
 		"editQuestionModalController": {
-		  "deps": ["question"]
-		}
+		  "deps": ["question", "questionService"]
+		},
+    "questionService": {
+      "deps": ["question"]
+    }
 
 	},
 
