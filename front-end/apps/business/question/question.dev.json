@@ -17,7 +17,7 @@
 		  "deps": ["question"]
 		},
 		"question": {
-		  "deps": ["angular-modal"]
+		  "deps": ["angular-modal","angular_animate"]
 		},
 		"modal-factory": {
 		  "deps": ["question"]

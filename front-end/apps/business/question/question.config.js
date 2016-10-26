@@ -1,4 +1,4 @@
 ﻿define(['angular'], function (angular) {
 
-   angular.module('question', ['btford.modal']);
+   angular.module('question', ['btford.modal','ngAnimate']);
 });
