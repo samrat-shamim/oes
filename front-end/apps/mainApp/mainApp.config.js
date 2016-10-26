@@ -10,8 +10,8 @@
         }
     });
 
-    mainApp.config(['$urlRouterProvider','$stateProvider', '$httpProvider', '$controllerProvider', '$provide',
-    function ($urlRouterProvider, $stateProvider, $httpProvider, $controllerProvider, $provide) {
+    mainApp.config(['$urlRouterProvider','$stateProvider', '$httpProvider', '$controllerProvider', '$provide',"$compileProvider",
+    function ($urlRouterProvider, $stateProvider, $httpProvider, $controllerProvider, $provide, $compileProvider) {
 
         $httpProvider.defaults.headers.common = {};
         $httpProvider.defaults.headers.post = {};
@@ -20,6 +20,9 @@
 
         mainApp.registerController = $controllerProvider.register;
         mainApp.$register = $provide;
+
+      var imgSrcSanitizationWhitelist = /^\s*(https?|ftp|file):|data:image\//;
+      $compileProvider.imgSrcSanitizationWhitelist(imgSrcSanitizationWhitelist);
 
         var appBaseUrl = "apps";
 

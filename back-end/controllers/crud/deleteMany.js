@@ -9,7 +9,6 @@ module.exports = function(app, route) {
         var model = mongoose.model(entityName, schema);
         model.remove({_id:{$in : entityIds}},function(err, doc){
             res.send(doc);
-            console.log(doc);
             next();
         });
 

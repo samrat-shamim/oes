@@ -17,6 +17,19 @@
                 }else scope.showMenu = false;
             });
 
+            scope.$on("question-deleted", function (e, arg) {
+              if(arg.ids){
+                arg.ids.forEach(function (id) {
+                  scope.allQuestions.forEach(function (item, index) {
+                    if (item._id == id){
+                      delete scope.allQuestions[index];
+                      scope.totalItems--;
+                    }
+                  })
+                })
+              }
+            })
+
             scope.editSelected = function () {
               questionService.setQuestionToBeEdited(scope.selectedQuestions[0]);
              var modal= $uibModal.open({
@@ -25,6 +38,29 @@
                 ariaDescribedBy: 'modal-body-top',
                 templateUrl: 'apps/business/question/views/edit-question-modal.view.html',
                 controller: 'editQuestionController'
+              });
+              questionService.setModal(modal);
+            }
+            scope.viewSelected = function () {
+              questionService.setQuestionToBeViewed(scope.selectedQuestions[0]);
+              var modal= $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title-top',
+                ariaDescribedBy: 'modal-body-top',
+                templateUrl: 'apps/business/question/views/view-question-modal.view.html',
+                controller: 'viewQuestionController'
+              });
+              questionService.setModal(modal);
+            }
+
+            scope.deleteSelected = function () {
+              questionService.setQuestionsToBeDeleted(scope.selectedQuestions);
+              var modal= $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title-top',
+                ariaDescribedBy: 'modal-body-top',
+                templateUrl: 'apps/business/question/views/delete-question-confirmation-modal.view.html',
+                controller: 'deleteQuestionController'
               });
               questionService.setModal(modal);
             }
