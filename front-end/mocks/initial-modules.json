@@ -1,13 +1,13 @@
 ﻿{
     "modules": [{
-        "name": "sample-one",
-        "type": "business"
+        "name": "home",
+        "type": "public"
     }, {
         "name": "sample-two",
         "type": "business"
     }, {
-        "name": "sample-navbar",
-        "type": "infrastructure"
+        "name": "user-management",
+        "type": "business"
     }, {
         "name": "core-directives",
         "type": "infrastructure"

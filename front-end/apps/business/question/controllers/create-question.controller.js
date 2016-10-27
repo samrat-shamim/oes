@@ -10,6 +10,8 @@
                 autoUpload: true
            });
 
+          scope.fileAcceptTypes = "image/gif, image/jpeg, image/png, image/jpg, image/bmp";
+
           uploader.filters.push({
             name: 'imageFilter',
             fn: function(item /*{File|FileLikeObject}*/, options) {

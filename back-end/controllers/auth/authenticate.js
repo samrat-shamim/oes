@@ -2,6 +2,7 @@ module.exports = function(app, route) {
   var mongoose = require('mongoose');
   var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
   var message = {};
+  var bcrypt = require('bcrypt-nodejs');
   return function(req, res, next) {
     var entityName = "user";
     var schema = app.models[entityName];
@@ -16,8 +17,12 @@ module.exports = function(app, route) {
         res.json({ success: false, message: 'Authentication failed. User not found.' });
       } else if (user) {
 
+        console.log(user);
+
         // check if password matches
-        if (user.password != req.body.password) {
+        console.log(bcrypt.compareSync(req.password, user.password));
+
+        if (bcrypt.compareSync(req.password, user.password)) {
           console.log(req.body);
           console.log(user);
           res.json({ success: false, message: 'Authentication failed. Wrong password.' });

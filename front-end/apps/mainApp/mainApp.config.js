@@ -3,7 +3,6 @@
     var mainApp = angular.module('mainApp', ['ui.router', 'ui.bootstrap', 'oc.lazyLoad', 'ngStorage']);
 
 
-    angular.module('mainApp').requires.push('sample-navbar');
     modules.forEach(function(module) {
         if (module.type == "infrastructure") {
             angular.module('mainApp').requires.push(module.name);
@@ -103,14 +102,14 @@
                     ]
                 }
             })
-            .state('home', {
+            /*.state('home', {
                 url: '/home',
                 data: {
                     roles: ['user']
                 },
                 templateUrl: 'apps/public/landing/views/landing.view.html',
                 controller: 'landingController'
-            })
+            })*/
             .state('access-denied', {
                 title: 'access-denied',
                 url: '/access-denied',

@@ -1,0 +1,32 @@
+{
+  "paths": {
+    "home": "apps/public/home/home.config",
+    "homeController": "apps/public/home/controllers/home.controller",
+    "aboutUsController": "apps/public/home/controllers/about-us.controller"
+  },
+  "dependencies": {
+    "homeController": {
+      "deps": [ "home" ]
+    },
+    "aboutUsController": {
+      "deps": [ "home" ]
+    }
+  },
+  "routes": {
+    "moduleName": "home",
+    "states": [
+      {
+        "name": "home",
+        "url": "/",
+        "templateUrl": "apps/public/home/views/home.view.html",
+        "controller": "homeController"
+      },
+      {
+        "name": "about-us",
+        "url": "/about-us",
+        "templateUrl": "apps/public/home/views/about-us.view.html",
+        "controller": "aboutUsController"
+      }
+    ]
+  }
+}

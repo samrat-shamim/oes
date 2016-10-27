@@ -1,5 +1,6 @@
 module.exports = function(app, route) {
   var mongoose = require('mongoose');
+  var bcrypt = require('bcrypt-nodejs');
   var message = {};
   return function(req, res, next) {
     var entityName = "user";
@@ -15,7 +16,9 @@ module.exports = function(app, route) {
         sendError(message);
       }else{
         message.text = "user created";
+        req.body.password = bcrypt.hashSync(req.body.password);
         var document = new model(req.body);
+
         document.save(function(err, doc){
           res.send(doc);
           next();

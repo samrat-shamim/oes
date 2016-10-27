@@ -9,6 +9,7 @@
   "author": "Samrat Shamim",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "*",
     "cors": "^2.8.1",
     "express": "*",

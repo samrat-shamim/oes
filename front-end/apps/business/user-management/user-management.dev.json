@@ -1,0 +1,42 @@
+﻿{
+	"paths": {
+		"user-management": "apps/business/user-management/user-management.config",
+		"usersController": "apps/business/user-management/controllers/all-users.controller",
+		"createUserController":"apps/business/user-management/controllers/create-user.controller"
+	},
+
+
+	"dependencies": {
+		"usersController": {
+			"deps": ["user-management"]
+		},
+		"createUserController":{
+		  "deps": ["user-management"]
+		}
+
+	},
+
+
+	"routes": {
+		"moduleName": "user-management",
+		"states": [
+		  {
+			"name": "all-users",
+      		"url": "/all-users",
+			"templateUrl": "apps/business/user-management/views/all-users.view.html",
+			"controller": "usersController",
+			"data": {
+			}
+		},
+		  {
+			"name": "create-user",
+			"url": "/create-user",
+			"templateUrl": "apps/business/user-management/views/create-user.view.html",
+			"controller": "createUserController",
+			"data": {
+			}
+		  }
+		]
+	}
+
+}
