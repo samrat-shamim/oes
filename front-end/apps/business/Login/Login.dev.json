@@ -2,7 +2,8 @@
   "paths": {
     "login": "apps/business/login/login.config",
     "loginController": "apps/business/login/controllers/login.controller",
-    "logoutController": "apps/business/login/controllers/logout.controller"
+    "logoutController": "apps/business/login/controllers/logout.controller",
+    "angular-toastr": "bower_components/angular-toastr/dist/angular-toastr.tpls.min"
   },
 
 
@@ -12,6 +13,12 @@
     },
     "logoutController": {
       "deps": [ "login" ]
+    },
+    "login": {
+      "deps": [ "angular-toastr" ]
+    },
+    "angular-toastr": {
+      "deps": [ "angular_animate", "angular_sanitize" ]
     }
   },
 

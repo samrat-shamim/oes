@@ -18,9 +18,6 @@
         "name": "template",
         "type": "infrastructure"
     }, {
-        "name": "form-builder",
-        "type": "infrastructure"
-    }, {
         "name": "question",
         "type": "business"
     }, {

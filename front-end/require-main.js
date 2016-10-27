@@ -23,6 +23,7 @@ var jsPaths = {
     'angular-ui-router': 'bower_components/angular-ui-router/release/angular-ui-router.min',
     'angular_route':"bower_components/angular-route/angular-route.min",
     'angular_animate': 'bower_components/angular-animate/angular-animate.min',
+    'angular_sanitize':"bower_components/angular-sanitize/angular-sanitize.min",
 
         
 

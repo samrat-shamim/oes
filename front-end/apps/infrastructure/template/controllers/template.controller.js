@@ -117,7 +117,6 @@
                         getTemplateConfig('visitor');
                     }
                 }, function (err) {
-                    console.log(err);
                     getTemplateConfig('visitor');
                 })
                 scope.$state = $state;

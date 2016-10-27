@@ -1,7 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
     var login = angular.module('login').controller('loginController',
-        ['$rootScope', '$scope', '$state', '$localStorage',"identifier",'dataManupulator', function ($rootScope, scope, $state,$localStorage, identifier, dataManupulator) {
+        ['$rootScope', '$scope', '$state', '$localStorage','$timeout',"identifier",'dataManupulator','toastr',
+            function ($rootScope, scope, $state,$localStorage,$timeout, identifier, dataManupulator, toastr) {
 
             var userInfo = {};
           scope.pageTitle = "Login";
@@ -20,12 +21,21 @@
                             roles: response.data.user.roles
                         });
                         if (true) {
-                            $rootScope.$broadcast("loggedin", {role:'coordinator'});
-                            $state.go('landing');
+                            toastr.success('Login successful!', 'Success');
+                            $timeout(function () {
+                                $rootScope.$broadcast("loggedin", {role:'coordinator'});
+                                $state.go('landing');
+                            }, 1000);
+
                         }
+                    }
+                    else if(!response.success){
+                        toastr.error('Your credentials are incorrect', 'Error');
                     }
                 });
             }
+
+
             function init() {
               if(identifier.isAuthenticated()){
                 $state.go('home');
