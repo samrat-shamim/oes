@@ -5,7 +5,8 @@ define(['angular'], function (angular) {
           function (scope, http,$q,$rootScope, dataManupulator, FileUploader, questionService) {
 
             scope.pageTitle = "Create Question";
-            scope.baseUrl = "localhost:3000/";
+            scope.baseUrl = "http://localhost:3000/";
+            scope.bgColor = "background-color: BurlyWood";
             var questionToBeViewed;
             var modalInstance;
             function init() {

@@ -10,8 +10,8 @@
         }
     });
 
-    mainApp.config(['$urlRouterProvider','$stateProvider', '$httpProvider', '$controllerProvider', '$provide',"$compileProvider",
-    function ($urlRouterProvider, $stateProvider, $httpProvider, $controllerProvider, $provide, $compileProvider) {
+    mainApp.config(['$urlRouterProvider','$stateProvider', '$httpProvider', '$controllerProvider', '$provide',"$compileProvider","$sceDelegateProvider",
+    function ($urlRouterProvider, $stateProvider, $httpProvider, $controllerProvider, $provide, $compileProvider, $sceDelegateProvider) {
 
         $httpProvider.defaults.headers.common = {};
         $httpProvider.defaults.headers.post = {};
@@ -21,8 +21,12 @@
         mainApp.registerController = $controllerProvider.register;
         mainApp.$register = $provide;
 
-      var imgSrcSanitizationWhitelist = /^\s*(https?|ftp|file):|data:image\//;
-      $compileProvider.imgSrcSanitizationWhitelist(imgSrcSanitizationWhitelist);
+        $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|local|file|blob):|data:image\//);
+        $sceDelegateProvider.resourceUrlWhitelist([
+            // Allow same origin resource loads.
+            'self',
+            // Allow loading from our assets domain.  Notice the difference between * and **.
+            'http://localhost:3000/**']);
 
         var appBaseUrl = "apps";
 

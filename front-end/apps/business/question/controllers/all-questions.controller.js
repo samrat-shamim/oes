@@ -24,6 +24,7 @@
                     if (item._id == id){
                       delete scope.allQuestions[index];
                       scope.totalItems--;
+                        scope.selectedQuestions = [];
                     }
                   })
                 })
