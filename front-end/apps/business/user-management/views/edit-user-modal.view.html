@@ -1,0 +1,19 @@
+﻿<div class="">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Edit User</h4>
+    <button class="btn btn-warning close" type="button" ng-click="cancel()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <button type="submit" class="btn btn-primary close" ng-disabled="userForm.$invalid" ng-click="editUser()">
+      <span class="glyphicon glyphicon-ok"></span>
+    </button>
+  </div>
+  <div  class="modal-body" id="modal-body">
+    <formly-form model="userModel" fields="userSchema" form="userForm" options="options">
+    </formly-form>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="editUser()">Submit</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

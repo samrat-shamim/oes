@@ -1,0 +1,20 @@
+<div class="">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Confirm Delete User</h4>
+    <button class="btn btn-warning close" type="button" ng-click="cancel()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+  </div>
+  <div  class="modal-body" id="modal-body">
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="user in users">
+        <h3>{{user.userEmail}}</h3>
+      </li>
+    </ul>
+    <h1 style="color: red;">Confirm Delete?</h1>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="deleteUsers()">Confirm</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

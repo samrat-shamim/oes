@@ -1,8 +1,8 @@
 ﻿<div>
     <form novalidate>
         <h1>{{pageTitle}}</h1>
-        <formly-form model="subjectModel" fields="subjectSchema" form="subjectForm">
-            <button type="submit" class="btn btn-primary" ng-disabled="subjectForm.$invalid" ng-click="createSubject()">Submit</button>
+        <formly-form model="userModel" fields="userSchema" form="userForm" options="options">
+            <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="createUser()">Submit</button>
         </formly-form>
     </form>
 </div>

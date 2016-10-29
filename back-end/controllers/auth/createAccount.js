@@ -6,28 +6,33 @@ module.exports = function(app, route) {
     var entityName = "user";
     var schema = app.models[entityName];
     if(!schema){
-      message.text = "Invalid entity name.";
-      sendError();
+      sendRes("Invalid entity name.", false);
     }
     var model = mongoose.model(entityName, schema);
     model.findOne({userEmail:req.body.userEmail}, function (err, user) {
       if(user){
-        message.text = "Email already exist";
-        sendError(message);
+        sendRes("Email already exist", false);
       }else{
-        message.text = "user created";
         req.body.password = bcrypt.hashSync(req.body.password);
         var document = new model(req.body);
 
         document.save(function(err, doc){
-          res.send(doc);
-          next();
+          if(doc){
+            sendRes("User Created", true, doc);
+          }
+          else{
+            sendRes("User Creation failed", false, err);
+          }
         });
       }
     })
 
-    function sendError(message){
-      res.send(message);
+    function sendRes(message, success, data){
+      res.json({
+        message: message,
+        success: success,
+        data: data
+      })
       next();
     }
   };

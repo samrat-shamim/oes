@@ -1,6 +1,6 @@
 ﻿define(['require'], function (require) {
 
-    var mainApp = angular.module('mainApp', ['ui.router', 'ui.bootstrap', 'oc.lazyLoad', 'ngStorage']);
+    var mainApp = angular.module('mainApp', ['ui.router', 'ui.bootstrap', 'oc.lazyLoad', 'ngStorage', 'ngAnimate', 'toastr']);
 
 
     modules.forEach(function(module) {

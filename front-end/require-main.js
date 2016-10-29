@@ -24,7 +24,7 @@ var jsPaths = {
     'angular_route':"bower_components/angular-route/angular-route.min",
     'angular_animate': 'bower_components/angular-animate/angular-animate.min',
     'angular_sanitize':"bower_components/angular-sanitize/angular-sanitize.min",
-
+    "angular-toastr": "bower_components/angular-toastr/dist/angular-toastr.tpls.min",
         
 
     // Angular bootstrap
@@ -80,10 +80,19 @@ var shims = {
         deps: ['mainApp']
     },
     'mainApp': {
-        deps: ['angular', 'angular-ui-router', 'angular_ui_bootstrap', 'angular_ocLazyLoad', 'ngStorage']
+        deps: ['angular', 'angular-ui-router', 'angular_ui_bootstrap', 'angular_ocLazyLoad', 'ngStorage', 'angular-toastr']
     },
     'appLoader': {
         deps:['mainApp']
+    },
+    "angular-toastr": {
+        "deps": [ "angular_animate", "angular_sanitize" ]
+    },
+    "angular_animate":{
+        deps: ['angular']
+    },
+    "angular_sanitize":{
+        deps: ['angular']
     }
 }
 

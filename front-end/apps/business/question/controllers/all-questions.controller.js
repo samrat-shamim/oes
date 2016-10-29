@@ -1,8 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
     var question = angular.module('question').controller('questionsController',
-        ['$scope', '$http',"$uibModal",'dataManupulator','btfModal','modalFactory','questionService',
-          function (scope, http,$uibModal, dataManupulator, btfModal, modalFactory, questionService) {
+        ['$scope', '$http',"$uibModal",'dataManupulator','questionService',
+          function (scope, http,$uibModal, dataManupulator, questionService) {
           scope.totalItems=0;
           scope.subjects = [];
             scope.pageSize = 10;
@@ -84,7 +84,7 @@
                   scope.selectedSubject = null;
 
               };
-              scope.loadMore(0, 10,null, filter,null, null);
+              scope.loadMore(0, scope.pageSize,null, filter,null, null);
 
           }
 

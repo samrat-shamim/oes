@@ -3,8 +3,6 @@
 		"question": "apps/business/question/question.config",
 		"questionsController": "apps/business/question/controllers/all-questions.controller",
 		"createQuestionController":"apps/business/question/controllers/create-question.controller",
-		"angular-modal":"bower_components/angular-modal/modal.min",
-		"modal-factory": "apps/business/question/factories/modal.factory",
 		"editQuestionModalController": "apps/business/question/controllers/editQuestionModal.controller",
     "questionService": "apps/business/question/services/question.service",
     "deleteQuestionController": "apps/business/question/controllers/delete-question-confirmation.controller",
@@ -14,15 +12,9 @@
 
 	"dependencies": {
 		"questionsController": {
-			"deps": ["question","modal-factory","editQuestionModalController","questionService", "deleteQuestionController", "viewQuestionController"]
+			"deps": ["question","editQuestionModalController","questionService", "deleteQuestionController", "viewQuestionController"]
 		},
 		"createQuestionController":{
-		  "deps": ["question"]
-		},
-		"question": {
-		  "deps": ["angular-modal","angular_animate"]
-		},
-		"modal-factory": {
 		  "deps": ["question"]
 		},
 		"editQuestionModalController": {

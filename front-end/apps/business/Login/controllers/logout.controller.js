@@ -1,7 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
     var login = angular.module('login').controller('logoutController',
-        ['$rootScope', '$scope', '$state', '$localStorage',"identifier",'dataManupulator', function ($rootScope, scope, $state,$localStorage, identifier, dataManupulator) {
+        ['$rootScope', '$scope', '$state', '$localStorage',"identifier",'dataManupulator', "toastr",
+            function ($rootScope, scope, $state,$localStorage, identifier, dataManupulator, toastr) {
 
 
             scope.message = "Logging out";

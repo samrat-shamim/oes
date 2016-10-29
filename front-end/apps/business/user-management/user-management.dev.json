@@ -2,16 +2,32 @@
 	"paths": {
 		"user-management": "apps/business/user-management/user-management.config",
 		"usersController": "apps/business/user-management/controllers/all-users.controller",
-		"createUserController":"apps/business/user-management/controllers/create-user.controller"
+		"createUserController":"apps/business/user-management/controllers/create-user.controller",
+		"userService":"apps/business/user-management/services/user.service",
+		"deleteUserConfirmationController": "apps/business/user-management/controllers/delete-user-confirmation.controller",
+		"viewUserController": "apps/business/user-management/controllers/view-user.controller",
+		"editUserController": "apps/business/user-management/controllers/edit-user-modal.controller"
 	},
 
 
 	"dependencies": {
 		"usersController": {
-			"deps": ["user-management"]
+			"deps": ["user-management", "userService", "deleteUserConfirmationController", "viewUserController", "editUserController"]
 		},
 		"createUserController":{
 		  "deps": ["user-management"]
+		},
+		"userService":{
+		  "deps": ["user-management"]
+		},
+		"deleteUserConfirmationController": {
+		  "deps": ["user-management", "userService"]
+		},
+		"viewUserController": {
+		  "deps": ["user-management", "userService"]
+		},
+		"editUserController": {
+		  "deps": ["user-management", "userService"]
 		}
 
 	},

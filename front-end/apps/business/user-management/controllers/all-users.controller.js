@@ -1,41 +1,149 @@
 ﻿define(['angular'], function (angular) {
 
-    var subject = angular.module('user-management').controller('usersController',
-        ['$scope', '$http','dataManupulator', function (scope, http, dataManupulator) {
+    var users = angular.module('user-management').controller('usersController',
+        ['$scope', '$http',"$uibModal",'dataManupulator','userService',
+          function (scope, http,$uibModal, dataManupulator, userService) {
+          scope.totalItems=0;
+          scope.roles = [
+              {
+                  name: "Examinee",
+                  value:"Examinee"
+              },
+              {
+                  name: "Examiner",
+                  value:"Examiner"
+              },
+              {
+                  name: "Coordinator",
+                  value:"Coordinator"
+              }
+          ];
+            scope.pageSize = 10;
+            scope.selectedUsers = [];
+            scope.$watchCollection("selectedUsers", function(){
+                if(scope.selectedUsers.length==1){
+                    scope.showMenu = true;
+                    scope.multiSelect = false;
+                }else if(scope.selectedUsers.length>1){
+                    scope.showMenu = true;
+                    scope.multiSelect = true;
+                }else scope.showMenu = false;
+            });
+
+            scope.$on("user-deleted", function (e, arg) {
+              if(arg.ids){
+                arg.ids.forEach(function (id) {
+                  scope.allUsers.forEach(function (item, index) {
+                    if (item._id == id){
+                      delete scope.allUsers[index];
+                      scope.totalItems--;
+                        scope.selectedUsers = [];
+                    }
+                  })
+                })
+              }
+            })
+
+            scope.editSelected = function () {
+              userService.setUserToBeEdited(scope.selectedUsers[0]);
+             var modal= $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title-top',
+                ariaDescribedBy: 'modal-body-top',
+                templateUrl: 'apps/business/user-management/views/edit-user-modal.view.html',
+                controller: 'editUserController'
+              });
+                userService.setModal(modal);
+            }
+            scope.viewSelected = function () {
+                userService.setUserToBeViewed(scope.selectedUsers[0]);
+              var modal= $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title-top',
+                ariaDescribedBy: 'modal-body-top',
+                templateUrl: 'apps/business/user-management/views/view-user-modal.view.html',
+                controller: 'viewUserController'
+              });
+                userService.setModal(modal);
+            }
+
+            scope.deleteSelected = function () {
+                userService.setUsersToBeDeleted(scope.selectedUsers);
+              var modal= $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title-top',
+                ariaDescribedBy: 'modal-body-top',
+                templateUrl: 'apps/business/user-management/views/delete-user-confirmation-modal.view.html',
+                controller: 'deleteUserController'
+              });
+                userService.setModal(modal);
+            }
 
             var getManyFilter = {
                 entityName: "user",
                 pageNumber:1,
-                pageSize: 10
+                pageSize: scope.pageSize,
+                sort:{},
+                filters:{}
+            }
+
+          var filter={};
+          scope.updateTableByRole = function (flag) {
+              if(flag){
+                  filter.role = scope.selectedRole.value
+              }
+              else{
+                  delete filter.role;
+                  scope.selectedRole = null;
+
+              };
+              scope.loadMore(0, scope.pageSize,null, filter,null, null);
+
+          }
+
+          scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+              makePartialSearchFilter(filterByFields);
+              getManyFilter.pageNumber = currentPage+1;
+              getManyFilter.pageSize = pageItems;
+              getManyFilter.sort.sortBy = orderBy;
+              getManyFilter.filters = filter;
+              getAllUser();
+            scope.selectedUsers = [];
+            }
+
+            function makePartialSearchFilter(object) {
+              for(var key in object){
+                if(object[key]){
+                    filter[key] = {
+                        $regex:object[key]
+                    };
+                }
+              }
+
             }
 
 
 
-            function getAllSubject(){
+            function getAllUser(){
                 dataManupulator.manupulate("getMany", getManyFilter).then(function(response){
-                    scope.myItems = response.data.data;
+                    scope.allUsers = response.data.data;
+                  scope.totalItems = response.data.totalCount;
                 })
             }
-          getAllSubject();
 
             scope.pageTitle = "All Users";
-            /*scope.myItems = [{name: "Moroni", age: 50},
-                {name: "Tiancum", age: 43},
-                {name: "Jacob", age: 27},
-                {name: "Nephi", age: 29},
-                {name: "Enos", age: 99}];*/
 
             scope.options = {
                 scrollbarV: false
             };
 
-            scope.data = [
-                { name: 'Austin', gender: 'Male' },
-                { name: 'Marjan', gender: 'Male' }
-            ];
+
+          function init() {
+          }
+          init();
         }]);
 
 
-    return subject;
+    return users;
 });
 

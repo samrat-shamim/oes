@@ -1,7 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
     var signUp = angular.module('sign-up').controller('signUpController',
-        ['$rootScope', '$scope', '$state', "identifier",'dataManupulator', function ($rootScope, scope, $state, identifier, dataManupulator) {
+        ['$rootScope', '$scope', '$state', "identifier",'dataManupulator',"toastr",
+            function ($rootScope, scope, $state, identifier, dataManupulator, toastr) {
 
             var user = {
 
@@ -13,8 +14,13 @@
                 user.phoneNumber = scope.phone;
                 user.password = scope.password;
                 dataManupulator.manupulate("createAccount", user).then(function(res){
-                    console.log(res);
-                    $state.go('login');
+                   if(res.data.success){
+                       toastr.success('Registration successful!', 'Success');
+                       $state.go('login');
+                   }
+                    else{
+                       toastr.error(res.data.message, 'Error');
+                   }
                 })
             }
 

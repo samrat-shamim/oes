@@ -5,16 +5,19 @@ module.exports = function(app, route) {
         var entityIds = req.body.entityIds;
         var schema = app.models[entityName];
         if(!schema)
-            sendError("Invalid entity name.");
+            sendRes("Invalid entity name.", false);
         var model = mongoose.model(entityName, schema);
         model.remove({_id:{$in : entityIds}},function(err, doc){
-            res.send(doc);
-            next();
+            sendRes("Delete Successfull", true, doc)
         });
-
-        function sendError(message){
-            res.send(message);
+        function sendRes(message, success, data){
+            res.json({
+                message: message,
+                success: success,
+                data: data
+            })
             next();
         }
+
     };
 };

@@ -1,11 +1,41 @@
 ﻿<div>
     <link href="bower_components/tr-ng-grid/trNgGrid.min.css" rel="stylesheet"/>
+    <link href="bower_components/angular-modal/modal.css" rel="stylesheet" />
+    <link href="apps/business/question/styles/question.css" rel="stylesheet" />
+
     <!--<link href="bower_components/angular-data-table/release/material.css" rel="stylesheet"/>-->
 
     <h1>{{pageTitle}}</h1>
+  <div class="row">
+      <div class="form-group col-sm-3 col-md-3">
+          <label>Filter By Role</label>
+          <select class="form-control" ng-model="selectedRole"
+                  ng-options="role as role.name for role in roles" ng-change="updateTableByRole(1)">
+          </select>
+          <button ng-if="selectedRole" ng-click="updateTableByRole(null)"> <span class="glyphicon glyphicon-remove-sign"></span>Clear</button>
+      </div>
+    <div class="form-group col-sm-2 col-md-2">
+      <label>Items Per Page</label>
+      <input class="form-control" type="number" ng-model="pageSize" max="100" min="1">
+      </input>
+    </div>
+      <div class="form-group col-sm-1 col-md-1">
 
-    <table tr-ng-grid items='myItems' fields="['userName','userEmail', 'phoneNumber', 'role']">
-    </table>
+      </div>
+
+      <div ng-if="showMenu" class="col-sm-6 col-md-6">
+          <br/>
+          <button class="btn btn-danger"  ng-click="deleteSelected()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+          <button ng-click="editSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+          <button ng-click="viewSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-eye-open"></span> Details</button>
+      </div>
+
+  </div>
+    <div style="background-color: lightblue">
+      <table tr-ng-grid items='allUsers' page-items="pageSize" total-items="totalItems" selected-items="selectedUsers" selection-mode="MultiRow"
+             fields="['userName','userEmail','phoneNumber']" on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+      </table>
+    </div>
 
    <!-- <dtable options="options" rows="data" class="material dt">
         <column name="Name" width="300" flex-grow="2"></column>

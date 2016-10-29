@@ -1,11 +1,11 @@
 ﻿
 define(['angular'], function (angular) {
 
-    var login = angular.module('login', ['ngAnimate', 'toastr']);
+    var login = angular.module('login', []);
 
     login.config(function(toastrConfig) {
         angular.extend(toastrConfig, {
-            timeOut: 1000
+            timeOut: 3000
         });
     });
 });
