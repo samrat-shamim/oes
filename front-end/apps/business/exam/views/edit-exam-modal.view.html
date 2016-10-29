@@ -1,0 +1,31 @@
+﻿<div class="">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Edit Question</h4>
+    <button class="btn btn-warning close" type="button" ng-click="cancel()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <button type="submit" class="btn btn-primary close" ng-disabled="questionForm.$invalid" ng-click="editQuestion()">
+      <span class="glyphicon glyphicon-ok"></span>
+    </button>
+  </div>
+  <div  class="modal-body" id="modal-body">
+    <form novalidate>
+      <formly-form model="questionModel" fields="questionSchema" form="questionForm">
+        <button><span ng-class="imageInQuestion?'glyphicon glyphicon-remove-circle':'glyphicon glyphicon-picture'" ng-click="imageInQuestion=!imageInQuestion"></span></button>
+        <br/><br/>
+        <div ng-if="imageInQuestion">
+          <b>Question Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('q')" type="file" nv-file-select uploader="uploader"/><br/>
+          <b>Option A Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('oa')"  type="file" nv-file-select uploader="uploader"/><br/>
+          <b>Option B Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('ob')"  type="file" nv-file-select uploader="uploader"/><br/>
+          <b>Option C Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('oc')"  type="file" nv-file-select uploader="uploader"/><br/>
+          <b>Option D Image</b><input ng-disabled="uploadInprogress" ng-click="updateUploadingImgInfo('od')"  type="file" nv-file-select uploader="uploader"/><br/>
+        </div>
+      </formly-form>
+    </form>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" ng-disabled="questionForm.$invalid" ng-click="editQuestion()">Submit</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

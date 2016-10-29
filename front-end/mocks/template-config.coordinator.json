@@ -65,6 +65,21 @@
           "icon":"glyphicon glyphicon-plus-sign"
         }
       ]
+    },
+    {
+      "title": "Examination",
+      "menus": [
+        {
+          "title": "All Exam",
+          "state": "all-exams",
+          "icon":"glyphicon glyphicon-list-alt"
+        },
+        {
+          "title": "Create Exam",
+          "state":"create-exam",
+          "icon":"glyphicon glyphicon-plus-sign"
+        }
+      ]
     }
   ]
 }

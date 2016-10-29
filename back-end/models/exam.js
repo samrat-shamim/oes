@@ -19,6 +19,10 @@ var ExamSchema = new mongoose.Schema(
             type: Date,
             required: true
         },
+          duration: {
+          type: Number,
+          required: true
+        },
         difficultyLevel:{
             type: Number
         },
