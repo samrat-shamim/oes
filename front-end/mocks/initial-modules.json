@@ -8,7 +8,10 @@
     }, {
         "name": "user-management",
         "type": "business"
-    }, {
+    },{
+      "name": "exam",
+      "type": "business"
+    },{
         "name": "core-directives",
         "type": "infrastructure"
     },{

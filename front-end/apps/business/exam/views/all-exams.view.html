@@ -1,0 +1,47 @@
+﻿<div>
+    <link href="bower_components/tr-ng-grid/trNgGrid.min.css" rel="stylesheet"/>
+    <link href="bower_components/angular-modal/modal.css" rel="stylesheet" />
+    <link href="apps/business/question/styles/question.css" rel="stylesheet" />
+
+    <!--<link href="bower_components/angular-data-table/release/material.css" rel="stylesheet"/>-->
+
+    <h1>{{pageTitle}}</h1>
+  <div class="row">
+      <div class="form-group col-sm-3 col-md-3">
+          <label>Filter By Subject</label>
+          <select class="form-control" ng-model="selectedSubject"
+                  ng-options="subject as subject.title for subject in subjects" ng-change="updateTableBySubject(1)">
+          </select>
+          <button ng-if="selectedSubject" ng-click="updateTableBySubject(0)"> <span class="glyphicon glyphicon-remove-sign"></span>Clear</button>
+      </div>
+    <div class="form-group col-sm-2 col-md-2">
+      <label>Items Per Page</label>
+      <input class="form-control" type="number" ng-model="pageSize" max="100" min="1">
+      </input>
+    </div>
+      <div class="form-group col-sm-1 col-md-1">
+
+      </div>
+
+      <div ng-if="showMenu" class="col-sm-6 col-md-6">
+          <br/>
+          <button class="btn btn-danger"  ng-click="deleteSelected()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+          <button ng-click="editSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+          <button ng-click="viewSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-eye-open"></span> Details</button>
+      </div>
+
+  </div>
+    <div style="background-color: lightblue">
+      <table tr-ng-grid items='allQuestions' page-items="pageSize" total-items="totalItems" selected-items="selectedQuestions" selection-mode="MultiRow"
+             fields="['title','difficultyLevel']" on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+      </table>
+    </div>
+
+   <!-- <dtable options="options" rows="data" class="material dt">
+        <column name="Name" width="300" flex-grow="2"></column>
+        <column name="Gender">
+            <strong>{{$row.name}}</strong>: {{$cell}}
+        </column>
+    </dtable>-->
+
+</div>

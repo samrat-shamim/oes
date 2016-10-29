@@ -1,0 +1,99 @@
+﻿<div class="">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Question Details</h4>
+    <button class="btn btn-warning close" type="button" ng-click="cancel()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+  </div>
+  <div  class="modal-body" id="modal-body">
+  <div class="row">
+    <div class="col-md-4 col-sm-4"><b style="{{bgColor}}">Subject</b><br/> {{subject.title}}</div>
+    <div class="col-md-4 col-sm-4"></div>
+    <div class="col-md-4 col-sm-4"><b style="{{bgColor}}">Difficulty Level</b><br/> {{question.difficultyLevel}}</div>
+    <div class="col-md-12 col-lg-12 col-sm-12"><br/></div>
+    <div class="col-lg-10 col-md-10 col-sm-10">
+      <span><b style="{{bgColor}}">Question</b></span>
+      <h3>{{question.title}}</h3>
+    </div>
+
+    <div ng-if="question.titleFigure" class="col-lg-10 col-md-10 col-sm-10">
+      <img ng-src="{{baseUrl+question.titleFigure}}" alt="Question Figure" class="img-responsive" style="max-height: 300px;max-width: 300px">
+    </div>
+
+    <!--<div ng-if="!question.optionAFigure" class="col-lg-5 col-md-5 col-sm-5">
+      <br/>
+      <h4>{{question.optionA}}</h4>
+    </div>
+
+    <div ng-if="question.optionAFigure" class="col-lg-10 col-md-10 col-sm-10">
+      <img ng-src="{{baseUrl+question.optionAFigure}}" alt="Question Figure" class="img-responsive" style="max-height: 200px;max-width: 200px">
+    </div>-->
+
+  </div>
+    <div>
+      <table class="table table-responsive">
+        <thead>
+        <tr>
+          <th>Option A</th>
+          <th>Option B</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <div ng-if="question.optionAFigure">
+              <img ng-src="{{baseUrl+question.optionAFigure}}" alt="{{question.optionA}}" class="img-responsive" style="max-height: 200px;max-width: 200px">
+            </div>
+            <div ng-if="!question.optionAFigure">
+              {{question.optionA}}
+            </div>
+          </td>
+          <td>
+            <div ng-if="question.optionBFigure">
+              <img ng-src="{{baseUrl+question.optionBFigure}}" alt="{{question.optionB}}" class="img-responsive" style="max-height: 200px;max-width: 200px">
+            </div>
+            <div ng-if="!question.optionBFigure">
+              {{question.optionB}}
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table class="table table-responsive">
+        <thead>
+        <tr>
+          <th>Option C</th>
+          <th>Option D</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <div ng-if="question.optionCFigure">
+              <img ng-src="{{baseUrl+question.optionCFigure}}" alt="{{question.optionC}}" class="img-responsive" style="max-height: 200px;max-width: 200px">
+            </div>
+            <div ng-if="!question.optionCFigure">
+              {{question.optionC}}
+            </div>
+          </td>
+          <td>
+            <div ng-if="question.optionDFigure">
+              <img ng-src="{{baseUrl+question.optionDFigure}}" alt="{{question.optionD}}" class="img-responsive" style="max-height: 200px;max-width: 200px">
+            </div>
+            <div ng-if="!question.optionDFigure">
+              {{question.optionD}}
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Done</button>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+﻿{
+	"paths": {
+		"exam": "apps/business/exam/exam.config",
+		"examsController": "apps/business/exam/controllers/all-exams.controller",
+		"createExamController":"apps/business/exam/controllers/create-exam.controller",
+		"angular-modal":"bower_components/angular-modal/modal.min",
+		"modal-factory": "apps/business/exam/factories/modal.factory",
+		"editExamModalController": "apps/business/exam/controllers/edit-exam-modal.controller",
+    "examService": "apps/business/exam/services/exam.service",
+    "deleteExamController": "apps/business/exam/controllers/delete-exam-confirmation.controller",
+    "viewExamController":"apps/business/exam/controllers/view-exam.controller"
+	},
+
+
+	"dependencies": {
+		"examsController": {
+			"deps": ["exam","modal-factory","editExamModalController","examService", "deleteExamController", "viewExamController"]
+		},
+		"createExamController":{
+		  "deps": ["exam"]
+		},
+		"exam": {
+		  "deps": ["angular-modal","angular_animate"]
+		},
+		"modal-factory": {
+		  "deps": ["exam"]
+		},
+		"editExamModalController": {
+		  "deps": ["exam", "examService"]
+		},
+    "examService": {
+      "deps": ["exam"]
+    },
+    "deleteExamController": {
+      "deps": ["exam", "examService"]
+    },
+    "viewExamController": {
+      "deps": ["exam", "examService"]
+    }
+
+	},
+
+
+	"routes": {
+		"moduleName": "exam",
+		"states": [
+		  {
+			"name": "all-exams",
+      		"url": "/all-exams",
+			"templateUrl": "apps/business/exam/views/all-exams.view.html",
+			"controller": "examsController",
+			"data": {
+			}
+		},
+		  {
+			"name": "create-exam",
+			"url": "/create-exam",
+			"templateUrl": "apps/business/exam/views/create-exam.view.html",
+			"controller": "createExamController",
+			"data": {
+			}
+		  }
+		]
+	}
+
+}
