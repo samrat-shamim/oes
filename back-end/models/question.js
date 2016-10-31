@@ -53,6 +53,12 @@ var QuestionSchema = new mongoose.Schema(
         note:{
             type: String
         },
+        createdById:{
+            type: String
+        },
+        editedById:{
+        type: String
+        },
         tags:{
             type: Array
         }

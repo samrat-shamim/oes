@@ -1,8 +1,8 @@
 define(['angular'], function (angular) {
 
     var question = angular.module('question').controller('editQuestionController',
-        ['$scope', '$http','$q','dataManupulator','FileUploader','questionService',
-          function (scope, http,$q, dataManupulator, FileUploader, questionService) {
+        ['$scope', 'identifier','$q','dataManupulator','FileUploader','questionService','toastr',
+          function (scope, identifier,$q, dataManupulator, FileUploader, questionService, toastr) {
 
             scope.pageTitle = "Create Question";
             var questionToBeEdited;
@@ -172,7 +172,19 @@ define(['angular'], function (angular) {
                   "entityId": questionToBeEdited._id
                 };
                 model.entity = scope.questionModel;
-                dataManupulator.manupulate("update",model);
+                identifier.identity().then(
+                    function(res){
+                        model.entity.updatedById = res.userId;
+                        dataManupulator.manupulate("update",model).then(
+                            function (response) {
+                                toastr.success("Question updated", "Success!");
+                            },
+                            function (err) {
+                                toastr.error("Failed to update question", "Error!");
+                            }
+                        );
+                    }
+                )
               scope.cancel();
             }
             var getManyFilter = {

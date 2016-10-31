@@ -126,14 +126,19 @@ define(['angular'], function (angular) {
                   "entityId": userToBeEdited._id
                 };
                 model.entity = scope.userModel;
-                dataManupulator.manupulate("update",model).then(
-                    function (response) {
-                        toastr.success("User updated", "Success!");
-                    },
-                    function (err) {
-                        toastr.error("Failed to update user", "Error!");
-                    }
-                );
+                identifier.identity().then(
+                    function(res){
+                        model.entity.updatedById = res.userId;
+                        dataManupulator.manupulate("update",model).then(
+                            function (response) {
+                                toastr.success("User updated", "Success!");
+                            },
+                            function (err) {
+                                toastr.error("Failed to update user", "Error!");
+                            }
+                        );                    }
+                )
+
               scope.cancel();
             }
             var getManyFilter = {

@@ -3,6 +3,7 @@
     var question = angular.module('question').controller('questionsController',
         ['$scope', '$http',"$uibModal",'dataManupulator','questionService',
           function (scope, http,$uibModal, dataManupulator, questionService) {
+              scope.loading = true;
           scope.totalItems=0;
           scope.subjects = [];
             scope.pageSize = 10;
@@ -89,6 +90,7 @@
           }
 
           scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+              scope.loading = true;
               makePartialSearchFilter(filterByFields);
               getManyFilter.pageNumber = currentPage+1;
               getManyFilter.pageSize = pageItems;
@@ -125,6 +127,7 @@
                 dataManupulator.manupulate("getMany", getManyFilter).then(function(response){
                     scope.allQuestions = response.data.data;
                   scope.totalItems = response.data.totalCount;
+                    scope.loading = false;
 
                   if(angular.isArray(scope.allQuestions)){
                       scope.allQuestions.forEach(function (item, index) {

@@ -1,7 +1,7 @@
 ﻿<div>
     <link href="bower_components/tr-ng-grid/trNgGrid.min.css" rel="stylesheet"/>
     <link href="bower_components/angular-modal/modal.css" rel="stylesheet" />
-    <link href="apps/business/question/styles/question.css" rel="stylesheet" />
+    <link href="apps/business/exam/styles/exam.css" rel="stylesheet" />
 
     <!--<link href="bower_components/angular-data-table/release/material.css" rel="stylesheet"/>-->
 
@@ -32,9 +32,15 @@
 
   </div>
     <div style="background-color: lightblue">
-      <table tr-ng-grid items='allQuestions' page-items="pageSize" total-items="totalItems" selected-items="selectedQuestions" selection-mode="MultiRow"
-             fields="['title','difficultyLevel']" on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+      <table ng-hide="loading" tr-ng-grid items='allExams' page-items="pageSize" total-items="totalItems" selected-items="selectedExams" selection-mode="MultiRow"
+             fields="['title','subject']" on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
       </table>
+
+        <div ng-if="loading">
+            <button  class="btn btn-lg btn-warning center-block">
+                <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+            </button>
+        </div>
     </div>
 
    <!-- <dtable options="options" rows="data" class="material dt">

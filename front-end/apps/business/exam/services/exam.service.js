@@ -2,10 +2,10 @@
 
     angular.module('exam').service('examService', ['$http', "$rootScope","$q", function ($http, $rootScope,$q) {
         var baseUrl = "http://localhost:3000/";
-      var questionToBeEdited;
-      var questionsToBeDeleted;
+      var examToBeEdited;
+      var examsToBeDeleted;
       var activeModal;
-      var questionToBeViewed;
+      var examToBeViewed;
 
 
         function manupulate(action, data){
@@ -23,18 +23,18 @@
             })
         };
 
-      function setQuestionToBeEdited(question) {
-        questionToBeEdited = question;
+      function setExamToBeEdited(exam) {
+        examToBeEdited = exam;
       }
-      function getQuestionToBeEdited() {
-        return questionToBeEdited ;
+      function getExamToBeEdited() {
+        return examToBeEdited ;
       }
 
-      function setQuestionToBeViewed(question) {
-        questionToBeViewed = question;
+      function setExamToBeViewed(exam) {
+        examToBeViewed = exam;
       }
-      function getQuestionToBeViewed() {
-        return questionToBeViewed ;
+      function getExamToBeViewed() {
+        return examToBeViewed ;
       }
 
       function setModal(modal) {
@@ -44,22 +44,22 @@
         return activeModal;
       }
 
-      function setQuestionsToBeDeleted(questions) {
-        questionsToBeDeleted = questions;
+      function setExamsToBeDeleted(exams) {
+        examsToBeDeleted = exams;
       }
 
-      function getQuestionsToBeDeleted() {
-        return questionsToBeDeleted;
+      function getExamsToBeDeleted() {
+        return examsToBeDeleted;
       }
       this.manupulate = manupulate;
-      this.setQuestionToBeEdited = setQuestionToBeEdited;
-      this.getQuestionToBeEdited = getQuestionToBeEdited;
-      this.setQuestionsToBeDeleted = setQuestionsToBeDeleted;
-      this.getQuestionsToBeDeleted = getQuestionsToBeDeleted;
+      this.setExamToBeEdited = setExamToBeEdited;
+      this.getExamToBeEdited = getExamToBeEdited;
+      this.setExamsToBeDeleted = setExamsToBeDeleted;
+      this.getExamsToBeDeleted = getExamsToBeDeleted;
       this.setModal = setModal;
       this.getModal = getModal;
-      this.setQuestionToBeViewed = setQuestionToBeViewed;
-      this.getQuestionToBeViewed = getQuestionToBeViewed;
+      this.setExamToBeViewed = setExamToBeViewed;
+      this.getExamToBeViewed = getExamToBeViewed;
 
     }]);
 });

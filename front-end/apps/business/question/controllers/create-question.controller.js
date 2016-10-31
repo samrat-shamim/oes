@@ -1,7 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
     var question = angular.module('question').controller('createQuestionController',
-        ['$scope', '$http','$q','dataManupulator','FileUploader', function (scope, http,$q, dataManupulator, FileUploader) {
+        ['$scope','$state', 'identifier','$q','dataManupulator','FileUploader', 'toastr',
+            function (scope,$state, identifier,$q, dataManupulator, FileUploader, toastr) {
 
             scope.pageTitle = "Create Question";
 
@@ -165,7 +166,20 @@
                     "entityName": "question"
                 };
                 model.entity = scope.questionModel;
-                dataManupulator.manupulate("insert",model);
+                identifier.identity().then(
+                    function(res){
+                        model.entity.createdById = res.userId;
+                        dataManupulator.manupulate("insert",model).then(
+                            function (response) {
+                                toastr.success("Question created", "Success!");
+                                $state.go('all-questions');
+                            },
+                            function (err) {
+                                toastr.error("Failed to create question", "Error!");
+                            }
+                        );
+                    }
+                )
             }
           var getManyFilter = {
             entityName: "subject",

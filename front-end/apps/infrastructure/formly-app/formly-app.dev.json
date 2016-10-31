@@ -4,7 +4,9 @@
     "formlyController": "apps/infrastructure/formly-app/controllers/formly.controller",
     "api-check": "bower_components/api-check/dist/api-check.min",
     "angular-formly": "bower_components/angular-formly/dist/formly.min",
-    "formly-templates": "bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min"
+    "formly-templates": "bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min",
+    "datetimepicker":"apps/infrastructure/formly-app/directives/datetimepicker",
+    "ui-bootsrap-for-datepicker": "//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.1/ui-bootstrap-tpls.min"
   },
 
 
@@ -13,13 +15,16 @@
       "deps":["formly-app"]
     },
     "formly-app": {
-      "deps": [ "angular-formly", "api-check" ]
+      "deps": [ "angular-formly","formly-templates", "datetimepicker" ]
     },
     "angular-formly":{
-      "deps":["angular"]
+      "deps":["angular","api-check"]
     },
     "formly-templates": {
       "deps":["angular-formly"]
+    },
+    "datetimepicker":{
+      "deps":["angular", "formly-templates", "ui-bootsrap-for-datepicker"]
     }
   }
 

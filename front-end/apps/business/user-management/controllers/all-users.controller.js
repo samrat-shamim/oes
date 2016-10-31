@@ -102,6 +102,7 @@
           }
 
           scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+              scope.loading = true;
               makePartialSearchFilter(filterByFields);
               getManyFilter.pageNumber = currentPage+1;
               getManyFilter.pageSize = pageItems;
@@ -128,6 +129,7 @@
                 dataManupulator.manupulate("getMany", getManyFilter).then(function(response){
                     scope.allUsers = response.data.data;
                   scope.totalItems = response.data.totalCount;
+                    scope.loading=false;
                 })
             }
 

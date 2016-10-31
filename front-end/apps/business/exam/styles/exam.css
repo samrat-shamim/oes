@@ -1,5 +1,14 @@
-.qmodal {
-    border: 1px solid black;
-    background-color: #ccc;
-    padding: 5px;
+.datetimepicker-wrapper {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.datetimepicker-wrapper > input {
+    margin-bottom: 0 !important;
+    width: 200px;
+}
+
+.datetimepicker-wrapper [ng-model=hours],
+.datetimepicker-wrapper [ng-model=minutes] {
+    width: 46px !important;
 }

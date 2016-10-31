@@ -14,13 +14,13 @@
 
 	"dependencies": {
 		"examsController": {
-			"deps": ["exam","modal-factory","editExamModalController","examService", "deleteExamController", "viewExamController"]
+			"deps": ["exam","editExamModalController","examService", "deleteExamController", "viewExamController"]
 		},
 		"createExamController":{
 		  "deps": ["exam"]
 		},
 		"exam": {
-		  "deps": ["angular-modal","angular_animate"]
+		  "deps": []
 		},
 		"modal-factory": {
 		  "deps": ["exam"]

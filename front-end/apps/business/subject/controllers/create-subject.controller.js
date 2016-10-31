@@ -49,7 +49,12 @@
                     "entityName": "subject"
                 };
                 model.entity = scope.subjectModel;
-                dataManupulator.manupulate("insert",model);
+                identifier.identity().then(
+                    function(res){
+                        model.entity.createdById = res.userId;
+                        dataManupulator.manupulate("insert",model);
+                    }
+                )
             }
 
         }]);

@@ -1,30 +1,30 @@
 ﻿define(['angular'], function (angular) {
 
-    var question = angular.module('exam').controller('examsController',
+    var exam = angular.module('exam').controller('examsController',
         ['$scope', '$http',"$uibModal",'dataManupulator','examService',
-          function (scope, http,$uibModal, dataManupulator, questionService) {
+          function (scope, http,$uibModal, dataManupulator, examService) {
           scope.totalItems=0;
           scope.subjects = [];
             scope.pageSize = 10;
-            scope.selectedQuestions = [];
-            scope.$watchCollection("selectedQuestions", function(){
-                if(scope.selectedQuestions.length==1){
+            scope.selectedExams = [];
+            scope.$watchCollection("selectedExams", function(){
+                if(scope.selectedExams.length==1){
                     scope.showMenu = true;
                     scope.multiSelect = false;
-                }else if(scope.selectedQuestions.length>1){
+                }else if(scope.selectedExams.length>1){
                     scope.showMenu = true;
                     scope.multiSelect = true;
                 }else scope.showMenu = false;
             });
 
-            scope.$on("question-deleted", function (e, arg) {
+            scope.$on("exam-deleted", function (e, arg) {
               if(arg.ids){
                 arg.ids.forEach(function (id) {
-                  scope.allQuestions.forEach(function (item, index) {
+                  scope.allExams.forEach(function (item, index) {
                     if (item._id == id){
-                      delete scope.allQuestions[index];
+                      delete scope.allExams[index];
                       scope.totalItems--;
-                        scope.selectedQuestions = [];
+                        scope.selectedExams = [];
                     }
                   })
                 })
@@ -32,42 +32,42 @@
             })
 
             scope.editSelected = function () {
-              questionService.setQuestionToBeEdited(scope.selectedQuestions[0]);
+              examService.setExamToBeEdited(scope.selectedExams[0]);
              var modal= $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title-top',
                 ariaDescribedBy: 'modal-body-top',
-                templateUrl: 'apps/business/question/views/edit-question-modal.view.html',
-                controller: 'editQuestionController'
+                templateUrl: 'apps/business/exam/views/edit-exam-modal.view.html',
+                controller: 'editExamController'
               });
-              questionService.setModal(modal);
+              examService.setModal(modal);
             }
             scope.viewSelected = function () {
-              questionService.setQuestionToBeViewed(scope.selectedQuestions[0]);
+              examService.setExamToBeViewed(scope.selectedExams[0]);
               var modal= $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title-top',
                 ariaDescribedBy: 'modal-body-top',
-                templateUrl: 'apps/business/question/views/view-question-modal.view.html',
-                controller: 'viewQuestionController'
+                templateUrl: 'apps/business/exam/views/view-exam-modal.view.html',
+                controller: 'viewExamController'
               });
-              questionService.setModal(modal);
+              examService.setModal(modal);
             }
 
             scope.deleteSelected = function () {
-              questionService.setQuestionsToBeDeleted(scope.selectedQuestions);
+              examService.setExamsToBeDeleted(scope.selectedExams);
               var modal= $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title-top',
                 ariaDescribedBy: 'modal-body-top',
-                templateUrl: 'apps/business/question/views/delete-question-confirmation-modal.view.html',
-                controller: 'deleteQuestionController'
+                templateUrl: 'apps/business/exam/views/delete-exam-confirmation-modal.view.html',
+                controller: 'deleteExamController'
               });
-              questionService.setModal(modal);
+              examService.setModal(modal);
             }
 
             var getManyFilter = {
-                entityName: "question",
+                entityName: "exam",
                 pageNumber:1,
                 pageSize: scope.pageSize,
                 sort:{},
@@ -89,13 +89,14 @@
           }
 
           scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+              scope.loading = true;
               makePartialSearchFilter(filterByFields);
               getManyFilter.pageNumber = currentPage+1;
               getManyFilter.pageSize = pageItems;
               getManyFilter.sort.sortBy = orderBy;
               getManyFilter.filters = filter;
-              getAllQuestion();
-            scope.selectedQuestions = [];
+              getAllExam();
+            scope.selectedExams = [];
             }
 
             function makePartialSearchFilter(object) {
@@ -121,40 +122,36 @@
             })
           }
 
-            function getAllQuestion(){
+            function getAllExam(){
                 dataManupulator.manupulate("getMany", getManyFilter).then(function(response){
-                    scope.allQuestions = response.data.data;
+                    scope.allExams = response.data.data;
                   scope.totalItems = response.data.totalCount;
-
-                  if(angular.isArray(scope.allQuestions)){
-                      scope.allQuestions.forEach(function (item, index) {
-                          dataManupulator.manupulate("getById",{entityName: 'subject', entityId: item.subjectId}).then(function (res) {
-                              scope.allQuestions[index].subject = res.data.title;
-                          })
-                      })
-                  }
+                    scope.loading= false;
+                    if(angular.isArray(scope.allExams)){
+                        scope.allExams.forEach(function (item, index) {
+                            dataManupulator.manupulate("getById",{entityName: 'subject', entityId: item.subjectId}).then(function (res) {
+                                scope.allExams[index].subject = res.data.title;
+                            })
+                        })
+                    }
                 })
             }
-            //getAllQuestion();
+            //getAllExam();
 
-            scope.pageTitle = "All Questions";
+            scope.pageTitle = "All Exams";
 
             scope.options = {
                 scrollbarV: false
             };
 
-            scope.data = [
-                { name: 'Austin', gender: 'Male' },
-                { name: 'Marjan', gender: 'Male' }
-            ];
+
 
           function init() {
-            getAllSubject();
           }
           init();
         }]);
 
 
-    return question;
+    return exam;
 });
 

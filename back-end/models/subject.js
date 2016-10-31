@@ -11,6 +11,12 @@ var SubjectSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    createdById:{
+      type: String
+    },
+    editedById:{
+      type: String
+    },
     tags:{
       type: Array
     }

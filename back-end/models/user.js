@@ -17,12 +17,15 @@ var UserSchema = new mongoose.Schema({
     phoneNumber:{
         type: String
     },
-    role:{
-        type: String,
-        default:'Examinee'
+    roles:{
+        type: Array,
+        default:['Examinee']
     },
     profilePicture:{
       type: String
+    },
+    createdById:{
+        type: String
     },
     tags:{
         type: Array

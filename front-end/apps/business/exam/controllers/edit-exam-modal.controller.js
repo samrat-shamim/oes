@@ -1,16 +1,16 @@
 define(['angular'], function (angular) {
 
-    var question = angular.module('exam').controller('editExamController',
-        ['$scope', '$http','$q','dataManupulator','FileUploader','questionService',
-          function (scope, http,$q, dataManupulator, FileUploader, questionService) {
+    var exam = angular.module('exam').controller('editExamController',
+        ['$scope', '$http','$q','dataManupulator','FileUploader','examService',
+          function (scope, http,$q, dataManupulator, FileUploader, examService) {
 
-            scope.pageTitle = "Create Question";
-            var questionToBeEdited;
+            scope.pageTitle = "Create Exam";
+            var examToBeEdited;
             var modalInstance;
             function init() {
-              questionToBeEdited = questionService.getQuestionToBeEdited();
-              modalInstance = questionService.getModal();
-              scope.questionModel = questionToBeEdited;
+              examToBeEdited = examService.getExamToBeEdited();
+              modalInstance = examService.getModal();
+              scope.examModel = examToBeEdited;
             }
             init();
 
@@ -39,7 +39,7 @@ define(['angular'], function (angular) {
 
             var subjects = [];
 
-            scope.questionSchema = [
+            scope.examSchema = [
                 {
                     key: 'subjectId',
                     type: 'select',
@@ -78,8 +78,8 @@ define(['angular'], function (angular) {
                     type: 'input',
                     templateOptions: {
                         type: 'text',
-                        label: 'Question Title',
-                        placeholder: 'Enter the question',
+                        label: 'Exam Title',
+                        placeholder: 'Enter the exam',
                         required: true
                     }
                 },
@@ -154,24 +154,24 @@ define(['angular'], function (angular) {
 
             function setImgPathToDatabase(res) {
                 if(scope.uploadingImgFor == 'q'){
-                    scope.questionModel.titleFigure = res.fileName;
+                    scope.examModel.titleFigure = res.fileName;
                 }else if(scope.uploadingImgFor == 'oa'){
-                    scope.questionModel.optionAFigure = res.fileName;
+                    scope.examModel.optionAFigure = res.fileName;
                 }else if(scope.uploadingImgFor == 'ob'){
-                    scope.questionModel.optionBFigure = res.fileName;
+                    scope.examModel.optionBFigure = res.fileName;
                 }else if(scope.uploadingImgFor == 'oc'){
-                    scope.questionModel.optionCFigure = res.fileName;
+                    scope.examModel.optionCFigure = res.fileName;
                 }else if(scope.uploadingImgFor == 'od'){
-                    scope.questionModel.optionDFigure = res.fileName;
+                    scope.examModel.optionDFigure = res.fileName;
                 }
             }
 
-            scope.editQuestion = function(){
+            scope.editExam = function(){
                 var model = {
-                  "entityName": "question",
-                  "entityId": questionToBeEdited._id
+                  "entityName": "exam",
+                  "entityId": examToBeEdited._id
                 };
-                model.entity = scope.questionModel;
+                model.entity = scope.examModel;
                 dataManupulator.manupulate("update",model);
               scope.cancel();
             }
@@ -244,6 +244,6 @@ define(['angular'], function (angular) {
         }]);
 
 
-    return question;
+    return exam;
 });
 

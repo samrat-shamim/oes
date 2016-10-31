@@ -1,8 +1,8 @@
 define(['angular'], function (angular) {
 
     var question = angular.module('question').controller('deleteQuestionController',
-        ['$scope', '$http','$q',"$rootScope",'dataManupulator','FileUploader','questionService',
-          function (scope, http,$q,$rootScope, dataManupulator, FileUploader, questionService) {
+        ['$scope', '$http','$q',"$rootScope",'dataManupulator','FileUploader','questionService','toastr',
+          function (scope, http,$q,$rootScope, dataManupulator, FileUploader, questionService, toastr) {
 
             scope.pageTitle = "Create Question";
             var questionToBeEdited;
@@ -26,7 +26,15 @@ define(['angular'], function (angular) {
                 questionsToBeDeleted.forEach(function (item) {
                   model.entityIds.push(item._id);
                 })
-              dataManupulator.manupulate("deleteMany",model);
+              dataManupulator.manupulate("deleteMany",model).then(
+                  function (response) {
+                      toastr.success("Question deleted", "Success!");
+                      $state.go('all-questions');
+                  },
+                  function (err) {
+                      toastr.error("Failed to delete question", "Error!");
+                  }
+              );
               scope.cancel();
               $rootScope.$broadcast("question-deleted", {ids:model.entityIds});
             }

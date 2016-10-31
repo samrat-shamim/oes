@@ -18,7 +18,9 @@
                         $localStorage.token = response.data.token;
                         identifier.authenticate({
                             email: response.data.user.userEmail,
-                            roles: response.data.user.roles
+                            roles: response.data.user.roles,
+                            userName: response.data.user.userName,
+                            userId:response.data.user._id
                         });
                         if (true) {
                             toastr.success('Login successful!', 'Success');

@@ -48,7 +48,7 @@
 
         scope.userSchema = [
           {
-            key: 'role',
+            key: 'roles',
             type: 'select',
             templateOptions: {
               label: 'Role',

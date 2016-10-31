@@ -7,6 +7,10 @@ var ExamSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        subjectId: {
+            type: String,
+            required: true
+        },
         description: {
             type: String,
             required: true
@@ -15,22 +19,28 @@ var ExamSchema = new mongoose.Schema(
             type: Number,
             required: true
         },
-        timeSchedule: {
+        schedule: {
             type: Date,
             required: true
         },
-          duration: {
+        duration: {
           type: Number,
           required: true
         },
         difficultyLevel:{
-            type: Number
+            type: String
         },
         questions: {
             type: Array,
             required: true
         },
         instructions: {
+            type: String
+        },
+        createdById:{
+            type: String
+        },
+        editedById:{
             type: String
         },
         tags:{
