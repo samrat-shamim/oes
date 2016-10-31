@@ -8,7 +8,8 @@
 		"editExamModalController": "apps/business/exam/controllers/edit-exam-modal.controller",
     "examService": "apps/business/exam/services/exam.service",
     "deleteExamController": "apps/business/exam/controllers/delete-exam-confirmation.controller",
-    "viewExamController":"apps/business/exam/controllers/view-exam.controller"
+    "viewExamController":"apps/business/exam/controllers/view-exam.controller",
+    "addQuestionsToExamModalController":"apps/business/exam/controllers/add-questions-to-exam-modal.controller"
 	},
 
 
@@ -17,7 +18,7 @@
 			"deps": ["exam","editExamModalController","examService", "deleteExamController", "viewExamController"]
 		},
 		"createExamController":{
-		  "deps": ["exam"]
+		  "deps": ["exam", "examService", "addQuestionsToExamModalController"]
 		},
 		"exam": {
 		  "deps": []
@@ -35,6 +36,9 @@
       "deps": ["exam", "examService"]
     },
     "viewExamController": {
+      "deps": ["exam", "examService"]
+    },
+    "addQuestionsToExamModalController": {
       "deps": ["exam", "examService"]
     }
 

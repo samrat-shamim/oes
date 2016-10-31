@@ -1,13 +1,16 @@
 ﻿define(['angular'], function (angular) {
 
-  var question = angular.module('question').controller('questionsController',
-    ['$scope', '$http', "$uibModal", 'dataManupulator', 'questionService',
-      function (scope, http, $uibModal, dataManupulator, questionService) {
+  var question = angular.module('exam').controller('addQuestionsToExamModalController',
+    ['$scope', '$http', "$uibModal", 'dataManupulator', 'examService',
+      function (scope, http, $uibModal, dataManupulator, examService) {
+        var questionFilter = examService.getQuestionFilter();
+        var examToBeCreated;
         scope.loading = true;
         scope.totalItems = 0;
         scope.subjects = [];
         scope.pageSize = 10;
         scope.selectedQuestions = [];
+        scope.baseUrl = "http://localhost:3000/";
         scope.$watchCollection("selectedQuestions", function () {
           if (scope.selectedQuestions.length == 1) {
             scope.showMenu = true;
@@ -31,20 +34,16 @@
             })
           }
         })
+        scope.save = function () {
+          scope.allQuestions.forEach(function (item) {
+            item.selected ? scope.selectedQuestions.push(item._id) : true;
+          })
 
-        scope.editSelected = function () {
-          questionService.setQuestionToBeEdited(scope.selectedQuestions[0]);
-          var modal = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: 'modal-title-top',
-            ariaDescribedBy: 'modal-body-top',
-            templateUrl: 'apps/business/question/views/edit-question-modal.view.html',
-            controller: 'editQuestionController'
-          });
-          questionService.setModal(modal);
+          console.log(scope.selectedQuestions);
+          scope.cancel();
         }
         scope.viewSelected = function () {
-          questionService.setQuestionToBeViewed(scope.selectedQuestions[0]);
+          examService.setQuestionToBeViewed(scope.selectedQuestions[0]);
           var modal = $uibModal.open({
             animation: true,
             ariaLabelledBy: 'modal-title-top',
@@ -52,27 +51,16 @@
             templateUrl: 'apps/business/question/views/view-question-modal.view.html',
             controller: 'viewQuestionController'
           });
-          questionService.setModal(modal);
+          examService.setModal(modal);
         }
 
-        scope.deleteSelected = function () {
-          questionService.setQuestionsToBeDeleted(scope.selectedQuestions);
-          var modal = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: 'modal-title-top',
-            ariaDescribedBy: 'modal-body-top',
-            templateUrl: 'apps/business/question/views/delete-question-confirmation-modal.view.html',
-            controller: 'deleteQuestionController'
-          });
-          questionService.setModal(modal);
-        }
 
         var getManyFilter = {
           entityName: "question",
           pageNumber: 1,
-          pageSize: scope.pageSize,
+          pageSize: 100000,
           sort: {},
-          filters: {}
+          filters: questionFilter
         }
 
         var filter = {};
@@ -128,6 +116,7 @@
             scope.allQuestions = response.data.data;
             scope.totalItems = response.data.totalCount;
             scope.loading = false;
+            console.log(scope.allQuestions);
 
             if (angular.isArray(scope.allQuestions)) {
               scope.allQuestions.forEach(function (item, index) {
@@ -150,13 +139,14 @@
           scrollbarV: false
         };
 
-        scope.data = [
-          {name: 'Austin', gender: 'Male'},
-          {name: 'Marjan', gender: 'Male'}
-        ];
+        scope.cancel = function () {
+          modalInstance.close();
+        }
+
 
         function init() {
-          getAllSubject();
+          getAllQuestion();
+          examToBeCreated = examService.getExamToBeCreated();
         }
 
         init();

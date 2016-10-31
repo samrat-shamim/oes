@@ -1,65 +1,88 @@
 ﻿define(['angular'], function (angular) {
 
-    angular.module('exam').service('examService', ['$http', "$rootScope","$q", function ($http, $rootScope,$q) {
-        var baseUrl = "http://localhost:3000/";
-      var examToBeEdited;
-      var examsToBeDeleted;
-      var activeModal;
-      var examToBeViewed;
+  angular.module('exam').service('examService', ['$http', "$rootScope", "$q", function ($http, $rootScope, $q) {
+    var baseUrl = "http://localhost:3000/";
+    var examToBeEdited;
+    var examsToBeDeleted;
+    var activeModal;
+    var examToBeViewed;
+    var questionFilter;
+    var examToBeCreated;
 
 
-        function manupulate(action, data){
-            return $q(function(resolve, reject){
-                $http({
-                    method: 'POST',
-                    url: baseUrl + action,
-                    data: data,
-                    headers: {'Content-Type': 'application/json'}
-                }).then(function(response){
-                    resolve(response);
-                }, function(err){
-                    reject(err);
-                });
-            })
-        };
+    function manupulate(action, data) {
+      return $q(function (resolve, reject) {
+        $http({
+          method: 'POST',
+          url: baseUrl + action,
+          data: data,
+          headers: {'Content-Type': 'application/json'}
+        }).then(function (response) {
+          resolve(response);
+        }, function (err) {
+          reject(err);
+        });
+      })
+    };
 
-      function setExamToBeEdited(exam) {
-        examToBeEdited = exam;
-      }
-      function getExamToBeEdited() {
-        return examToBeEdited ;
-      }
+    function setExamToBeEdited(exam) {
+      examToBeEdited = exam;
+    }
 
-      function setExamToBeViewed(exam) {
-        examToBeViewed = exam;
-      }
-      function getExamToBeViewed() {
-        return examToBeViewed ;
-      }
+    function getExamToBeEdited() {
+      return examToBeEdited;
+    }
+    function setExamToBeCreated(exam) {
+      examToBeCreated = exam;
+    }
+    function getExamToBeCreated() {
+      return examToBeCreated;
+    }
 
-      function setModal(modal) {
-        activeModal = modal;
-      }
-      function getModal() {
-        return activeModal;
-      }
+    function setExamToBeViewed(exam) {
+      examToBeViewed = exam;
+    }
 
-      function setExamsToBeDeleted(exams) {
-        examsToBeDeleted = exams;
-      }
+    function getExamToBeViewed() {
+      return examToBeViewed;
+    }
 
-      function getExamsToBeDeleted() {
-        return examsToBeDeleted;
-      }
-      this.manupulate = manupulate;
-      this.setExamToBeEdited = setExamToBeEdited;
-      this.getExamToBeEdited = getExamToBeEdited;
-      this.setExamsToBeDeleted = setExamsToBeDeleted;
-      this.getExamsToBeDeleted = getExamsToBeDeleted;
-      this.setModal = setModal;
-      this.getModal = getModal;
-      this.setExamToBeViewed = setExamToBeViewed;
-      this.getExamToBeViewed = getExamToBeViewed;
+    function setModal(modal) {
+      activeModal = modal;
+    }
 
-    }]);
+    function getModal() {
+      return activeModal;
+    }
+
+    function setExamsToBeDeleted(exams) {
+      examsToBeDeleted = exams;
+    }
+
+    function getExamsToBeDeleted() {
+      return examsToBeDeleted;
+    }
+
+    function setQuestionFilter(filter) {
+      questionFilter = filter;
+    }
+
+    function getQuestionFilter() {
+      return questionFilter;
+    }
+
+    this.manupulate = manupulate;
+    this.setExamToBeEdited = setExamToBeEdited;
+    this.getExamToBeEdited = getExamToBeEdited;
+    this.setExamsToBeDeleted = setExamsToBeDeleted;
+    this.getExamsToBeDeleted = getExamsToBeDeleted;
+    this.setModal = setModal;
+    this.getModal = getModal;
+    this.setExamToBeViewed = setExamToBeViewed;
+    this.getExamToBeViewed = getExamToBeViewed;
+    this.setQuestionFilter = setQuestionFilter;
+    this.getQuestionFilter = getQuestionFilter;
+    this.setExamToBeCreated = setExamToBeCreated;
+    this.getExamToBeCreated = getExamToBeCreated;
+  }]);
 });

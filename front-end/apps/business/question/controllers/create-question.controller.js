@@ -151,12 +151,16 @@
             if(scope.uploadingImgFor == 'q'){
               scope.questionModel.titleFigure = res.fileName;
             }else if(scope.uploadingImgFor == 'oa'){
+              scope.questionModel.optionA = scope.questionModel.optionA?scope.questionModel.optionA:"img";
               scope.questionModel.optionAFigure = res.fileName;
             }else if(scope.uploadingImgFor == 'ob'){
+              scope.questionModel.optionB = scope.questionModel.optionB?scope.questionModel.optionB:"img";
               scope.questionModel.optionBFigure = res.fileName;
             }else if(scope.uploadingImgFor == 'oc'){
+              scope.questionModel.optionC = scope.questionModel.optionC?scope.questionModel.optionC:"img";
               scope.questionModel.optionCFigure = res.fileName;
             }else if(scope.uploadingImgFor == 'od'){
+              scope.questionModel.optionD = scope.questionModel.optionD?scope.questionModel.optionD:"img";
               scope.questionModel.optionDFigure = res.fileName;
             }
           }

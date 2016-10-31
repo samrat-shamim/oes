@@ -25,6 +25,9 @@
     },
     "datetimepicker":{
       "deps":["angular", "formly-templates", "ui-bootsrap-for-datepicker"]
+    },
+    "ui-bootsrap-for-datepicker":{
+      "deps":["angular"]
     }
   }
 
