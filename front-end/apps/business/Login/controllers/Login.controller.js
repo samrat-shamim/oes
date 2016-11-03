@@ -27,7 +27,7 @@
                             $timeout(function () {
                                 $rootScope.$broadcast("loggedin", {role:'coordinator'});
                                 $state.go('landing');
-                            }, 1000);
+                            }, 100);
 
                         }
                     }

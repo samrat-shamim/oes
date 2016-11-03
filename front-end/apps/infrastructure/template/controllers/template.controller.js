@@ -106,7 +106,7 @@
 
 
             function init() {
-                dataManupulator.manupulate("validateToken", {token: $localStorage.token}).then(function (response) {
+                dataManupulator.manupulate("validateToken", {}).then(function (response) {
                     if(response.data.userEmail){
                         identifier.authenticate({
                             email: response.data.userEmail,

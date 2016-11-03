@@ -1,16 +1,13 @@
 module.exports = function(app, route) {
-    var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
+    var jwt    = require('jsonwebtoken');
     return function(req, res, next) {
-        var token = req.body.token || req.query.token || req.headers['authToken'];
-
+        var token = req.body.token || req.query.token || req.headers['authtoken'];
         if (token) {
 
-            // verifies secret and checks exp
             jwt.verify(token, app.get('superSecret'), function(err, decoded) {
                 if (err) {
                     return res.json({ success: false, message: 'Failed to authenticate token.' });
                 } else {
-                    // if everything is good, save to request for use in other routes
                     req.decoded = decoded;
                     res.send(decoded._doc);
                     next();
@@ -18,9 +15,6 @@ module.exports = function(app, route) {
             });
 
         } else {
-
-            // if there is no token
-            // return an error
             return res.status(403).send({
                 success: false,
                 message: 'No token provided.'
