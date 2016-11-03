@@ -84,7 +84,8 @@
          type: 'number',
          label: 'Exam Duration',
          placeholder: 'Enter exam duration(minutes)',
-         required: true
+         required: true,
+         min:5
          }
          },
          {
@@ -163,7 +164,8 @@
             templateOptions: {
               type: 'number',
               label: 'Exam Duration',
-              placeholder: 'Enter exam duration(minutes)'
+              placeholder: 'Enter exam duration(minutes)',
+                min:5
             }
           },
           {

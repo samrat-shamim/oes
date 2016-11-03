@@ -8,22 +8,15 @@
     var examToBeViewed;
     var questionFilter;
     var examToBeCreated;
+    var examToBeTaken;
 
+    function setExamToBeTaken(exam){
+      examToBeTaken = exam;
+    }
+    function getExamToBeTaken(){
+      return examToBeTaken;
+    }
 
-    function manupulate(action, data) {
-      return $q(function (resolve, reject) {
-        $http({
-          method: 'POST',
-          url: baseUrl + action,
-          data: data,
-          headers: {'Content-Type': 'application/json'}
-        }).then(function (response) {
-          resolve(response);
-        }, function (err) {
-          reject(err);
-        });
-      })
-    };
 
     function setExamToBeEdited(exam) {
       examToBeEdited = exam;
@@ -71,7 +64,6 @@
       return questionFilter;
     }
 
-    this.manupulate = manupulate;
     this.setExamToBeEdited = setExamToBeEdited;
     this.getExamToBeEdited = getExamToBeEdited;
     this.setExamsToBeDeleted = setExamsToBeDeleted;
@@ -84,5 +76,7 @@
     this.getQuestionFilter = getQuestionFilter;
     this.setExamToBeCreated = setExamToBeCreated;
     this.getExamToBeCreated = getExamToBeCreated;
+    this.setExamToBeTaken = setExamToBeTaken;
+    this.getExamToBeTaken = getExamToBeTaken;
   }]);
 });

@@ -25,6 +25,7 @@
 
       <div ng-if="showMenu" class="col-sm-6 col-md-6">
           <br/>
+          <button ng-click="takeExam()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-eye-open"></span> Take Exam</button>
           <button class="btn btn-danger"  ng-click="deleteSelected()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
           <button ng-click="editSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-edit"></span> Edit</button>
           <button ng-click="viewSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-eye-open"></span> Details</button>

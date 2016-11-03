@@ -1,16 +1,16 @@
 define(['angular'], function (angular) {
 
-    var question = angular.module('exam').controller('deleteExamController',
-        ['$scope', '$http','$q',"$rootScope",'dataManupulator','FileUploader','questionService',
-          function (scope, http,$q,$rootScope, dataManupulator, FileUploader, questionService) {
+    var exam = angular.module('exam').controller('deleteExamController',
+        ['$scope', '$http','$q',"$rootScope",'dataManupulator','examService','toastr',
+          function (scope, http,$q,$rootScope, dataManupulator, examService, toastr) {
 
-            scope.pageTitle = "Create Question";
-            var questionToBeEdited;
+            scope.pageTitle = "Create exam";
+            var examToBeEdited;
             var modalInstance;
             function init() {
-              questionsToBeDeleted = questionService.getQuestionsToBeDeleted();
-              modalInstance = questionService.getModal();
-              scope.questions = questionsToBeDeleted;
+              examsToBeDeleted = examService.getExamsToBeDeleted();
+              modalInstance = examService.getModal();
+              scope.exams = examsToBeDeleted;
             }
             init();
 
@@ -18,23 +18,27 @@ define(['angular'], function (angular) {
               modalInstance.close();
             }
 
-            scope.deleteQuestions = function(){
+            scope.deleteExams = function(){
                 var model = {
-                  "entityName": "question",
+                  "entityName": "exam",
                   "entityIds":[]
                 };
-                questionsToBeDeleted.forEach(function (item) {
+                examsToBeDeleted.forEach(function (item) {
                   model.entityIds.push(item._id);
                 })
-              dataManupulator.manupulate("deleteMany",model);
+              dataManupulator.manupulate("deleteMany",model).then(function (res) {
+                  toastr.success("Delete successful", "Success!");
+              }, function (err) {
+                  toastr.error("Delete Failed", "Error!");
+              });
               scope.cancel();
-              $rootScope.$broadcast("question-deleted", {ids:model.entityIds});
+              $rootScope.$broadcast("exam-deleted", {ids:model.entityIds});
             }
 
 
         }]);
 
 
-    return question;
+    return exam;
 });
 

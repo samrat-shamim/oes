@@ -1,47 +1,64 @@
 ﻿define(['angular'], function (angular) {
 
   var question = angular.module('exam').controller('addQuestionsToExamModalController',
-    ['$scope', '$http', "$uibModal", 'dataManupulator', 'examService',
-      function (scope, http, $uibModal, dataManupulator, examService) {
+    ['$scope', '$http','$state', "$uibModal", 'dataManupulator', 'examService',"toastr",
+      function (scope, http,$state, $uibModal, dataManupulator, examService, toastr) {
         var questionFilter = examService.getQuestionFilter();
+
         var examToBeCreated;
+        var modalInstance = examService.getModal();
         scope.loading = true;
         scope.totalItems = 0;
         scope.subjects = [];
         scope.pageSize = 10;
-        scope.selectedQuestions = [];
+        var selectedQuestions = [];
+        scope.totalSelected =0;
         scope.baseUrl = "http://localhost:3000/";
-        scope.$watchCollection("selectedQuestions", function () {
-          if (scope.selectedQuestions.length == 1) {
-            scope.showMenu = true;
-            scope.multiSelect = false;
-          } else if (scope.selectedQuestions.length > 1) {
-            scope.showMenu = true;
-            scope.multiSelect = true;
-          } else scope.showMenu = false;
-        });
-
-        scope.$on("question-deleted", function (e, arg) {
-          if (arg.ids) {
-            arg.ids.forEach(function (id) {
-              scope.allQuestions.forEach(function (item, index) {
-                if (item._id == id) {
-                  delete scope.allQuestions[index];
-                  scope.totalItems--;
-                  scope.selectedQuestions = [];
-                }
-              })
-            })
+        scope.difficultyLevels = [
+          {
+            name: "Primary",
+            value: "Primary"
+          },
+          {
+            name: "Secondary",
+            value: "Secondary"
+          },
+          {
+            name: "Expert",
+            value: "Expert"
           }
-        })
-        scope.save = function () {
-          scope.allQuestions.forEach(function (item) {
-            item.selected ? scope.selectedQuestions.push(item._id) : true;
-          })
+        ]
 
-          console.log(scope.selectedQuestions);
+        scope.save = function () {
+          examToBeCreated.questions = selectedQuestions;
+          dataManupulator.manupulate("insert", {entityName: "exam", entity: examToBeCreated}).then(function (res) {
+            toastr.success("Exam created", "Success!");
+            $state.go("all-exams");
+          }, function(err){
+            toastr.error("Something went wrong", "Error!");
+          })
           scope.cancel();
         }
+        scope.selectToAdd = function (question) {
+          if(question.selected){
+            question.selected = false;
+            var index = selectedQuestions.indexOf(question._id);
+            index?selectedQuestions.splice(index, 1):true;
+            scope.totalSelected--;
+            scope.canSelect = true;
+          }else{
+            question.selected = true;
+            scope.totalSelected++;
+            selectedQuestions.push(question._id);
+            scope.totalSelected>=scope.numberOfQuestionToNeeded?scope.canSelect = false:scope.canSelect = true;
+          }
+        }
+
+        scope.loadQuestions = function () {
+          questionFilter.difficultyLevel = scope.selectedDifficultyLevel.value;
+          getAllQuestion();
+        }
+
         scope.viewSelected = function () {
           examService.setQuestionToBeViewed(scope.selectedQuestions[0]);
           var modal = $uibModal.open({
@@ -116,16 +133,11 @@
             scope.allQuestions = response.data.data;
             scope.totalItems = response.data.totalCount;
             scope.loading = false;
-            console.log(scope.allQuestions);
 
             if (angular.isArray(scope.allQuestions)) {
               scope.allQuestions.forEach(function (item, index) {
-                dataManupulator.manupulate("getById", {
-                  entityName: 'subject',
-                  entityId: item.subjectId
-                }).then(function (res) {
-                  scope.allQuestions[index].subject = res.data.title;
-                })
+                var index = selectedQuestions.indexOf(item._id);
+                index>-1?item.selected = true: item.selected = false;
               })
             }
           })
@@ -147,6 +159,8 @@
         function init() {
           getAllQuestion();
           examToBeCreated = examService.getExamToBeCreated();
+          scope.numberOfQuestionToNeeded = examToBeCreated.numberOfQuestion;
+          scope.canSelect = true;
         }
 
         init();

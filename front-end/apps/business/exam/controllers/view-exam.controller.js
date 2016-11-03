@@ -1,20 +1,23 @@
 define(['angular'], function (angular) {
 
-    var question = angular.module('exam').controller('viewExamController',
-        ['$scope', '$http','$q',"$rootScope",'dataManupulator','FileUploader','questionService',
-          function (scope, http,$q,$rootScope, dataManupulator, FileUploader, questionService) {
+    var exam = angular.module('exam').controller('viewExamController',
+        ['$scope', '$http','$q',"$rootScope",'dataManupulator','FileUploader','examService',
+          function (scope, http,$q,$rootScope, dataManupulator, FileUploader, examService) {
 
-            scope.pageTitle = "Create Question";
+            scope.pageTitle = "Create Exam";
             scope.baseUrl = "http://localhost:3000/";
             scope.bgColor = "background-color: BurlyWood";
-            var questionToBeViewed;
+            var examToBeViewed;
             var modalInstance;
             function init() {
-              questionToBeViewed = questionService.getQuestionToBeViewed();
-              modalInstance = questionService.getModal();
-              scope.question = questionToBeViewed;
-              dataManupulator.manupulate("getById", {entityName: "subject", entityId: questionToBeViewed.subjectId}).then(function (res) {
+              examToBeViewed = examService.getExamToBeViewed();
+              modalInstance = examService.getModal();
+              scope.exam = examToBeViewed;
+              dataManupulator.manupulate("getById", {entityName: "subject", entityId: examToBeViewed.subjectId}).then(function (res) {
                 scope.subject = res.data;
+              })
+              dataManupulator.manupulate("getMany", {entityName: "question", filters:{"_id":{$in:examToBeViewed.questions}}, pageNumber:1, pageSize:1000}).then(function (res) {
+                scope.questions = res.data.data;
               })
             }
             init();
@@ -22,11 +25,18 @@ define(['angular'], function (angular) {
             scope.cancel = function () {
               modalInstance.close();
             }
+            function makeGetManyQuestionFilter(ids){
+              var filter = [];
+              ids.forEach(function (id) {
+                filter.push(new ObjectId(id));
+              })
+              return filter;
+            }
 
 
         }]);
 
 
-    return question;
+    return exam;
 });
 

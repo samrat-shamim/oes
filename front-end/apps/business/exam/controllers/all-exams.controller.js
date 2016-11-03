@@ -1,8 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
     var exam = angular.module('exam').controller('examsController',
-        ['$scope', '$http',"$uibModal",'dataManupulator','examService',
-          function (scope, http,$uibModal, dataManupulator, examService) {
+        ['$scope', '$state',"$uibModal",'dataManupulator','examService',
+          function (scope, $state,$uibModal, dataManupulator, examService) {
           scope.totalItems=0;
           scope.subjects = [];
             scope.pageSize = 10;
@@ -30,6 +30,11 @@
                 })
               }
             })
+
+              scope.takeExam = function () {
+                  examService.setExamToBeTaken(scope.selectedExams[0]);
+                  $state.go("take-exam");
+              }
 
             scope.editSelected = function () {
               examService.setExamToBeEdited(scope.selectedExams[0]);
@@ -147,6 +152,7 @@
 
 
           function init() {
+              getAllSubject();
           }
           init();
         }]);

@@ -12,7 +12,6 @@ module.exports = function(app, route) {
         }
 
         var query = req.body.filters?req.body.filters:{};
-      console.log(query);
         model.find(query?query:null,null,{sort:sort},function(err, documents){
             res.send(err? err: buildResponse(req.body.pageNumber, req.body.pageSize,documents));
             next();
