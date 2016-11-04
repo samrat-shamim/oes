@@ -1,0 +1,22 @@
+﻿<div class="">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Edit Subject</h4>
+    <button class="btn btn-warning close" type="button" ng-click="cancel()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <button type="submit" class="btn btn-primary close" ng-disabled="subjectForm.$invalid" ng-click="editSubject()">
+      <span class="glyphicon glyphicon-ok"></span>
+    </button>
+  </div>
+  <div  class="modal-body" id="modal-body">
+    <form novalidate>
+      <formly-form model="subjectModel" fields="subjectSchema" form="subjectForm">
+      </formly-form>
+    </form>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" ng-disabled="subjectForm.$invalid" ng-click="editSubject()">Submit</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

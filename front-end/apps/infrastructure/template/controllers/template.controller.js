@@ -8,10 +8,14 @@
 
         scope.$on("loggedin", function(e, ar){
             getTemplateConfig(ar.role);
+            scope.loggedIn = true;
+            scope.userInfo = identifier.identity().$$state.value;
         })
 
         scope.$on("loggedout", function(e, ar){
             getTemplateConfig('visitor');
+            scope.loggedIn = false;
+            scope.userInfo = null;
         })
 
 
@@ -107,11 +111,16 @@
 
             function init() {
                 dataManupulator.manupulate("validateToken", {}).then(function (response) {
-                    if(response.data.userEmail){
+                    if(response.data.success){
                         identifier.authenticate({
-                            email: response.data.userEmail,
-                            roles: response.data.roles
+                            email: response.data.user.userEmail,
+                            roles: response.data.user.roles,
+                            userName: response.data.user.userName,
+                            phoneNumber: response.data.user.phoneNumber
                         });
+                        $rootScope.$broadcast("token-validated");
+                        scope.loggedIn = true;
+                        scope.userInfo = identifier.identity().$$state.value;
                         getTemplateConfig('coordinator');
                     }else{
                         getTemplateConfig('visitor');

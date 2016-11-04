@@ -2,16 +2,28 @@
 	"paths": {
 		"subject": "apps/business/subject/subject.config",
 		"subjectsController": "apps/business/subject/controllers/all-subjects.controller",
-		"createSubjectController":"apps/business/subject/controllers/create-subject.controller"
+		"createSubjectController":"apps/business/subject/controllers/create-subject.controller",
+		"subjectService": "apps/business/subject/services/subject.service",
+		"deleteSubjectController": "apps/business/subject/controllers/delete-subject-confirmation.controller",
+		"editSubjectController": "apps/business/subject/controllers/edit-subject-modal.controller"
 	},
 
 
 	"dependencies": {
 		"subjectsController": {
-			"deps": ["subject"]
+			"deps": ["subject", "subjectService", "deleteSubjectController", "editSubjectController"]
 		},
 		"createSubjectController":{
 		  "deps": ["subject"]
+		},
+		"subjectService": {
+		  "deps": ["subject"]
+		},
+		"deleteSubjectController": {
+		  "deps": ["subject", "subjectService"]
+		},
+		"editSubjectController": {
+		  "deps": ["subject", "subjectService"]
 		}
 
 	},

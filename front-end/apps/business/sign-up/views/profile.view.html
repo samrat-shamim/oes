@@ -1,0 +1,82 @@
+﻿<div>
+    <!--<link href="apps/business/login/styles/login.css" rel="stylesheet" />-->
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr/dist/angular-toastr.min.css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <div class="well">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+            <li><a href="#pass" data-toggle="tab">Password</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active in" id="profile">
+                <form id="profileForm" name="profileForm" class="form-horizontal" role="form">
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-user  hidden-xs"></i></span>
+                        <input ng-model="user.userName" id="username" type="text" class="form-control" name="username" value="" placeholder="Username" required/>
+                        <span style="color:red" ng-show="profileForm.username.$touched && profileForm.username.$invalid">
+                            <span ng-show="profileForm.username.$error.required">Username is required.</span>
+                        </span>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-envelope  hidden-xs"></i></span>
+                        <input ng-disabled="true" ng-model="user.email" id="email" type="email" class="form-control" name="email" value="" placeholder="Email" required/>
+                        <span style="color:red" ng-show="profileForm.email.$touched && profileForm.email.$invalid">
+                            <span ng-show="profileForm.email.$error.required">Email is required.</span>
+                            <span ng-show="profileForm.email.$error.email">Email is not valid.</span>
+                        </span>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-phone  hidden-xs"></i></span>
+                        <input ng-model="user.phoneNumber" id="phone" type="text" class="form-control" name="phone" value="" placeholder="Phone Number" required/>
+                        <span style="color:red" ng-show="profileForm.phone.$touched && profileForm.phone.$invalid">
+                            <span ng-show="profileForm.phone.$error.required">Phone number is required.</span>
+                        </span>
+                    </div>
+                    <div>
+                        <button ng-disabled="profileForm.$invalid" ng-click="updateProfile()" id="singlebutton" name="singlebutton" class="btn btn-success center-block">
+                            Update Profile
+                        </button>
+                        <br>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="pass">
+                <form id="passwordResetForm" name="passwordResetForm">
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-lock  hidden-xs"></i></span>
+                        <input ng-model="user.password" id="password" type="password" class="form-control" name="password" placeholder="Password" required>
+                         <span style="color:red" ng-show="passwordResetForm.password.$touched && passwordResetForm.password.$invalid">
+                            <span ng-show="passwordResetForm.password.$error.required">Password is required.</span>
+                        </span>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-lock  hidden-xs"></i></span>
+                        <input ng-model="user.newPassword" id="newPassword" type="password" class="form-control" name="newPassword" placeholder="New Password" required>
+                         <span style="color:red" ng-show="passwordResetForm.newPassword.$touched && passwordResetForm.newPassword.$invalid">
+                            <span ng-show="passwordResetForm.newPassword.$error.required">New password is required.</span>
+                        </span>
+                    </div>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon "><i class="glyphicon glyphicon-lock  hidden-xs"></i></span>
+                        <input match-password="newPassword" ng-model="confirmPassword" id="confirmPassword" type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
+                         <span style="color:red" ng-show="passwordResetForm.confirmPassword.$touched && passwordResetForm.confirmPassword.$invalid">
+                            <span ng-show="passwordResetForm.confirmPassword.$error.required">Password confirmation is required.</span>
+                             <span ng-messages="passwordResetForm.confirmPassword.$error" ng-if="passwordResetForm.$submitted || passwordResetForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                                <span ng-message="passwordMatch" class="message slide-left">Your passwords did not match</span>
+                            </span>
+                        </span>
+                    </div>
+                    <div>
+                        <button ng-disabled="passwordResetForm.$invalid" ng-click="resetPassword()" class="btn btn-success center-block">
+                            Reset
+                        </button>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
+</div>

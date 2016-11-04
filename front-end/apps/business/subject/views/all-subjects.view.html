@@ -1,17 +1,45 @@
 ﻿<div>
     <link href="bower_components/tr-ng-grid/trNgGrid.min.css" rel="stylesheet"/>
+    <link href="bower_components/angular-modal/modal.css" rel="stylesheet" />
+    <link href="apps/business/subject/styles/subject.css" rel="stylesheet" />
+
     <!--<link href="bower_components/angular-data-table/release/material.css" rel="stylesheet"/>-->
 
     <h1>{{pageTitle}}</h1>
+    <div class="row">
 
-    <table tr-ng-grid items='myItems' fields="['title','description']">
-    </table>
+        <div class="form-group col-sm-2 col-md-2">
+            <label>Items Per Page</label>
+            <input class="form-control" type="number" ng-model="pageSize" max="100" min="1">
+            </input>
+        </div>
+        <div class="form-group col-sm-1 col-md-1">
 
-   <!-- <dtable options="options" rows="data" class="material dt">
-        <column name="Name" width="300" flex-grow="2"></column>
-        <column name="Gender">
-            <strong>{{$row.name}}</strong>: {{$cell}}
-        </column>
-    </dtable>-->
+        </div>
+
+        <div ng-if="showMenu" class="col-sm-6 col-md-6">
+            <br/>
+            <button class="btn btn-danger"  ng-click="deleteSelected()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+            <button ng-click="editSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+        </div>
+
+    </div>
+    <div style="background-color: lightblue">
+        <table ng-hide="loading" tr-ng-grid items='allSubjects' page-items="pageSize" total-items="totalItems" selected-items="selectedSubjects" selection-mode="MultiRow"
+               fields="['title','description']" on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+        </table>
+        <div>
+            <button ng-if="loading" class="btn btn-lg btn-warning center-block">
+                <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+            </button>
+        </div>
+    </div>
+
+    <!-- <dtable options="options" rows="data" class="material dt">
+         <column name="Name" width="300" flex-grow="2"></column>
+         <column name="Gender">
+             <strong>{{$row.name}}</strong>: {{$cell}}
+         </column>
+     </dtable>-->
 
 </div>

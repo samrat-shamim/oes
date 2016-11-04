@@ -1,7 +1,7 @@
 ﻿define(['angular'], function (angular) {
 
     var subject = angular.module('subject').controller('createSubjectController',
-        ['$scope', '$http','dataManupulator','FileUploader', function (scope, http, dataManupulator, FileUploader) {
+        ['$scope', '$state','toastr','dataManupulator','identifier', function (scope,$state, toastr, dataManupulator, identifier) {
 
             scope.pageTitle = "Create subject";
 
@@ -52,7 +52,16 @@
                 identifier.identity().then(
                     function(res){
                         model.entity.createdById = res.userId;
-                        dataManupulator.manupulate("insert",model);
+                        dataManupulator.manupulate("insert",model).then(function (res) {
+                            if(res.data.success){
+                                toastr.success("Subject created", "Success!");
+                                $state.go("all-subjects");
+                            } else{
+                                toastr.error("Failed to create sucject", "Error!");
+                            }
+                        }, function (err) {
+                            toastr.error("Something went wrong, failed to create subject", "Error");
+                        });
                     }
                 )
             }

@@ -11,5 +11,6 @@ module.exports = {
     '/authenticate': require('./controllers/auth/authenticate'),
     '/upload': require('./controllers/upload'),
     '/validateToken': require("./controllers/auth/validateToken"),
-    '/changePassword': require("./controllers/auth/changePassword")
+    '/changePassword': require("./controllers/auth/changePassword"),
+    '/updateProfile': require("./controllers/auth/updateProfile")
 };
