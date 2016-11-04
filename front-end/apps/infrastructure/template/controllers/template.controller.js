@@ -108,6 +108,10 @@
             })
         }
 
+            scope.hideLeftNav = function () {
+                scope.hideLeft = !scope.hideLeft;
+            }
+
 
             function init() {
                 dataManupulator.manupulate("validateToken", {}).then(function (response) {
@@ -129,6 +133,7 @@
                     getTemplateConfig('visitor');
                 })
                 scope.$state = $state;
+                scope.hideLeft = false;
             }
 
             init();

@@ -33,8 +33,8 @@
     </div>
     <!--<div class="nav navbar-left">-->
     <!--<div class="container">-->
-    <div>
-        <button class="btn bg-info " ng-class="hideLeft?'btn-circle btn-xl menu-expand': null" ng-click="hideLeft=!hideLeft">
+    <div ng-if="config.leftNavbar">
+        <button class="btn bg-info " ng-class="hideLeft?'btn-circle btn-xl menu-expand': null" ng-click="hideLeftNav()">
             <span ng-class="hideLeft?'glyphicon glyphicon-menu-hamburger':'glyphicon glyphicon-arrow-left'"></span></button>
     </div>
     <div class="row">
