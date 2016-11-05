@@ -14,14 +14,23 @@ module.exports = function(app, route) {
         }
         var model = mongoose.model(entityName, schema);
         var document = new model(req.body.entity);
-      console.log("here");
         document.save(function(err, doc){
-          console.log(err);
-            res.send(doc);
-            next();
+            if(err){
+                sendError(err);
+            }else{
+                res.json({
+                    success: true,
+                    data: doc
+                });
+                next();
+            }
         });
-        function sendError(){
-            res.send(message);
+        function sendError(err){
+            res.json({
+                success: false,
+                text: "Falied to create entity",
+                err: err
+            });
             next();
         }
     };

@@ -17,6 +17,10 @@
                         <!--</div>-->
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <li ng-if="loggedIn">
+                            <a style="cursor: pointer" ng-click="action('profile')"
+                               ng-class="{active: $state.includes('profile')}"><span class="glyphicon glyphicon-cog"></span> {{userInfo.userName}}</a>
+                        </li>
                         <li ng-repeat="item in config.topbarRight">
                             <a style="cursor: pointer" ng-click="action(item.state)" ng-class="{active: $state.includes(item.state)}"><span ng-class="item.icon"></span> {{item.title}}</a>
                         </li>
@@ -29,8 +33,12 @@
     </div>
     <!--<div class="nav navbar-left">-->
     <!--<div class="container">-->
+    <div ng-if="config.leftNavbar">
+        <button class="btn bg-info " ng-class="hideLeft?'btn-circle btn-xl menu-expand': null" ng-click="hideLeftNav()">
+            <span ng-class="hideLeft?'glyphicon glyphicon-menu-hamburger':'glyphicon glyphicon-arrow-left'"></span></button>
+    </div>
     <div class="row">
-        <div ng-if="config.leftNavbar" class="col-sm-3 col-md-3">
+        <div ng-if="config.leftNavbar && !hideLeft" class="col-sm-3 col-md-3">
             <div class="panel-group">
                 <div class="panel panel-default" ng-repeat="content in config.leftNavbar">
                     <div class="panel-heading" ng-click="menuExpanded[content.title]=(!menuExpanded[content.title])">
@@ -49,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <div ng-class="config.leftNavbar? 'col-sm-9 col-md-9':null">
+        <div ng-class="config.leftNavbar && !hideLeft? 'col-sm-9 col-md-9':null">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div ui-view>

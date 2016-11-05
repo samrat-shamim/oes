@@ -20,14 +20,15 @@
                             email: response.data.user.userEmail,
                             roles: response.data.user.roles,
                             userName: response.data.user.userName,
-                            userId:response.data.user._id
+                            userId:response.data.user._id,
+                            phoneNumber:response.data.user.phoneNumber
                         });
                         if (true) {
                             toastr.success('Login successful!', 'Success');
                             $timeout(function () {
                                 $rootScope.$broadcast("loggedin", {role:'coordinator'});
                                 $state.go('landing');
-                            }, 1000);
+                            }, 100);
 
                         }
                     }

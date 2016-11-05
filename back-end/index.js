@@ -39,6 +39,9 @@ mongoose.connection.once('open', function() {
     // Load the models.
     app.models = require('./models/index');
 
+    var crudMiddleware = require('./middlewares/crudAuthorize');
+    app.use('/crud', crudMiddleware);
+
     // Load the routes.
     var routes = require('./routes');
     _.each(routes, function(controller, route) {

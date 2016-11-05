@@ -1,14 +1,39 @@
 ﻿define(['angular'], function (angular) {
 
     angular.module('core-services').service('dataManupulator', ['$http', "$rootScope","$q", function ($http, $rootScope,$q) {
-        var baseUrl = "http://localhost:3000/";
+        var crudBaseUrl = "http://localhost:3000/crud/";
+        var authBase = "http://localhost:3000/";
+        var base = "http://localhost:3000/";
+
+        var actions = {
+            getById: "crud",
+            deleteById: "crud",
+            deleteMany: "crud",
+            getMany: "crud",
+            insert: "crud",
+            update: "crud",
+            createAccount: "auth",
+            authenticate: "auth",
+            validateToken: "auth"
+        }
+
+
+        function getBaseUrl(action){
+            if(actions[action]=="crud"){
+                return crudBaseUrl;
+            } else if(actions[action] == "auth"){
+                return authBase;
+            } else{
+                return base;
+            }
+        }
 
 
         function manupulate(action, data){
             return $q(function(resolve, reject){
                 $http({
                     method: 'POST',
-                    url: baseUrl + action,
+                    url: getBaseUrl(action) + action,
                     data: data,
                     headers: {'Content-Type': 'application/json'}
                 }).then(function(response){

@@ -1,8 +1,8 @@
 define(['angular'], function (angular) {
 
     var question = angular.module('question').controller('deleteQuestionController',
-        ['$scope', '$http','$q',"$rootScope",'dataManupulator','FileUploader','questionService','toastr',
-          function (scope, http,$q,$rootScope, dataManupulator, FileUploader, questionService, toastr) {
+        ['$scope', '$state','$q',"$rootScope",'dataManupulator','FileUploader','questionService','toastr',
+          function (scope, $state,$q,$rootScope, dataManupulator, FileUploader, questionService, toastr) {
 
             scope.pageTitle = "Create Question";
             var questionToBeEdited;
