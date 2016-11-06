@@ -35,9 +35,13 @@
                     else if(!response.success){
                         toastr.error('Your credentials are incorrect', 'Error');
                     }
+                }, function(err){
+                    toastr.error('Something went wrong', 'Error');
                 });
             }
-
+            scope.$on("token-validated", function(){
+                $state.go('home');
+            })
 
             function init() {
               if(identifier.isAuthenticated()){
