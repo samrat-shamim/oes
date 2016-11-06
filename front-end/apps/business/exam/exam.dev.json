@@ -1,90 +1,119 @@
 ﻿{
-	"paths": {
-		"exam": "apps/business/exam/exam.config",
-		"examsController": "apps/business/exam/controllers/all-exams.controller",
-		"createExamController":"apps/business/exam/controllers/create-exam.controller",
-		"takeExamController":"apps/business/exam/controllers/take-exam.controller",
-		"angular-modal":"bower_components/angular-modal/modal.min",
-		"modal-factory": "apps/business/exam/factories/modal.factory",
-		"editExamModalController": "apps/business/exam/controllers/edit-exam-modal.controller",
+  "paths": {
+    "exam": "apps/business/exam/exam.config",
+    "examsController": "apps/business/exam/controllers/all-exams.controller",
+    "createExamController": "apps/business/exam/controllers/create-exam.controller",
+    "takeExamController": "apps/business/exam/controllers/take-exam.controller",
+    "angular-modal": "bower_components/angular-modal/modal.min",
+    "modal-factory": "apps/business/exam/factories/modal.factory",
+    "editExamModalController": "apps/business/exam/controllers/edit-exam-modal.controller",
     "examService": "apps/business/exam/services/exam.service",
     "deleteExamController": "apps/business/exam/controllers/delete-exam-confirmation.controller",
-    "viewExamController":"apps/business/exam/controllers/view-exam.controller",
-    "addQuestionsToExamModalController":"apps/business/exam/controllers/add-questions-to-exam-modal.controller",
-	"progressBarDirective": "apps/business/exam/directives/progress-bar.directive",
-	"leavePageConfirmationController": "apps/business/exam/controllers/leave-page-confirmation.controller"
-	},
-
-
-	"dependencies": {
-		"examsController": {
-			"deps": ["exam","editExamModalController","examService", "deleteExamController", "viewExamController"]
-		},
-		"createExamController":{
-		  "deps": ["exam", "examService", "addQuestionsToExamModalController"]
-		},
-		"takeExamController":{
-		  "deps": ["exam", "examService", "progressBarDirective", "leavePageConfirmationController"]
-		},
-		"exam": {
-		  "deps": []
-		},
-		"modal-factory": {
-		  "deps": ["exam"]
-		},
-		"editExamModalController": {
-		  "deps": ["exam", "examService"]
-		},
+    "viewExamController": "apps/business/exam/controllers/view-exam.controller",
+    "addQuestionsToExamModalController": "apps/business/exam/controllers/add-questions-to-exam-modal.controller",
+    "progressBarDirective": "apps/business/exam/directives/progress-bar.directive",
+    "leavePageConfirmationController": "apps/business/exam/controllers/leave-page-confirmation.controller"
+  },
+  "dependencies": {
+    "examsController": {
+      "deps": [
+        "exam",
+        "editExamModalController",
+        "examService",
+        "deleteExamController",
+        "viewExamController"
+      ]
+    },
+    "createExamController": {
+      "deps": [
+        "exam",
+        "examService",
+        "addQuestionsToExamModalController"
+      ]
+    },
+    "takeExamController": {
+      "deps": [
+        "exam",
+        "examService",
+        "progressBarDirective",
+        "leavePageConfirmationController"
+      ]
+    },
+    "exam": {
+      "deps": []
+    },
+    "modal-factory": {
+      "deps": [
+        "exam"
+      ]
+    },
+    "editExamModalController": {
+      "deps": [
+        "exam",
+        "examService"
+      ]
+    },
     "examService": {
-      "deps": ["exam"]
+      "deps": [
+        "exam"
+      ]
     },
     "deleteExamController": {
-      "deps": ["exam", "examService"]
+      "deps": [
+        "exam",
+        "examService"
+      ]
     },
     "viewExamController": {
-      "deps": ["exam", "examService"]
+      "deps": [
+        "exam",
+        "examService"
+      ]
     },
     "addQuestionsToExamModalController": {
-      "deps": ["exam", "examService"]
+      "deps": [
+        "exam",
+        "examService"
+      ]
     },
-	"progressBarDirective": {
-	  "deps": ["exam"]
-	},
-	"leavePageConfirmationController": {
-	  "deps": ["exam"]
-	}
-
-	},
-
-
-	"routes": {
-		"moduleName": "exam",
-		"states": [
-		  {
-			"name": "all-exams",
-      		"url": "/all-exams",
-			"templateUrl": "apps/business/exam/views/all-exams.view.html",
-			"controller": "examsController",
-			"data": {
-			}
-		},
-		  {
-			"name": "create-exam",
-			"url": "/create-exam",
-			"templateUrl": "apps/business/exam/views/create-exam.view.html",
-			"controller": "createExamController",
-			"data": {
-			}
-		  },
-		  {
-			"name": "take-exam",
-			"url": "/take-exam",
-			"templateUrl": "apps/business/exam/views/take-exam.view.html",
-			"controller": "takeExamController",
-			"data": {
-			}
-		  }
-		]
-	}
-
+    "progressBarDirective": {
+      "deps": [
+        "exam"
+      ]
+    },
+    "leavePageConfirmationController": {
+      "deps": [
+        "exam"
+      ]
+    }
+  },
+  "routes": {
+    "moduleName": "exam",
+    "states": [
+      {
+        "name": "all-exams",
+        "url": "/all-exams",
+        "templateUrl": "apps/business/exam/views/all-exams.view.html",
+        "controller": "examsController",
+        "data": {
+        }
+      },
+      {
+        "name": "create-exam",
+        "url": "/create-exam",
+        "templateUrl": "apps/business/exam/views/create-exam.view.html",
+        "controller": "createExamController",
+        "data": {
+        }
+      },
+      {
+        "name": "take-exam",
+        "url": "/take-exam",
+        "templateUrl": "apps/business/exam/views/take-exam.view.html",
+        "controller": "takeExamController",
+        "data": {
+        }
+      }
+    ]
+  }
 }

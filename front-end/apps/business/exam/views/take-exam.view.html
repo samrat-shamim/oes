@@ -1,59 +1,75 @@
 ﻿<div class="{{fullScreanClass}}">
   <link href="apps/business/exam/styles/exam.css" rel="stylesheet" type="text/css"/>
   <div>
-  <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center">
-      <span><b style="{{bgColor}}"><h3>{{exam.title}}</h3></b></span>
-    </div>
-    <div class="col-md-4 col-sm-4"><b style="{{bgColor}} ">Subject:</b>{{exam.subject}}</div>
-    <div class="col-md-4 col-sm-4"><b style="{{bgColor}}">Duration:</b> {{exam.duration}} Minutes</div>
-    <div class="col-md-4 col-sm-4"><b style="{{bgColor}}">Full Marks:</b> {{exam.numberOfQuestion}}</div>
-    <div ng-if="examStarted && !examFinished">
-      <br/><br/><br/><br/><br/>
-      <h4>Exam Started!</h4>
-      <exam-progress-bar type="info" max="{{exam.duration*60}}" start="{{examStarted}}" on-stop="stopProgress()"></exam-progress-bar>
-      <div style="text-align: center">
-        <button class="btn btn-warning" type="button" ng-click="submit()">Submit</button>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center">
+        <span><b style="{{bgColor}}"><h3>{{exam.title}}</h3></b></span>
       </div>
-      <br/><br/>
+      <div class="col-md-4 col-sm-4"><b style="{{bgColor}} ">Subject:</b>{{exam.subject}}</div>
+      <div class="col-md-4 col-sm-4"><b style="{{bgColor}}">Duration:</b> {{exam.duration}} Minutes</div>
+      <div class="col-md-4 col-sm-4"><b style="{{bgColor}}">Full Marks:</b> {{exam.numberOfQuestion}}</div>
+      <div ng-if="resultCalculated" id="exam-result" style="text-align: center; color: #0000FF; padding: 10%">
+        <h2><b>Result</b></h2>
+        <h3>Total Answered: {{result.totalAnswered}}</h3>
+        <h3>Not Answered: {{exam.numberOfQuestion- result.totalAnswered}}</h3>
+        <h3>Correct Answer: {{result.correctAnswer}}</h3>
+        <h3>Wrong Answer: {{result.wrongAnswer}}</h3>
+        <h3>Obtained Marks: {{result.correctAnswer}}</h3>
+      </div>
+      <div ng-if="examStarted && !examFinished">
+        <br/><br/><br/><br/><br/>
+        <h4>Exam Started!</h4>
+        <exam-progress-bar type="info" max="{{exam.duration*60}}" start="{{examStarted}}"
+                           on-stop="stopProgress()"></exam-progress-bar>
+        <div style="text-align: center">
+          <button class="btn btn-warning" type="button" ng-click="submit()">Submit</button>
+        </div>
+        <br/><br/>
+      </div>
+
+      <!--<div ng-if="!question.optionAFigure" class="col-lg-5 col-md-5 col-sm-5">
+        <br/>
+        <h4>{{question.optionA}}</h4>
+      </div>
+
+      <div ng-if="question.optionAFigure" class="col-lg-10 col-md-10 col-sm-10">
+        <img ng-src="{{baseUrl+question.optionAFigure}}" alt="Question Figure" class="img-responsive" style="max-height: 200px;max-width: 200px">
+      </div>-->
+
     </div>
-
-    <!--<div ng-if="!question.optionAFigure" class="col-lg-5 col-md-5 col-sm-5">
-      <br/>
-      <h4>{{question.optionA}}</h4>
-    </div>
-
-    <div ng-if="question.optionAFigure" class="col-lg-10 col-md-10 col-sm-10">
-      <img ng-src="{{baseUrl+question.optionAFigure}}" alt="Question Figure" class="img-responsive" style="max-height: 200px;max-width: 200px">
-    </div>-->
-
-  </div>
 
     <div style="text-align: center" ng-if="!examStarted && !examFinished">
       <br/><br/>
       <button class="btn btn-success" ng-click="startExam()">Start Exam</button>
     </div>
     <div ng-if="examStarted && !examFinished">
-      <div ng-repeat="question in questions" >
+      <div ng-repeat="question in questions">
         <hr style="height: 5px;background-color: darkcyan"/>
         <div class="card">
           <div class="card-block">
-            <h3 class="card-title"> <b>({{$index+1}})</b>{{" "+question.title}}</h3>
+            <h3 class="card-title"><b>({{$index+1}})</b>{{" "+question.title}}</h3>
           </div>
-          <img ng-if="question.titleFigure" ng-src="{{baseUrl+question.titleFigure}}" class="img-responsive" style="height: 15%;width: 70%" alt="Question image">
+          <img ng-if="question.titleFigure" ng-src="{{baseUrl+question.titleFigure}}" class="img-responsive"
+               style="height: 15%;width: 70%" alt="Question image">
           <div class="card-block">
             <div>
               <div>
                 <table class="table">
                   <thead>
                   <tr>
-                    <th class="exam-screen-td"><button ng-click="question.ca='a'" ng-class="question.ca=='a'?'btn btn-primary':'btn btn-info'">
-                      <span ng-if="question.ca=='a'" class="glyphicon glyphicon-ok"></span>
-                      Option A</button>
+                    <th class="exam-screen-td">
+                      <button ng-click="setAnswer(question, 'a')"
+                              ng-class="question.ca=='a'?'btn btn-primary':'btn btn-info'">
+                        <span ng-if="question.ca=='a'" class="glyphicon glyphicon-ok"></span>
+                        Option A
+                      </button>
                     </th>
-                    <th class="exam-screen-td"><button ng-click="question.ca='b'" ng-class="question.ca=='b'?'btn btn-primary':'btn btn-info'">
-                      <span ng-if="question.ca=='b'" class="glyphicon glyphicon-ok"></span>
-                      Option B</button>
+                    <th class="exam-screen-td">
+                      <button ng-click="setAnswer(question, 'b')"
+                              ng-class="question.ca=='b'?'btn btn-primary':'btn btn-info'">
+                        <span ng-if="question.ca=='b'" class="glyphicon glyphicon-ok"></span>
+                        Option B
+                      </button>
                     </th>
                   </tr>
                   </thead>
@@ -61,7 +77,8 @@
                   <tr>
                     <td class="exam-screen-td">
                       <div ng-if="question.optionAFigure">
-                        <img ng-src="{{baseUrl+question.optionAFigure}}" alt="{{question.optionA}}" class="img-responsive option-figure">
+                        <img ng-src="{{baseUrl+question.optionAFigure}}" alt="{{question.optionA}}"
+                             class="img-responsive option-figure">
                       </div>
                       <div ng-if="!question.optionAFigure">
                         {{question.optionA}}
@@ -69,7 +86,8 @@
                     </td>
                     <td class="exam-screen-td">
                       <div ng-if="question.optionBFigure">
-                        <img ng-src="{{baseUrl+question.optionBFigure}}" alt="{{question.optionB}}" class="img-responsive option-figure">
+                        <img ng-src="{{baseUrl+question.optionBFigure}}" alt="{{question.optionB}}"
+                             class="img-responsive option-figure">
                       </div>
                       <div ng-if="!question.optionBFigure">
                         {{question.optionB}}
@@ -83,13 +101,19 @@
                 <table class="table table-responsive">
                   <thead>
                   <tr>
-                    <th class="exam-screen-td"><button ng-click="question.ca='c'" ng-class="question.ca=='c'?'btn btn-primary':'btn btn-info'">
-                      <span ng-if="question.ca=='c'" class="glyphicon glyphicon-ok"></span>
-                      Option C</button>
+                    <th class="exam-screen-td">
+                      <button ng-click="setAnswer(question, 'c')"
+                              ng-class="question.ca=='c'?'btn btn-primary':'btn btn-info'">
+                        <span ng-if="question.ca=='c'" class="glyphicon glyphicon-ok"></span>
+                        Option C
+                      </button>
                     </th>
-                    <th class="exam-screen-td"><button ng-click="question.ca='d'" ng-class="question.ca=='d'?'btn btn-primary':'btn btn-info'">
-                      <span ng-if="question.ca=='d'" class="glyphicon glyphicon-ok"></span>
-                      Option D</button>
+                    <th class="exam-screen-td">
+                      <button ng-click="setAnswer(question, 'd')"
+                              ng-class="question.ca=='d'?'btn btn-primary':'btn btn-info'">
+                        <span ng-if="question.ca=='d'" class="glyphicon glyphicon-ok"></span>
+                        Option D
+                      </button>
                     </th>
                   </tr>
                   </thead>
@@ -97,7 +121,8 @@
                   <tr>
                     <td class="exam-screen-td">
                       <div ng-if="question.optionCFigure">
-                        <img ng-src="{{baseUrl+question.optionCFigure}}" alt="{{question.optionC}}" class="img-responsive option-figure">
+                        <img ng-src="{{baseUrl+question.optionCFigure}}" alt="{{question.optionC}}"
+                             class="img-responsive option-figure">
                       </div>
                       <div ng-if="!question.optionCFigure">
                         {{question.optionC}}
@@ -105,7 +130,8 @@
                     </td>
                     <td class="exam-screen-td">
                       <div ng-if="question.optionDFigure">
-                        <img ng-src="{{baseUrl+question.optionDFigure}}" alt="{{question.optionD}}" class="img-responsive option-figure">
+                        <img ng-src="{{baseUrl+question.optionDFigure}}" alt="{{question.optionD}}"
+                             class="img-responsive option-figure">
                       </div>
                       <div ng-if="!question.optionDFigure">
                         {{question.optionD}}
@@ -122,80 +148,80 @@
       </div>
 
 
-     <!-- <div ng-repeat="question in questions">
-        <div class="row">
-          <div class="col-md-12 col-lg-12 col-sm-12"><br/></div>
-          <div class="col-lg-10 col-md-10 col-sm-10">
-            <h3>{{question.title}}</h3>
-          </div>
-          <div ng-if="question.titleFigure" class="col-lg-10 col-md-10 col-sm-10">
-            <img ng-src="{{baseUrl+question.titleFigure}}" alt="Question Figure" class="img-responsive" style="max-height: 300px;max-width: 300px">
-          </div>
+      <!-- <div ng-repeat="question in questions">
+         <div class="row">
+           <div class="col-md-12 col-lg-12 col-sm-12"><br/></div>
+           <div class="col-lg-10 col-md-10 col-sm-10">
+             <h3>{{question.title}}</h3>
+           </div>
+           <div ng-if="question.titleFigure" class="col-lg-10 col-md-10 col-sm-10">
+             <img ng-src="{{baseUrl+question.titleFigure}}" alt="Question Figure" class="img-responsive" style="max-height: 300px;max-width: 300px">
+           </div>
 
-        </div>
-        <div>
-          <div>
-            <table class="table table-responsive">
-              <thead>
-              <tr>
-                <th>Option A</th>
-                <th>Option B</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>
-                  <div ng-if="question.optionAFigure">
-                    <img ng-src="{{baseUrl+question.optionAFigure}}" alt="{{question.optionA}}" class="img-responsive" style="max-height: 100%;max-width: 100%">
-                  </div>
-                  <div ng-if="!question.optionAFigure">
-                    {{question.optionA}}
-                  </div>
-                </td>
-                <td>
-                  <div ng-if="question.optionBFigure">
-                    <img ng-src="{{baseUrl+question.optionBFigure}}" alt="{{question.optionB}}" class="img-responsive" style="max-height: 100%;max-width: 100%">
-                  </div>
-                  <div ng-if="!question.optionBFigure">
-                    {{question.optionB}}
-                  </div>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <div>
-            <table class="table table-responsive">
-              <thead>
-              <tr>
-                <th>Option C</th>
-                <th>Option D</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>
-                  <div ng-if="question.optionCFigure">
-                    <img ng-src="{{baseUrl+question.optionCFigure}}" alt="{{question.optionC}}" class="img-responsive" style="max-height: 100%;max-width: 100%">
-                  </div>
-                  <div ng-if="!question.optionCFigure">
-                    {{question.optionC}}
-                  </div>
-                </td>
-                <td>
-                  <div ng-if="question.optionDFigure">
-                    <img ng-src="{{baseUrl+question.optionDFigure}}" alt="{{question.optionD}}" class="img-responsive" style="max-height: 100%;max-width: 100%">
-                  </div>
-                  <div ng-if="!question.optionDFigure">
-                    {{question.optionD}}
-                  </div>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>-->
+         </div>
+         <div>
+           <div>
+             <table class="table table-responsive">
+               <thead>
+               <tr>
+                 <th>Option A</th>
+                 <th>Option B</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+                 <td>
+                   <div ng-if="question.optionAFigure">
+                     <img ng-src="{{baseUrl+question.optionAFigure}}" alt="{{question.optionA}}" class="img-responsive" style="max-height: 100%;max-width: 100%">
+                   </div>
+                   <div ng-if="!question.optionAFigure">
+                     {{question.optionA}}
+                   </div>
+                 </td>
+                 <td>
+                   <div ng-if="question.optionBFigure">
+                     <img ng-src="{{baseUrl+question.optionBFigure}}" alt="{{question.optionB}}" class="img-responsive" style="max-height: 100%;max-width: 100%">
+                   </div>
+                   <div ng-if="!question.optionBFigure">
+                     {{question.optionB}}
+                   </div>
+                 </td>
+               </tr>
+               </tbody>
+             </table>
+           </div>
+           <div>
+             <table class="table table-responsive">
+               <thead>
+               <tr>
+                 <th>Option C</th>
+                 <th>Option D</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+                 <td>
+                   <div ng-if="question.optionCFigure">
+                     <img ng-src="{{baseUrl+question.optionCFigure}}" alt="{{question.optionC}}" class="img-responsive" style="max-height: 100%;max-width: 100%">
+                   </div>
+                   <div ng-if="!question.optionCFigure">
+                     {{question.optionC}}
+                   </div>
+                 </td>
+                 <td>
+                   <div ng-if="question.optionDFigure">
+                     <img ng-src="{{baseUrl+question.optionDFigure}}" alt="{{question.optionD}}" class="img-responsive" style="max-height: 100%;max-width: 100%">
+                   </div>
+                   <div ng-if="!question.optionDFigure">
+                     {{question.optionD}}
+                   </div>
+                 </td>
+               </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>-->
       <div style="text-align: center">
         <button class="btn btn-warning" type="button" ng-click="submit()">Submit</button>
       </div>
