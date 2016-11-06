@@ -14,6 +14,7 @@ module.exports = function(app, route) {
         }
         var model = mongoose.model(entityName, schema);
         var document = new model(req.body.entity);
+        document.createdById = req.decoded._doc._id;
         document.save(function(err, doc){
             if(err){
                 sendError(err);

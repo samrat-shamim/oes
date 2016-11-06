@@ -4,6 +4,7 @@ module.exports = function(app, route) {
         var entityName = req.body.entityName;
         var entityId = req.body.entityId;
         var entity = req.body.entity;
+      entity.updateById = req.decoded._doc._id;
         var schema = app.models[entityName];
         if(!schema)
             sendError("Invalid entity name.");
