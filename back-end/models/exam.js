@@ -37,7 +37,8 @@ var ExamSchema = new mongoose.Schema(
       type: String
     },
     needApproval:{
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     paymentAmount:{
       type: Number

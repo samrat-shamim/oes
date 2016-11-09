@@ -1,6 +1,6 @@
 ﻿angular.module("security").
-factory('identifier', ['$q', '$http', '$timeout',
-  function ($q, $http, $timeout) {
+factory('identifier', ['$q', '$http', '$timeout','$rootScope',
+  function ($q, $http, $timeout, $rootScope) {
       var _identity = undefined,
         _authenticated = false;
 
@@ -27,6 +27,7 @@ factory('identifier', ['$q', '$http', '$timeout',
           },
           authenticate: function (identity) {
               _identity = identity;
+              $rootScope.$broadcast("authenticated");
               _authenticated = identity != null;
           },
           logout : function() {
@@ -34,23 +35,11 @@ factory('identifier', ['$q', '$http', '$timeout',
               _authenticated = false;
           },
           identity: function (force) {
-              var deferred = $q.defer();
-
               if (force === true) _identity = undefined;
 
               if (angular.isDefined(_identity)) {
-                  deferred.resolve(_identity);
-
-                  return deferred.promise;
+                  return _identity;
               }
-
-              var self = this;
-              $timeout(function () {
-                  self.authenticate(null);
-                  deferred.resolve(_identity);
-              }, 10);
-
-              return deferred.promise;
           }
       };
   }

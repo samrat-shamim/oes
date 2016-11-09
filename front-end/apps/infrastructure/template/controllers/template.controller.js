@@ -9,7 +9,7 @@
         scope.$on("loggedin", function(e, ar){
             getTemplateConfig(ar.role);
             scope.loggedIn = true;
-            scope.userInfo = identifier.identity().$$state.value;
+            scope.userInfo = identifier.identity();
         })
 
         scope.$on("loggedout", function(e, ar){
@@ -96,7 +96,8 @@
                 }
             ];
 
-        scope.action = function(route){
+        scope.action = function(route, params){
+            templateService.setStateparams(params);
             $state.go(route);
         }
         function getTemplateConfig(role){
@@ -120,12 +121,13 @@
                             email: response.data.user.userEmail,
                             roles: response.data.user.roles,
                             userName: response.data.user.userName,
-                            phoneNumber: response.data.user.phoneNumber
+                            phoneNumber: response.data.user.phoneNumber,
+                            userId: response.data.user._id
                         });
                         $rootScope.$broadcast("token-validated");
                         scope.loggedIn = true;
-                        scope.userInfo = identifier.identity().$$state.value;
-                        getTemplateConfig('coordinator');
+                        scope.userInfo = identifier.identity();
+                        getTemplateConfig(response.data.user.roles[0]);
                     }else{
                         getTemplateConfig('visitor');
                     }

@@ -33,13 +33,28 @@ define(['angular'], function (angular) {
         }
 
         function saveAnswerToDB() {
+          var connectionModel = {
+            parentEntityId : identifier.identity().userId,
+            childEntityId: examToBeTaken._id,
+            parentEntityName: "user",
+            childEntityName: "exam",
+            tags: ["taken"]
+          }
+          dataManupulator.connect(connectionModel).then(function (res) {
+          }, function (err) {
+            console.log(err);
+          })
+
           var answerModel = {
             entityName: "answer",
             entity: {
               examineeId: userInfo.userId,
               examId: scope.exam._id,
               questions: questionIds,
-              answers: answers
+              answers: answers,
+              totalCorrect: scope.result.correctAnswer,
+              totalWrong: scope.result.wrongAnswer,
+              totalAnswered: scope.result.totalAnswered
             }
           };
 
@@ -80,6 +95,10 @@ define(['angular'], function (angular) {
           }
         }
 
+        scope.goToAllExams = function () {
+          $state.go("all-exams");
+        }
+
         function init() {
           examToBeTaken = examService.getExamToBeTaken();
           examToBeTaken ? scope.exam = examToBeTaken : $state.go('all-exams');
@@ -108,16 +127,12 @@ define(['angular'], function (angular) {
 
         function preventWindowChange() {
           //jquery code
+          confirm('If you change the window, you answer will be submitted without notification!');
           $(window).blur(function (e) {
-            if (!scope.examFinished) {
-              e.preventDefault();
-              if (confirm('If you change the window, you answer will be submitted!')) {
-                scope.examFinished = true;
-                scope.submit();
-              } else {
-                console.log("canceled");
-              }
-            }
+            scope.submit();
+          });
+          $(window).resize(function (e) {
+            scope.submit();
           });
         }
       }]);

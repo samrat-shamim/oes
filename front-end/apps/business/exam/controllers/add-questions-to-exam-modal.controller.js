@@ -11,8 +11,10 @@
         scope.totalItems = 0;
         scope.subjects = [];
         scope.pageSize = 10;
-        var selectedQuestions = [];
-        scope.totalSelected =0;
+        var edit;
+        var selectedQuestions = examService.questions;
+        selectedQuestions? edit = true:edit=false;
+        scope.totalSelected =selectedQuestions.length;
         scope.baseUrl = "http://localhost:3000/";
         scope.difficultyLevels = [
           {
@@ -31,12 +33,26 @@
 
         scope.save = function () {
           examToBeCreated.questions = selectedQuestions;
-          dataManupulator.manupulate("insert", {entityName: "exam", entity: examToBeCreated}).then(function (res) {
-            toastr.success("Exam created", "Success!");
-            $state.go("all-exams");
-          }, function(err){
-            toastr.error("Something went wrong", "Error!");
-          })
+          if(!edit){
+            dataManupulator.manupulate("insert", {entityName: "exam", entity: examToBeCreated}).then(function (res) {
+              toastr.success("Exam created", "Success!");
+              $state.go("all-exams");
+            }, function(err){
+              toastr.error("Something went wrong", "Error!");
+            })
+          }else{
+            var model = {
+              entityName: "exam",
+              entityId: examToBeCreated._id,
+              entity: examToBeCreated
+            }
+            dataManupulator.manupulate("update", model).then(function (res) {
+              toastr.success("Exam updated", "Success!");
+              $state.go("all-exams");
+            }, function(err){
+              toastr.error("Something went wrong", "Error!");
+            })
+          }
           scope.cancel();
         }
         scope.selectToAdd = function (question) {
@@ -57,18 +73,6 @@
         scope.loadQuestions = function () {
           questionFilter.difficultyLevel = scope.selectedDifficultyLevel.value;
           getAllQuestion();
-        }
-
-        scope.viewSelected = function () {
-          examService.setQuestionToBeViewed(scope.selectedQuestions[0]);
-          var modal = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: 'modal-title-top',
-            ariaDescribedBy: 'modal-body-top',
-            templateUrl: 'apps/business/question/views/view-question-modal.view.html',
-            controller: 'viewQuestionController'
-          });
-          examService.setModal(modal);
         }
 
 
@@ -95,25 +99,7 @@
 
         }
 
-        scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
-          scope.loading = true;
-          makePartialSearchFilter(filterByFields);
-          getManyFilter.pageNumber = currentPage + 1;
-          getManyFilter.pageSize = pageItems;
-          getManyFilter.sort.sortBy = orderBy;
-          getManyFilter.filters = filter;
-          getAllQuestion();
-          scope.selectedQuestions = [];
-        }
 
-        function makePartialSearchFilter(object) {
-          for (var key in object) {
-            filter[key] = {
-              $regex: object[key]
-            };
-          }
-
-        }
 
         var getAllSubjectFilter = {
           entityName: "subject",

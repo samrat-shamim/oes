@@ -26,7 +26,7 @@
                         if (true) {
                             toastr.success('Login successful!', 'Success');
                             $timeout(function () {
-                                $rootScope.$broadcast("loggedin", {role:'coordinator'});
+                                $rootScope.$broadcast("loggedin", {role:response.data.user.roles[0]});
                                 $state.go('landing');
                             }, 100);
 

@@ -15,12 +15,14 @@
         <h3>Correct Answer: {{result.correctAnswer}}</h3>
         <h3>Wrong Answer: {{result.wrongAnswer}}</h3>
         <h3>Obtained Marks: {{result.correctAnswer}}</h3>
+        <button class="btn btn-link" ng-click="goToAllExams()"><span class="glyphicon glyphicon-arrow-left"></span> Back</button>
       </div>
       <div ng-if="examStarted && !examFinished">
         <br/><br/><br/><br/><br/>
         <h4>Exam Started!</h4>
         <exam-progress-bar type="info" max="{{exam.duration*60}}" start="{{examStarted}}"
                            on-stop="stopProgress()"></exam-progress-bar>
+        <div style="color: red">Please note, if you leave the exam window, answers will be submitted without any notification. </div>
         <div style="text-align: center">
           <button class="btn btn-warning" type="button" ng-click="submit()">Submit</button>
         </div>

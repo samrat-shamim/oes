@@ -1,0 +1,48 @@
+﻿{
+  "websiteTitle": "Online Examination System",
+  "websiteQuotation": "",
+  "topbarRight":[
+    {
+      "title": "Logout",
+      "state":"logout",
+      "icon":"glyphicon glyphicon-log-out"
+    }
+  ],
+  "topbarLeft":[
+    {
+      "title": "Home",
+      "state": "home",
+      "icon": "glyphicon glyphicon-home"
+    },
+    {
+      "title": "About Us",
+      "state":"about-us",
+      "icon":"glyphicon glyphicon-info-sign"
+    }
+  ],
+  "leftNavbar": [
+    {
+      "title": "Examination",
+      "menus": [
+        {
+          "title": "Upcoming Exams",
+          "state": "all-exams",
+          "stateParams": "upcoming",
+          "icon":"glyphicon glyphicon-list-alt"
+        },
+        {
+          "title": "Applied Exams",
+          "state": "all-exams",
+          "stateParams": "applied",
+          "icon":"glyphicon glyphicon-list-alt"
+        },
+        {
+          "title": "Taken Exams",
+          "state": "all-exams",
+          "stateParams": "taken",
+          "icon":"glyphicon glyphicon-list-alt"
+        }
+      ]
+    }
+  ]
+}

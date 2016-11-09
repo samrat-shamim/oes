@@ -11,9 +11,15 @@ module.exports = function(app, route) {
         var model = mongoose.model(entityName, schema);
         model.findByIdAndUpdate(entityId,{$set:entity},{new: true}, function(err, updatedDoc){
             if(err){
-                console.log(err);
+                res.json({
+                    success: false,
+                    error: err
+                })
             }
-            res.send(updatedDoc);
+            res.json({
+                success: true,
+                data: updatedDoc
+            })
         });
 
         function sendError(message){

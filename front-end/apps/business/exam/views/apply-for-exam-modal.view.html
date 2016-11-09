@@ -1,0 +1,17 @@
+<div class="">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Enter payment details</h4>
+    <button class="btn btn-warning close" type="button" ng-click="cancel()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+  </div>
+  <div  class="modal-body" id="modal-body">
+    <h3>Amount: {{exam.paymentAmount}}</h3>
+    <span>Transaction ID</span>
+    <input type="text" ng-model="transactionId">
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" ng-disabled="!transactionId"  ng-click="applyForExam(transactionId)">Apply</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

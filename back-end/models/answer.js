@@ -18,6 +18,13 @@ var AnswerSchema = new mongoose.Schema(
       type: Array,
       required: true
     },
+    totalCorrect: {
+    type: Number
+  },totalWrong: {
+    type: Number
+  },totalAnswered: {
+    type: Number
+  },
     createdById: {
       type: String
     },

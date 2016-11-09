@@ -1,0 +1,9 @@
+﻿<div>
+    <link href="apps/business/exam/styles/exam.css" rel="stylesheet" type="text/css"/>
+    <form novalidate>
+        <h1>{{pageTitle}}</h1>
+        <formly-form model="examModel" fields="examSchema" form="examForm">
+            <button type="submit" class="btn btn-primary" ng-disabled="examForm.$invalid" ng-click="editExam()">Submit</button>
+        </formly-form>
+    </form>
+</div>

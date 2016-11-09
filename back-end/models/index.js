@@ -5,5 +5,6 @@ module.exports = {
   connection: require('./connection'),
   question: require('./question'),
   subject: require('./subject'),
-  answer: require('./answer')
+  answer: require('./answer'),
+  application: require('./application')
 };

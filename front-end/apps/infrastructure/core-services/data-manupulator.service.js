@@ -44,7 +44,39 @@
             })
         };
 
+        function connect(data){
+            return $q(function(resolve, reject){
+                $http({
+                    method: 'POST',
+                    url: "http://localhost:3000/connect",
+                    data: data,
+                    headers: {'Content-Type': 'application/json'}
+                }).then(function(response){
+                    resolve(response);
+                }, function(err){
+                    reject(err);
+                });
+            })
+        }
+
+        function getConnections(data){
+            return $q(function(resolve, reject){
+                $http({
+                    method: 'POST',
+                    url: "http://localhost:3000/getConnection",
+                    data: data,
+                    headers: {'Content-Type': 'application/json'}
+                }).then(function(response){
+                    resolve(response);
+                }, function(err){
+                    reject(err);
+                });
+            })
+        }
+
         this.manupulate = manupulate;
+        this.connect  = connect;
+        this.getConnections = getConnections;
 
     }]);
 });
