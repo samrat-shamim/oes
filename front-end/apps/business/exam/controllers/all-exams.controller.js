@@ -333,6 +333,7 @@
         function init() {
           getAllSubject();
           scope.initLoad = true;
+          scope.multiRow = "MultiRow";
         }
 
         if(identifier.identity()){
@@ -361,6 +362,11 @@
           }
         })
 
+        scope.$watch(scope.roleWeight, function () {
+          if(scope.roleWeight==1){
+            scope.multiRow = "SingleRow";
+          }
+        })
 
         init();
       }]);

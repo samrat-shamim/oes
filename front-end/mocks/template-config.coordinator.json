@@ -78,6 +78,11 @@
           "title": "Create Exam",
           "state":"create-exam",
           "icon":"glyphicon glyphicon-plus-sign"
+        },
+        {
+          "title": "Applications",
+          "state":"applications",
+          "icon":"glyphicon glyphicon-inbox"
         }
       ]
     }

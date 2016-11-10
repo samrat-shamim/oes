@@ -44,7 +44,7 @@
 
   </div>
     <div style="background-color: lightblue">
-      <table ng-hide="loading" tr-ng-grid items='allExams' page-items="pageSize" total-items="totalItems" selected-items="selectedExams" selection-mode="MultiRow"
+      <table ng-hide="loading" tr-ng-grid items='allExams' page-items="pageSize" total-items="totalItems" selected-items="selectedExams" selection-mode="{{multiRow}}"
              fields="['title','subject']" on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
       </table>
 

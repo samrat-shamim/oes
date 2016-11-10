@@ -14,7 +14,8 @@
     "addQuestionsToExamModalController": "apps/business/exam/controllers/add-questions-to-exam-modal.controller",
     "progressBarDirective": "apps/business/exam/directives/progress-bar.directive",
     "leavePageConfirmationController": "apps/business/exam/controllers/leave-page-confirmation.controller",
-    "applyForExamController": "apps/business/exam/controllers/apply-for-exam.controller"
+    "applyForExamController": "apps/business/exam/controllers/apply-for-exam.controller",
+    "applicationsController": "apps/business/exam/controllers/applications.controller"
   },
   "dependencies": {
     "examsController": {
@@ -95,6 +96,11 @@
         "exam",
         "examService"
       ]
+    },
+    "applicationsController": {
+      "deps": [
+        "exam", "examService"
+      ]
     }
   },
   "routes": {
@@ -128,6 +134,14 @@
         "url": "/take-exam",
         "templateUrl": "apps/business/exam/views/take-exam.view.html",
         "controller": "takeExamController",
+        "data": {
+        }
+      },
+      {
+        "name": "applications",
+        "url": "/applications",
+        "templateUrl": "apps/business/exam/views/applications.view.html",
+        "controller": "applicationsController",
         "data": {
         }
       }
