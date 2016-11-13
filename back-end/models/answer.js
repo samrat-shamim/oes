@@ -8,7 +8,8 @@ var AnswerSchema = new mongoose.Schema(
       required: true
     },
     examineeId: {
-      type: String
+      type: String,
+      required: true
     },
     questions: {
       type: Array,

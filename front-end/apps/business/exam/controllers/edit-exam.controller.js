@@ -7,6 +7,9 @@
         scope.pageTitle = "Edit Exam";
         scope.generateQuestionAuto = false;
           var examToBeEdited = examService.getExamToBeEdited();
+          if(!examToBeEdited){
+              $state.go("all-exams");
+          }
 
         scope.examModel = examToBeEdited;
         var subjects = [];
@@ -209,7 +212,6 @@
             showQuestionsToAddToExam();
         }
         function showQuestionsToAddToExam() {
-            console.log(scope.examModel);
           examService.setQuestionFilter({
             subjectId: scope.examModel.subjectId,
             difficultyLevel: scope.examModel.difficultyLevel

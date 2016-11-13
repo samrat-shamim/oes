@@ -94,7 +94,6 @@
                 }
                 
                 scope.applyTypeFilter = function (type) {
-                    console.log(type);
                     if(appType==type) {
                         return;
                     }

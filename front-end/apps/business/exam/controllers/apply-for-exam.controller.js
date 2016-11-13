@@ -36,7 +36,7 @@ define(['angular'], function (angular) {
                     entity: {
                         examId: examToBeViewed._id,
                         examineeId: identifier.identity().userId,
-                        amount: examToBeViewed.paymentAmount?examToBeViewed.paymentAmoun:0,
+                        amount: examToBeViewed.paymentAmount?examToBeViewed.paymentAmount:0,
                         transactionId: transactionId
                     }
                 }

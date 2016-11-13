@@ -27,16 +27,18 @@
           <br/>
           <div ng-if="roleWeight>1">
               <button ng-if="roleWeight>2" class="btn btn-danger"  ng-click="deleteSelected()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+              <button ng-click="showResult()" ng-if="examHappend" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> See Result</button>
               <button ng-if="roleWeight>2" ng-click="editSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-edit"></span> Edit</button>
               <button ng-click="viewSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-eye-open"></span> Details</button>
           </div>
           <div ng-if="roleWeight==1">
+              <span ng-if="!selectedExams[0].needApproval" class="label label-default">Free</span>
               <span ng-if="selectedExams[0].applied" class="label label-default">Applied</span>
               <span ng-if="selectedExams[0].approved" class="label label-default">Approved</span>
               <span ng-if="selectedExams[0].taken" class="label label-default">Taken</span>
               <button ng-click="apply()" ng-if="canApply" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> Apply</button>
               <button ng-click="takeExam()" ng-if="canTake" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> Take Exam</button>
-              <button ng-click="seeResult()" ng-if="seeResult" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> See Result</button>
+              <button ng-click="showResult()" ng-if="seeResult" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> See Result</button>
           </div>
 
 
@@ -44,8 +46,17 @@
 
   </div>
     <div style="background-color: lightblue">
-      <table ng-hide="loading" tr-ng-grid items='allExams' page-items="pageSize" total-items="totalItems" selected-items="selectedExams" selection-mode="{{multiRow}}"
-             fields="['title','subject']" on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+      <table ng-hide="loading" enable-filtering="false" tr-ng-grid items='allExams' page-items="pageSize" total-items="totalItems" selected-items="selectedExams" selection-mode="{{multiRow}}"
+              on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+          <thead>
+          <tr>
+              <th field-name="title" enable-filtering="true" display-name="Exam Title"   display-align="left">
+              </th><th field-name="subject" display-name="Subject" enable-filtering="false" enable-sorting="false">
+          </th>
+          </th><th field-name="timeSchedule" display-name="Schedule" enable-filtering="false" enable-sorting="false" display-align="center">
+          </th></tr>
+          </thead>
+
       </table>
 
         <div ng-if="loading">

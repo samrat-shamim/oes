@@ -42,9 +42,9 @@
         }
 
         function init(){
-            scope.user = identifier.identity().$$state.value;
+            scope.user = identifier.identity();
             scope.$on("token-validated", function () {
-                scope.user = identifier.identity().$$state.value;
+                scope.user = identifier.identity();
             })
         }
         init();

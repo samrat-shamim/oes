@@ -15,7 +15,8 @@
     "progressBarDirective": "apps/business/exam/directives/progress-bar.directive",
     "leavePageConfirmationController": "apps/business/exam/controllers/leave-page-confirmation.controller",
     "applyForExamController": "apps/business/exam/controllers/apply-for-exam.controller",
-    "applicationsController": "apps/business/exam/controllers/applications.controller"
+    "applicationsController": "apps/business/exam/controllers/applications.controller",
+    "showResultExamineeController": "apps/business/exam/controllers/show-result-examinee.controller"
   },
   "dependencies": {
     "examsController": {
@@ -25,7 +26,8 @@
         "examService",
         "deleteExamController",
         "viewExamController",
-        "applyForExamController"
+        "applyForExamController",
+        "showResultExamineeController"
       ]
     },
     "createExamController": {
@@ -75,6 +77,12 @@
       ]
     },
     "viewExamController": {
+      "deps": [
+        "exam",
+        "examService"
+      ]
+    },
+    "showResultExamineeController": {
       "deps": [
         "exam",
         "examService"

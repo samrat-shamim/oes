@@ -7,15 +7,15 @@
           scope.roles = [
               {
                   name: "Examinee",
-                  value:"Examinee"
+                  value:"examinee"
               },
               {
                   name: "Examiner",
-                  value:"Examiner"
+                  value:"examiner"
               },
               {
                   name: "Coordinator",
-                  value:"Coordinator"
+                  value:"coordinator"
               }
           ];
             scope.pageSize = 10;
@@ -90,10 +90,10 @@
           var filter={};
           scope.updateTableByRole = function (flag) {
               if(flag){
-                  filter.role = scope.selectedRole.value
+                  filter.roles = scope.selectedRole.value
               }
               else{
-                  delete filter.role;
+                  delete filter.roles;
                   scope.selectedRole = null;
 
               };

@@ -8,7 +8,8 @@ var ApplicationSchema = new mongoose.Schema(
             required: true
         },
         examineeId: {
-            type: String
+            type: String,
+            required: true
         },
         amount: {
             type: Number,

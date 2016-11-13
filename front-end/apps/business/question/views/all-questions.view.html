@@ -32,8 +32,15 @@
 
   </div>
     <div style="background-color: lightblue">
-      <table ng-hide="loading" tr-ng-grid items='allQuestions' page-items="pageSize" total-items="totalItems" selected-items="selectedQuestions" selection-mode="MultiRow"
+      <table ng-hide="loading" enable-filtering="false" tr-ng-grid items='allQuestions' page-items="pageSize" total-items="totalItems" selected-items="selectedQuestions" selection-mode="MultiRow"
              fields="['title','difficultyLevel']" on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+          <thead>
+          <tr>
+              <th field-name="title" enable-filtering="true" display-name="Question"   display-align="left">
+              </th><th field-name="difficultyLevel" display-name="Difficulty Level" enable-filtering="true" enable-sorting="true">
+          </th>
+          </tr>
+          </thead>
       </table>
         <div>
             <button ng-if="loading" class="btn btn-lg btn-warning center-block">

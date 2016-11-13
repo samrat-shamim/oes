@@ -1,8 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
   var exam = angular.module('exam').controller('examsController',
-    ['$scope', '$state', "$uibModal", 'dataManupulator', 'examService','templateService','identifier',
-      function (scope, $state, $uibModal, dataManupulator, examService, templateService, identifier) {
+    ['$scope', '$state', "$uibModal", '$filter','dataManupulator', 'examService','templateService','identifier',
+      function (scope, $state, $uibModal,$filter, dataManupulator, examService, templateService, identifier) {
         scope.totalItems = 0;
         scope.subjects = [];
         scope.pageSize = 10;
@@ -20,6 +20,7 @@
             examDate = new Date(scope.selectedExams[0].schedule);
             examDate = examDate.getTime();
             timeOk = examDate<=dateNow;
+            scope.examHappend = timeOk;
             if(scope.selectedExams[0].taken){
               scope.seeResult = true;
             } else if(timeOk && (scope.selectedExams[0].approved || !scope.selectedExams[0].needApproval)){
@@ -181,6 +182,7 @@
             scope.loading = false;
             if (angular.isArray(scope.allExams)) {
               scope.allExams.forEach(function (item, index) {
+                scope.allExams[index].timeSchedule = $filter('date')(new Date(item.schedule), 'dd MMM, yyyy @ h:mma');
                 dataManupulator.manupulate("getById", {
                   entityName: 'subject',
                   entityId: item.subjectId
@@ -239,7 +241,7 @@
           });
         }
         function checkTaken(next){
-          var getAppliedConnectionFilter = {
+          var getTakenConnectionFilter = {
             pageNumber: 1,
             pageSize: 100000,
             expandParent: false,
@@ -251,7 +253,7 @@
               tags: "taken"
             }
           }
-          dataManupulator.getConnections(getAppliedConnectionFilter).then(function (res) {
+          dataManupulator.getConnections(getTakenConnectionFilter).then(function (res) {
             var connections = res.data.data;
             if(next){
               scope.takenExamIds = [];
@@ -280,7 +282,7 @@
           });
         }
         function checkApproved(next){
-          var getAppliedConnectionFilter = {
+          var getApprovedConnectionFilter = {
             pageNumber: 1,
             pageSize: 100000,
             expandParent: false,
@@ -289,10 +291,10 @@
               childEntityName: "exam",
               parentEntityId: identifier.identity().userId,
               parentEntityName: "user",
-              tags: "approved"
+              tags: "verified"
             }
           }
-          dataManupulator.getConnections(getAppliedConnectionFilter).then(function (res) {
+          dataManupulator.getConnections(getApprovedConnectionFilter).then(function (res) {
             var connections = res.data.data;
             if(next){
               scope.approvedExamIds = [];
@@ -367,6 +369,20 @@
             scope.multiRow = "SingleRow";
           }
         })
+
+        scope.showResult = function () {
+          if(scope.roleWeight==1){
+            examService.setExamToBeViewed(scope.selectedExams[0]);
+            var modal = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title-top',
+              ariaDescribedBy: 'modal-body-top',
+              templateUrl: 'apps/business/exam/views/show-result-examinee-modal.view.html',
+              controller: 'showResultExamineeController'
+            });
+            examService.setModal(modal);
+          }
+        }
 
         init();
       }]);

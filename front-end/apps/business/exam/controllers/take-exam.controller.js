@@ -15,7 +15,7 @@ define(['angular'], function (angular) {
           scope.examStarted = true;
           scope.examFinished = false;
           scope.fullScreanClass = "exam-full-screen";
-          preventWindowChange();
+         // preventWindowChange();
         }
 
         scope.setAnswer = function (question, answer) {
@@ -33,6 +33,7 @@ define(['angular'], function (angular) {
         }
 
         function saveAnswerToDB() {
+          console.log("here");
           var connectionModel = {
             parentEntityId : identifier.identity().userId,
             childEntityId: examToBeTaken._id,

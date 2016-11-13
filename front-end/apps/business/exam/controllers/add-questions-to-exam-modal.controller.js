@@ -12,9 +12,7 @@
         scope.subjects = [];
         scope.pageSize = 10;
         var edit;
-        var selectedQuestions = examService.questions;
-        selectedQuestions? edit = true:edit=false;
-        scope.totalSelected =selectedQuestions.length;
+        var selectedQuestions;
         scope.baseUrl = "http://localhost:3000/";
         scope.difficultyLevels = [
           {
@@ -56,18 +54,21 @@
           scope.cancel();
         }
         scope.selectToAdd = function (question) {
+          scope.valid =  scope.totalSelected==scope.numberOfQuestionNeeded;
           if(question.selected){
             question.selected = false;
             var index = selectedQuestions.indexOf(question._id);
             index?selectedQuestions.splice(index, 1):true;
+            console.log(selectedQuestions);
             scope.totalSelected--;
-            scope.canSelect = true;
+            scope.canSelect = scope.totalSelected!=scope.numberOfQuestionNeeded;
           }else{
             question.selected = true;
             scope.totalSelected++;
             selectedQuestions.push(question._id);
-            scope.totalSelected>=scope.numberOfQuestionToNeeded?scope.canSelect = false:scope.canSelect = true;
+            scope.totalSelected!=scope.numberOfQuestionNeeded?scope.canSelect = true:scope.canSelect = false;
           }
+          scope.valid =  scope.totalSelected==scope.numberOfQuestionNeeded;
         }
 
         scope.loadQuestions = function () {
@@ -139,17 +140,26 @@
 
         scope.cancel = function () {
           modalInstance.close();
+          $state.go('all-exams');
         }
 
 
         function init() {
           getAllQuestion();
           examToBeCreated = examService.getExamToBeCreated();
-          scope.numberOfQuestionToNeeded = examToBeCreated.numberOfQuestion;
-          scope.canSelect = true;
+          scope.numberOfQuestionNeeded = examToBeCreated.numberOfQuestion;
+          if(examService.questions){
+            selectedQuestions = examService.questions;
+            edit = true;
+          } else{
+            selectedQuestions =[];
+          }
+          scope.totalSelected =selectedQuestions.length;
         }
 
         init();
+        scope.canSelect = scope.totalSelected!=scope.numberOfQuestionNeeded;
+        scope.valid =  scope.totalSelected==scope.numberOfQuestionNeeded;
       }]);
 
 
