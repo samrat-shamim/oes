@@ -107,9 +107,10 @@ define(['angular'], function (angular) {
         }
 
         function preventWindowChange() {
-          //jquery code
+          confirm("Please note that, if you leave the exam window, your answer will be autometically submitted.");
           $(window).blur(function (e) {
-            if (!scope.examFinished) {
+            scope.submit();
+            /*if (!scope.examFinished) {
               e.preventDefault();
               if (confirm('If you change the window, you answer will be submitted!')) {
                 scope.examFinished = true;
@@ -117,7 +118,7 @@ define(['angular'], function (angular) {
               } else {
                 console.log("canceled");
               }
-            }
+            }*/
           });
         }
       }]);
