@@ -8,7 +8,8 @@ var AnswerSchema = new mongoose.Schema(
       required: true
     },
     examineeId: {
-      type: String
+      type: String,
+      required: true
     },
     questions: {
       type: Array,
@@ -18,6 +19,13 @@ var AnswerSchema = new mongoose.Schema(
       type: Array,
       required: true
     },
+    totalCorrect: {
+    type: Number
+  },totalWrong: {
+    type: Number
+  },totalAnswered: {
+    type: Number
+  },
     createdById: {
       type: String
     },

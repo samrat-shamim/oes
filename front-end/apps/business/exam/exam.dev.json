@@ -3,6 +3,7 @@
     "exam": "apps/business/exam/exam.config",
     "examsController": "apps/business/exam/controllers/all-exams.controller",
     "createExamController": "apps/business/exam/controllers/create-exam.controller",
+    "editExamController": "apps/business/exam/controllers/edit-exam.controller",
     "takeExamController": "apps/business/exam/controllers/take-exam.controller",
     "angular-modal": "bower_components/angular-modal/modal.min",
     "modal-factory": "apps/business/exam/factories/modal.factory",
@@ -12,7 +13,10 @@
     "viewExamController": "apps/business/exam/controllers/view-exam.controller",
     "addQuestionsToExamModalController": "apps/business/exam/controllers/add-questions-to-exam-modal.controller",
     "progressBarDirective": "apps/business/exam/directives/progress-bar.directive",
-    "leavePageConfirmationController": "apps/business/exam/controllers/leave-page-confirmation.controller"
+    "leavePageConfirmationController": "apps/business/exam/controllers/leave-page-confirmation.controller",
+    "applyForExamController": "apps/business/exam/controllers/apply-for-exam.controller",
+    "applicationsController": "apps/business/exam/controllers/applications.controller",
+    "showResultExamineeController": "apps/business/exam/controllers/show-result-examinee.controller"
   },
   "dependencies": {
     "examsController": {
@@ -21,10 +25,18 @@
         "editExamModalController",
         "examService",
         "deleteExamController",
-        "viewExamController"
+        "viewExamController",
+        "applyForExamController",
+        "showResultExamineeController"
       ]
     },
     "createExamController": {
+      "deps": [
+        "exam",
+        "examService",
+        "addQuestionsToExamModalController"
+      ]
+    },"editExamController": {
       "deps": [
         "exam",
         "examService",
@@ -70,6 +82,12 @@
         "examService"
       ]
     },
+    "showResultExamineeController": {
+      "deps": [
+        "exam",
+        "examService"
+      ]
+    },
     "addQuestionsToExamModalController": {
       "deps": [
         "exam",
@@ -81,9 +99,15 @@
         "exam"
       ]
     },
-    "leavePageConfirmationController": {
+    "applyForExamController": {
       "deps": [
-        "exam"
+        "exam",
+        "examService"
+      ]
+    },
+    "applicationsController": {
+      "deps": [
+        "exam", "examService"
       ]
     }
   },
@@ -105,12 +129,27 @@
         "controller": "createExamController",
         "data": {
         }
+      },{
+        "name": "edit-exam",
+        "url": "/edit-exam",
+        "templateUrl": "apps/business/exam/views/edit-exam.view.html",
+        "controller": "editExamController",
+        "data": {
+        }
       },
       {
         "name": "take-exam",
         "url": "/take-exam",
         "templateUrl": "apps/business/exam/views/take-exam.view.html",
         "controller": "takeExamController",
+        "data": {
+        }
+      },
+      {
+        "name": "applications",
+        "url": "/applications",
+        "templateUrl": "apps/business/exam/views/applications.view.html",
+        "controller": "applicationsController",
         "data": {
         }
       }

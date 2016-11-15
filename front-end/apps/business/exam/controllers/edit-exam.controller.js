@@ -1,17 +1,17 @@
 ﻿define(['angular'], function (angular) {
 
-  var exam = angular.module('exam').controller('createExamController',
+  var exam = angular.module('exam').controller('editExamController',
     ['$scope', '$state', 'dataManupulator', '$q', "$uibModal", 'dataManupulator', 'identifier', "toastr", "examService",
       function (scope, $state, dataManupulator, $q, $uibModal, dataManupulator, identifier, toastr, examService) {
 
-        scope.pageTitle = "Create Exam";
+        scope.pageTitle = "Edit Exam";
         scope.generateQuestionAuto = false;
+          var examToBeEdited = examService.getExamToBeEdited();
+          if(!examToBeEdited){
+              $state.go("all-exams");
+          }
 
-        scope.examModel = {
-          subject: "580de2b22b0786194c1ab760",
-          difficultyLevel: "primary",
-            needApproval: false
-        };
+        scope.examModel = examToBeEdited;
         var subjects = [];
 
          scope.examSchema = [
@@ -208,48 +208,15 @@
         ]*/
 
 
-        scope.createExam = function (auto) {
-            console.log(scope.generateQuestionAuto);
-
-          if (auto) {
-            getAllQuestion(scope.examModel.subject._id, scope.examModel.difficultyLevel).then(function (response) {
-              if (response.length < (scope.examModel.numberOfQuestion * 2)) {
-                toastr.warning("Please make this question manually!", "Insufficient question");
-              } else {
-                generateExamQuestion(response);
-
-                identifier.identity().then(
-                  function (res) {
-                    var model = {
-                      "entityName": "exam"
-                    };
-                    model.entity = scope.examModel;
-                    model.entity.createdById = res.userId;
-                    dataManupulator.manupulate("insert", model).then(function (res) {
-                        if(res.data.success){
-                            toastr.success("Exam created", "Success!");
-                            $state.go('all-exams');
-                        }else{
-                            toastr.error("Something went wrong, failed to create exam.", "Error");
-                        }
-
-                    }, function (err) {
-                        toastr.error("Something went wrong, failed to create exam.", "Error");
-                    });
-                  }
-                )
-
-              }
-            });
-          } else {
+        scope.editExam = function (auto) {
             showQuestionsToAddToExam();
-          }
         }
         function showQuestionsToAddToExam() {
           examService.setQuestionFilter({
-            subjectId: scope.examModel.subject,
+            subjectId: scope.examModel.subjectId,
             difficultyLevel: scope.examModel.difficultyLevel
           });
+            examService.questions = examToBeEdited.questions;
           examService.setExamToBeCreated(scope.examModel);
           showAddQuestionsToExamModal();
         }
@@ -263,38 +230,6 @@
             controller: 'addQuestionsToExamModalController'
           });
           examService.setModal(modal);
-        }
-
-
-        function generateExamQuestion(response) {
-          var selectedQuestionIds = [];
-          var totalQuestionCount = response.length;
-          for (var i = 0; i < scope.examModel.numberOfQuestion; i++) {
-            var index = Math.floor(Math.random() * --totalQuestionCount);
-            selectedQuestionIds.push(response[index]._id);
-            response.splice(index, 1);
-          }
-          scope.examModel.questions = selectedQuestionIds;
-        }
-
-        function getAllQuestion(subId, diffLevel) {
-          var getManyQuestionFilter = {
-            entityName: "question",
-            pageNumber: 1,
-            pageSize: 10000000,
-            filters: {
-              subjectId: subId,
-              difficultyLevel: diffLevel
-            }
-          }
-          return $q(function (resolve, reject) {
-            dataManupulator.manupulate("getMany", getManyQuestionFilter).then(function (response) {
-              resolve(response.data.data);
-            }, function (error) {
-              reject(error);
-            })
-          })
-
         }
 
         var getManySubjectFilter = {

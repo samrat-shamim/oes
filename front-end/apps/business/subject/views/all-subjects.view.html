@@ -25,8 +25,15 @@
 
     </div>
     <div style="background-color: lightblue">
-        <table ng-hide="loading" tr-ng-grid items='allSubjects' page-items="pageSize" total-items="totalItems" selected-items="selectedSubjects" selection-mode="MultiRow"
-               fields="['title','description']" on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+        <table ng-hide="loading" tr-ng-grid items='allSubjects' enable-filtering="false" page-items="pageSize" total-items="totalItems" selected-items="selectedSubjects" selection-mode="MultiRow"
+                on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+            <thead>
+            <tr>
+                <th field-name="title" enable-filtering="true" display-name="Subject" enable-sorting="true"  display-align="left">
+                </th><th field-name="description" display-name="Description" enable-filtering="true" enable-sorting="true">
+            </th>
+            </tr>
+            </thead>
         </table>
         <div>
             <button ng-if="loading" class="btn btn-lg btn-warning center-block">

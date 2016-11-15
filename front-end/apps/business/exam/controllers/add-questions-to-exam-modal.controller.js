@@ -11,8 +11,8 @@
         scope.totalItems = 0;
         scope.subjects = [];
         scope.pageSize = 10;
-        var selectedQuestions = [];
-        scope.totalSelected =0;
+        var edit;
+        var selectedQuestions;
         scope.baseUrl = "http://localhost:3000/";
         scope.difficultyLevels = [
           {
@@ -31,44 +31,49 @@
 
         scope.save = function () {
           examToBeCreated.questions = selectedQuestions;
-          dataManupulator.manupulate("insert", {entityName: "exam", entity: examToBeCreated}).then(function (res) {
-            toastr.success("Exam created", "Success!");
-            $state.go("all-exams");
-          }, function(err){
-            toastr.error("Something went wrong", "Error!");
-          })
+          if(!edit){
+            dataManupulator.manupulate("insert", {entityName: "exam", entity: examToBeCreated}).then(function (res) {
+              toastr.success("Exam created", "Success!");
+              $state.go("all-exams");
+            }, function(err){
+              toastr.error("Something went wrong", "Error!");
+            })
+          }else{
+            var model = {
+              entityName: "exam",
+              entityId: examToBeCreated._id,
+              entity: examToBeCreated
+            }
+            dataManupulator.manupulate("update", model).then(function (res) {
+              toastr.success("Exam updated", "Success!");
+              $state.go("all-exams");
+            }, function(err){
+              toastr.error("Something went wrong", "Error!");
+            })
+          }
           scope.cancel();
         }
         scope.selectToAdd = function (question) {
+          scope.valid =  scope.totalSelected==scope.numberOfQuestionNeeded;
           if(question.selected){
             question.selected = false;
             var index = selectedQuestions.indexOf(question._id);
             index?selectedQuestions.splice(index, 1):true;
+            console.log(selectedQuestions);
             scope.totalSelected--;
-            scope.canSelect = true;
+            scope.canSelect = scope.totalSelected!=scope.numberOfQuestionNeeded;
           }else{
             question.selected = true;
             scope.totalSelected++;
             selectedQuestions.push(question._id);
-            scope.totalSelected>=scope.numberOfQuestionToNeeded?scope.canSelect = false:scope.canSelect = true;
+            scope.totalSelected!=scope.numberOfQuestionNeeded?scope.canSelect = true:scope.canSelect = false;
           }
+          scope.valid =  scope.totalSelected==scope.numberOfQuestionNeeded;
         }
 
         scope.loadQuestions = function () {
           questionFilter.difficultyLevel = scope.selectedDifficultyLevel.value;
           getAllQuestion();
-        }
-
-        scope.viewSelected = function () {
-          examService.setQuestionToBeViewed(scope.selectedQuestions[0]);
-          var modal = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: 'modal-title-top',
-            ariaDescribedBy: 'modal-body-top',
-            templateUrl: 'apps/business/question/views/view-question-modal.view.html',
-            controller: 'viewQuestionController'
-          });
-          examService.setModal(modal);
         }
 
 
@@ -95,25 +100,7 @@
 
         }
 
-        scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
-          scope.loading = true;
-          makePartialSearchFilter(filterByFields);
-          getManyFilter.pageNumber = currentPage + 1;
-          getManyFilter.pageSize = pageItems;
-          getManyFilter.sort.sortBy = orderBy;
-          getManyFilter.filters = filter;
-          getAllQuestion();
-          scope.selectedQuestions = [];
-        }
 
-        function makePartialSearchFilter(object) {
-          for (var key in object) {
-            filter[key] = {
-              $regex: object[key]
-            };
-          }
-
-        }
 
         var getAllSubjectFilter = {
           entityName: "subject",
@@ -153,17 +140,26 @@
 
         scope.cancel = function () {
           modalInstance.close();
+          $state.go('all-exams');
         }
 
 
         function init() {
           getAllQuestion();
           examToBeCreated = examService.getExamToBeCreated();
-          scope.numberOfQuestionToNeeded = examToBeCreated.numberOfQuestion;
-          scope.canSelect = true;
+          scope.numberOfQuestionNeeded = examToBeCreated.numberOfQuestion;
+          if(examService.questions){
+            selectedQuestions = examService.questions;
+            edit = true;
+          } else{
+            selectedQuestions =[];
+          }
+          scope.totalSelected =selectedQuestions.length;
         }
 
         init();
+        scope.canSelect = scope.totalSelected!=scope.numberOfQuestionNeeded;
+        scope.valid =  scope.totalSelected==scope.numberOfQuestionNeeded;
       }]);
 
 

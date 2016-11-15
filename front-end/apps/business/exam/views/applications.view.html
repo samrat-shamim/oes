@@ -1,0 +1,53 @@
+﻿<div>
+    <link href="bower_components/tr-ng-grid/trNgGrid.min.css" rel="stylesheet"/>
+    <link href="bower_components/angular-modal/modal.css" rel="stylesheet" />
+    <link href="apps/business/exam/styles/exam.css" rel="stylesheet" />
+
+    <!--<link href="bower_components/angular-data-table/release/material.css" rel="stylesheet"/>-->
+
+    <h1>{{pageTitle}}</h1>
+  <div class="row">
+      <div class="btn-group col-md-3 col-lg-3 col-sm-3">
+          <label class="btn btn-primary" ng-model="appType" ng-click="applyTypeFilter(appType)" uib-btn-radio="'pending'">Pending</label>
+          <label class="btn btn-primary" ng-model="appType" ng-click="applyTypeFilter(appType)" uib-btn-radio="'verified'">Verified</label>
+      </div>
+    <div class="form-group col-sm-2 col-md-2">
+      <label>Items Per Page</label>
+      <input class="form-control" type="number" ng-model="pageSize" max="100" min="1">
+      </input>
+    </div>
+      <div class="form-group col-sm-1 col-md-1">
+
+      </div>
+
+      <div ng-if="showMenu" class="col-sm-6 col-md-6">
+          <br/>
+          <div>
+              <span ng-if="selectedApplications[0].paymentVerified" class="label label-default">Verified</span>
+              <button ng-click="verify()" ng-if="!selectedApplications[0].paymentVerified" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-ok"></span> Verify</button>
+              <button ng-click="deletePayment()"  class="btn btn-primary" ><span class="glyphicon glyphicon-play-circle"></span> Delete</button>
+          </div>
+
+
+      </div>
+
+  </div>
+    <div style="background-color: lightblue">
+      <table ng-hide="loading" tr-ng-grid items='allApplications' page-items="pageSize" total-items="totalItems" selected-items="selectedApplications" selection-mode="SingleRow"
+            fields="['exam.title', 'examinee.userName', 'amount', 'transactionId']"  on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+      </table>
+
+        <div ng-if="loading">
+            <button  class="btn btn-lg btn-warning center-block">
+                <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+            </button>
+        </div>
+    </div>
+   <!-- <dtable options="options" rows="data" class="material dt">
+        <column name="Name" width="300" flex-grow="2"></column>
+        <column name="Gender">
+            <strong>{{$row.name}}</strong>: {{$cell}}
+        </column>
+    </dtable>-->
+
+</div>

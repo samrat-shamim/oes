@@ -9,6 +9,7 @@
     var questionFilter;
     var examToBeCreated;
     var examToBeTaken;
+    this.questions;
 
     function setExamToBeTaken(exam){
       examToBeTaken = exam;

@@ -1,4 +1,5 @@
 ﻿angular.module("mainApp").service("envService", function () {
+    var currentStateParams;
 
     this.userMock = true;
     this.endPoints = {
@@ -11,6 +12,5 @@
         getConnections:""
     };
 
-    return this;
 
 });

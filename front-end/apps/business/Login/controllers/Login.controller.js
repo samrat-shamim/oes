@@ -26,7 +26,7 @@
                         if (true) {
                             toastr.success('Login successful!', 'Success');
                             $timeout(function () {
-                                $rootScope.$broadcast("loggedin", {role:'coordinator'});
+                                $rootScope.$broadcast("loggedin", {role:response.data.user.roles[0]});
                                 $state.go('landing');
                             }, 100);
 
@@ -35,9 +35,13 @@
                     else if(!response.success){
                         toastr.error('Your credentials are incorrect', 'Error');
                     }
+                }, function(err){
+                    toastr.error('Something went wrong', 'Error');
                 });
             }
-
+            scope.$on("token-validated", function(){
+                $state.go('home');
+            })
 
             function init() {
               if(identifier.isAuthenticated()){
