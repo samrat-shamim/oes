@@ -19,16 +19,12 @@
       <input class="form-control" type="number" ng-model="pageSize" max="100" min="1">
       </input>
     </div>
-      <div class="form-group col-sm-1 col-md-1">
-
-      </div>
-
-      <div ng-if="showMenu" class="col-sm-6 col-md-6">
+      <div ng-if="showMenu" class="col-sm-7 col-md-7">
           <br/>
           <div ng-if="roleWeight>1">
-              <button ng-if="roleWeight>2" class="btn btn-danger"  ng-click="deleteSelected()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-              <button ng-click="showResult()" ng-if="examHappend" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> See Result</button>
-              <button ng-if="roleWeight>2" ng-click="editSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+              <button ng-if="roleWeight>2 || canEdit" class="btn btn-danger"  ng-click="deleteSelected()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+              <button ng-click="showResultExaminer()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> See Result</button>
+              <button ng-if="roleWeight>2 || canEdit" ng-click="editSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-edit"></span> Edit</button>
               <button ng-click="viewSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-eye-open"></span> Details</button>
           </div>
           <div ng-if="roleWeight==1">
@@ -37,7 +33,7 @@
               <span ng-if="selectedExams[0].approved" class="label label-default">Approved</span>
               <span ng-if="selectedExams[0].taken" class="label label-default">Taken</span>
               <button ng-click="apply()" ng-if="canApply" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> Apply</button>
-              <button ng-click="takeExam()" ng-if="canTake" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> Take Exam</button>
+              <button ng-click="takeExam()" ng-if="canTake || true" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> Take Exam</button>
               <button ng-click="showResult()" ng-if="seeResult" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> See Result</button>
           </div>
 

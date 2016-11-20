@@ -12,7 +12,7 @@
                     <ul class="nav navbar-nav">
                         <!--<div class="collapse" id="CollapsingNavbar">-->
                         <li ng-repeat="item in config.topbarLeft">
-                            <a style="cursor: pointer" ng-class="{active: $state.includes(item.state)}" ng-click="action(item.state)"><span ng-class="item.icon"></span> {{item.title}}</a>
+                            <a style="cursor: pointer" ng-class="{active: $state.includes(item.state)}"  ng-click="action(item.state)"><span ng-class="item.icon"></span> {{item.title}}</a>
                         </li>
                         <!--</div>-->
                     </ul>
@@ -51,7 +51,7 @@
                     <ul class="list-group" ng-show="menuExpanded[content.title]">
                         <li ng-repeat="item in content.menus" class="list-group-item">
                             <span ng-class="item.icon?item.icon: 'glyphicon glyphicon-circle-arrow-right'"></span>
-                            <a style="cursor: pointer" ng-click="action(item.state, item.stateParams)">{{item.title}}</a>
+                            <a style="cursor: pointer" ng-click="action(item.state, item.stateParams)"  ng-class="{'active-tem': activeRoute==(item.state+item.stateParams)}" >{{item.title}}</a>
                         </li>
                     </ul>
                 </div>

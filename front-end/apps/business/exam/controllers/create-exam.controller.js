@@ -209,8 +209,6 @@
 
 
         scope.createExam = function (auto) {
-            console.log(scope.generateQuestionAuto);
-
           if (auto) {
             getAllQuestion(scope.examModel.subject._id, scope.examModel.difficultyLevel).then(function (response) {
               if (response.length < (scope.examModel.numberOfQuestion * 2)) {

@@ -1,8 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
     var application = angular.module('exam').controller('applicationsController',
-        ['$scope', '$http', "$uibModal", 'dataManupulator', 'examService',
-            function (scope, http, $uibModal, dataManupulator, examService) {
+        ['$scope', '$http', "$uibModal","$state", 'dataManupulator', 'examService',"templateService","identifier",
+            function (scope, http, $uibModal,$state, dataManupulator, examService, templateService, identifier) {
                 scope.loading = true;
                 scope.totalItems = 0;
                 scope.applications = [];
@@ -137,6 +137,19 @@
                     scrollbarV: false
                 };
                 function init() {
+                    if(identifier.identity()){
+                        scope.roleWeight = templateService.roleWeight[identifier.identity().roles[0]];
+                        if(scope.roleWeight<3){
+                            $state.go("access-denied");
+                        }
+                    } else{
+                        scope.$on("authenticated", function () {
+                            scope.roleWeight = templateService.roleWeight[identifier.identity().roles[0]];
+                            if(scope.roleWeight<3){
+                                $state.go("access-denied");
+                            }
+                        })
+                    }
                    // getAllapplication();
                 }
 

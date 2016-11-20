@@ -57,6 +57,21 @@
       ]
     },
     {
+      "title": "User Management",
+      "menus": [
+        {
+          "title": "All Users",
+          "state": "all-users",
+          "icon":"glyphicon glyphicon-list-alt"
+        },
+        {
+          "title": "Create User",
+          "state":"create-user",
+          "icon":"glyphicon glyphicon-plus-sign"
+        }
+      ]
+    },
+    {
       "title": "Examination",
       "menus": [
         {

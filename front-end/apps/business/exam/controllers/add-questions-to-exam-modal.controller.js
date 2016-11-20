@@ -1,8 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
   var question = angular.module('exam').controller('addQuestionsToExamModalController',
-    ['$scope', '$http','$state', "$uibModal", 'dataManupulator', 'examService',"toastr",
-      function (scope, http,$state, $uibModal, dataManupulator, examService, toastr) {
+    ['$scope', '$http','$state', "$uibModal", 'dataManupulator', 'examService',"toastr","identifier",
+      function (scope, http,$state, $uibModal, dataManupulator, examService, toastr, identifier) {
         var questionFilter = examService.getQuestionFilter();
 
         var examToBeCreated;

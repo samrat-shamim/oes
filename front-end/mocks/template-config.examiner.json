@@ -42,21 +42,6 @@
       ]
     },
     {
-      "title": "Subject",
-      "menus": [
-        {
-          "title": "All subjects",
-          "state": "all-subjects",
-          "icon":"glyphicon glyphicon-list-alt"
-        },
-        {
-          "title": "Create subject",
-          "state": "create-subject",
-          "icon":"glyphicon glyphicon-plus-sign"
-        }
-      ]
-    },
-    {
       "title": "Examination",
       "menus": [
         {
@@ -68,11 +53,6 @@
           "title": "Create Exam",
           "state":"create-exam",
           "icon":"glyphicon glyphicon-plus-sign"
-        },
-        {
-          "title": "Applications",
-          "state":"applications",
-          "icon":"glyphicon glyphicon-inbox"
         }
       ]
     }

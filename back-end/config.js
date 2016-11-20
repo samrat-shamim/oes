@@ -3,5 +3,6 @@
  */
 module.exports = {
   mongoConnectionString : "",
-  secret : "samrat123"
+  secret : "samrat123",
+  allowedIpRange: "10.100.107.*"
 }

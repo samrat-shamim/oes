@@ -1,8 +1,8 @@
 define(['angular'], function (angular) {
 
   var exam = angular.module('exam').controller('takeExamController',
-    ['$scope', '$state', '$q', "$rootScope", "$uibModal", 'dataManupulator', 'examService','identifier',
-      function (scope, $state, $q, $rootScope, $uibModal, dataManupulator, examService,identifier) {
+    ['$scope', '$state', '$q', "$rootScope", "$uibModal","$http", 'dataManupulator', 'examService','identifier',
+      function (scope, $state, $q, $rootScope, $uibModal,$http, dataManupulator, examService,identifier) {
 
         scope.pageTitle = "Take Exam";
         scope.baseUrl = "http://localhost:3000/";
@@ -101,6 +101,18 @@ define(['angular'], function (angular) {
         }
 
         function init() {
+          scope.ipAllowed = true;
+          $http({
+            method: 'POST',
+            url: "http://localhost:3000/getPermission",
+            headers: {'Content-Type': 'application/json'}
+          }).then(function(response){
+            if(response.data.permission == "denied"){
+              scope.ipAllowed = false;
+            }
+          }, function(err){
+            console.log(err);
+          });
           examToBeTaken = examService.getExamToBeTaken();
           examToBeTaken ? scope.exam = examToBeTaken : $state.go('all-exams');
           dataManupulator.manupulate("getMany", {
@@ -110,9 +122,18 @@ define(['angular'], function (angular) {
             pageSize: 1000
           }).then(function (res) {
             scope.questions = res.data.data;
+            scope.questions = shuffleArray(scope.questions);
           })
         }
-
+        function shuffleArray(array) {
+          for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+          }
+          return array;
+        }
         init();
 
         function showConfirmLeavePageModal() {
