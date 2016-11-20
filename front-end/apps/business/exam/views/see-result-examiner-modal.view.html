@@ -1,0 +1,47 @@
+<div class="">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">Exam Details</h4>
+        <button class="btn btn-warning close" type="button" ng-click="cancel()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+    <div  class="modal-body" id="modal-body">
+        <div>
+            <table  ng-hide="loading" enable-filtering="false" tr-ng-grid items='allResults' page-items="results.length" total-items="results.length">
+                <thead>
+                <tr>
+                    <th field-name="examinee.userName" enable-filtering="true" enable-sorting="false" display-name="Examinee"   display-align="left">
+                    </th><th field-name="answer.totalAnswered" display-name="Total Answered" enable-filtering="false" enable-sorting="true">
+                </th>
+                    </th><th field-name="answer.totalCorrect" display-name="Correct" enable-filtering="false" enable-sorting="true" display-align="center">
+                </th></tr>
+                </thead>
+
+            </table>
+        </div>
+
+        <div id="exportable" style="display:none">
+            <table width="100%">
+                <thead>
+                <tr>
+                    <th>Examinee</th>
+                    <th>Total Answered</th>
+                    <th>Correct</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in allResults">
+                    <td>{{item.examinee.userName}}</td>
+                    <td>{{item.answer.totalAnswered}}</td>
+                    <td>{{item.answer.totalCorrect}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button ng-click="exportData()">Export</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Done</button>
+    </div>
+</div>

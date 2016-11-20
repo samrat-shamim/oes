@@ -18,7 +18,8 @@ define(['angular'], function (angular) {
               })
               dataManupulator.manupulate("getMany", {entityName: "answer",
                 filters:{"examId":examToBeViewed._id, "examineeId": identifier.identity().userId}, pageNumber:1, pageSize:1000}).then(function (res) {
-                scope.answers = res.data.data;
+                scope.answers = res.data.data[0];
+                console.log(res.data.data);
               })
             }
             init();

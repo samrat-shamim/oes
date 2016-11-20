@@ -42,7 +42,8 @@
 
     <div style="text-align: center" ng-if="!examStarted && !examFinished">
       <br/><br/>
-      <button class="btn btn-success" ng-click="startExam()">Start Exam</button>
+      <button ng-if="ipAllowed" class="btn btn-success" ng-click="startExam()">Start Exam</button>
+      <h1 style="color: darkred" ng-if="!ipAllowed">Something is wrong! you can not take this exam.</h1>
     </div>
     <div ng-if="examStarted && !examFinished">
       <div ng-repeat="question in questions">

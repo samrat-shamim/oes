@@ -16,7 +16,8 @@
     "leavePageConfirmationController": "apps/business/exam/controllers/leave-page-confirmation.controller",
     "applyForExamController": "apps/business/exam/controllers/apply-for-exam.controller",
     "applicationsController": "apps/business/exam/controllers/applications.controller",
-    "showResultExamineeController": "apps/business/exam/controllers/show-result-examinee.controller"
+    "showResultExamineeController": "apps/business/exam/controllers/show-result-examinee.controller",
+    "seeResultExaminerController": "apps/business/exam/controllers/see-result-examiner.controller"
   },
   "dependencies": {
     "examsController": {
@@ -27,7 +28,8 @@
         "deleteExamController",
         "viewExamController",
         "applyForExamController",
-        "showResultExamineeController"
+        "showResultExamineeController",
+        "seeResultExaminerController"
       ]
     },
     "createExamController": {
@@ -108,6 +110,12 @@
     "applicationsController": {
       "deps": [
         "exam", "examService"
+      ]
+    },
+    "seeResultExaminerController": {
+      "deps": [
+        "exam",
+        "examService"
       ]
     }
   },

@@ -97,6 +97,7 @@
             ];
 
         scope.action = function(route, params){
+            scope.activeRoute = route + (params?params:"");
             templateService.setStateparams(params);
             $state.go(route);
         }

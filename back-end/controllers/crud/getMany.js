@@ -13,7 +13,7 @@ module.exports = function(app, route) {
 
         var query = req.body.filters?req.body.filters:{};
         model.find(query?query:null,null,{sort:sort},function(err, documents){
-            res.send(err? err: buildResponse(req.body.pageNumber, req.body.pageSize,documents));
+            res.send(err? err: buildResponse(req.body.pageNumber||1, req.body.pageSize||10000000,documents));
             next();
         });
         function sendError(message){

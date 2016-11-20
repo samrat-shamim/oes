@@ -1,8 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
   var exam = angular.module('exam').controller('examsController',
-    ['$scope', '$state', "$uibModal", '$filter','dataManupulator', 'examService','templateService','identifier',
-      function (scope, $state, $uibModal,$filter, dataManupulator, examService, templateService, identifier) {
+    ['$scope', '$state', "$uibModal", '$filter','$q','$http','dataManupulator', 'examService','templateService','identifier',
+      function (scope, $state, $uibModal,$filter,$q,$http, dataManupulator, examService, templateService, identifier) {
         scope.totalItems = 0;
         scope.subjects = [];
         scope.pageSize = 10;
@@ -12,10 +12,14 @@
         scope.$watchCollection("selectedExams", function () {
           scope.canApply = false;
           scope.canTake = false;
+          scope.canEdit = false;
           scope.seeResult = false;
           if (scope.selectedExams.length == 1) {
             scope.showMenu = true;
             scope.multiSelect = false;
+            if(scope.selectedExams[0].createdById == identifier.identity().userId){
+              scope.canEdit = true;
+            }
             var timeOk;
             examDate = new Date(scope.selectedExams[0].schedule);
             examDate = examDate.getTime();
@@ -176,6 +180,7 @@
         }
 
         function getAllExam() {
+          scope.loading = true;
           dataManupulator.manupulate("getMany", getManyFilter).then(function (response) {
             scope.allExams = response.data.data;
             scope.totalItems = response.data.totalCount;
@@ -365,7 +370,7 @@
         })
 
         scope.$watch(scope.roleWeight, function () {
-          if(scope.roleWeight==1){
+          if(scope.roleWeight<3){
             scope.multiRow = "SingleRow";
           }
         })
@@ -384,7 +389,20 @@
           }
         }
 
+        scope.showResultExaminer = function () {
+          examService.setExamToBeViewed(scope.selectedExams[0]);
+          var modal = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: 'modal-title-top',
+            ariaDescribedBy: 'modal-body-top',
+            templateUrl: 'apps/business/exam/views/see-result-examiner-modal.view.html',
+            controller: 'seeResultExaminerController'
+          });
+          examService.setModal(modal);
+        }
+
         init();
+
       }]);
 
 
