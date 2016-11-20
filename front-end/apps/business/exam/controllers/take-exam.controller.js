@@ -135,6 +135,11 @@ define(['angular'], function (angular) {
           return array;
         }
         init();
+        scope.showCalculator = false;
+
+        scope.showCalc = function () {
+          scope.showCalculator = !scope.showCalculator;
+        }
 
         function showConfirmLeavePageModal() {
           var modal = $uibModal.open({
