@@ -216,26 +216,17 @@
               } else {
                 generateExamQuestion(response);
 
-                identifier.identity().then(
-                  function (res) {
-                    var model = {
-                      "entityName": "exam"
-                    };
-                    model.entity = scope.examModel;
-                    model.entity.createdById = res.userId;
-                    dataManupulator.manupulate("insert", model).then(function (res) {
-                        if(res.data.success){
-                            toastr.success("Exam created", "Success!");
-                            $state.go('all-exams');
-                        }else{
-                            toastr.error("Something went wrong, failed to create exam.", "Error");
-                        }
-
-                    }, function (err) {
-                        toastr.error("Something went wrong, failed to create exam.", "Error");
-                    });
+                dataManupulator.manupulate("insert", model).then(function (res) {
+                  if(res.data.success){
+                    toastr.success("Exam created", "Success!");
+                    $state.go('all-exams');
+                  }else{
+                    toastr.error("Something went wrong, failed to create exam.", "Error");
                   }
-                )
+
+                }, function (err) {
+                  toastr.error("Something went wrong, failed to create exam.", "Error");
+                });
 
               }
             });

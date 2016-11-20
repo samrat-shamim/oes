@@ -15,7 +15,7 @@ define(['angular'], function (angular) {
           scope.examStarted = true;
           scope.examFinished = false;
           scope.fullScreanClass = "exam-full-screen";
-         // preventWindowChange();
+          preventWindowChange();
         }
 
         scope.setAnswer = function (question, answer) {
@@ -149,7 +149,7 @@ define(['angular'], function (angular) {
 
         function preventWindowChange() {
           //jquery code
-          confirm('If you change the window, you answer will be submitted without notification!');
+          //confirm('If you change the window, you answer will be submitted without notification!');
           $(window).blur(function (e) {
             scope.submit();
           });
