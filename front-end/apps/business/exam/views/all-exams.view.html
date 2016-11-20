@@ -33,7 +33,7 @@
               <span ng-if="selectedExams[0].approved" class="label label-default">Approved</span>
               <span ng-if="selectedExams[0].taken" class="label label-default">Taken</span>
               <button ng-click="apply()" ng-if="canApply" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> Apply</button>
-              <button ng-click="takeExam()" ng-if="canTake || true" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> Take Exam</button>
+              <button ng-click="takeExam()" ng-if="canTake" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> Take Exam</button>
               <button ng-click="showResult()" ng-if="seeResult" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-play-circle"></span> See Result</button>
           </div>
 

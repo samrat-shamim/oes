@@ -46,7 +46,7 @@
       <h1 style="color: darkred" ng-if="!ipAllowed">Something is wrong! you can not take this exam.</h1>
     </div>
     <div ng-if="examStarted && !examFinished">
-      <div ng-repeat="question in questions">
+      <div ng-repeat="question in questions" style="margin: 10px; border-color: #0000FF">
         <hr style="height: 5px;background-color: darkcyan"/>
         <div class="card">
           <div class="card-block">

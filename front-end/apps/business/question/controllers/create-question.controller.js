@@ -170,20 +170,15 @@
                     "entityName": "question"
                 };
                 model.entity = scope.questionModel;
-                identifier.identity().then(
-                    function(res){
-                        model.entity.createdById = res.userId;
-                        dataManupulator.manupulate("insert",model).then(
-                            function (response) {
-                                toastr.success("Question created", "Success!");
-                                $state.go('all-questions');
-                            },
-                            function (err) {
-                                toastr.error("Failed to create question", "Error!");
-                            }
-                        );
-                    }
-                )
+              dataManupulator.manupulate("insert",model).then(
+                function (response) {
+                  toastr.success("Question created", "Success!");
+                  $state.go('all-questions');
+                },
+                function (err) {
+                  toastr.error("Failed to create question", "Error!");
+                }
+              );
             }
           var getManyFilter = {
             entityName: "subject",
