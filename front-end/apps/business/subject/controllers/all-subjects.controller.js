@@ -102,6 +102,7 @@
                 }
 
                 function makePartialSearchFilter(object) {
+                    filter = {};
                     for (var key in object) {
                         filter[key] = {
                             $regex: object[key]

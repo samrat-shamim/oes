@@ -85,14 +85,18 @@
             scope.selectedSubject = null;
 
           }
-          ;
+          scope.cleared = true;
           scope.loadMore(0, scope.pageSize, null, filter, null, null);
 
         }
 
         scope.loadMore = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
           scope.loading = true;
-          makePartialSearchFilter(filterByFields);
+          if(!scope.cleared){
+            makePartialSearchFilter(filterByFields);
+          }else{
+            scope.cleared = false;
+          }
           getManyFilter.pageNumber = currentPage + 1;
           getManyFilter.pageSize = pageItems;
           getManyFilter.sort.sortBy = orderBy;
@@ -102,6 +106,7 @@
         }
 
         function makePartialSearchFilter(object) {
+          filter = {};
           for (var key in object) {
             filter[key] = {
               $regex: object[key]
