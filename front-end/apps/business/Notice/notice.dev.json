@@ -1,0 +1,64 @@
+﻿{
+	"paths": {
+		"notice": "apps/business/notice/notice.config",
+		"noticesController": "apps/business/notice/controllers/all-notices.controller",
+		"createNoticeController":"apps/business/notice/controllers/create-notice.controller",
+		"noticeService": "apps/business/notice/services/notice.service",
+		"deleteNoticeController": "apps/business/notice/controllers/delete-notice-confirmation.controller",
+		"editNoticeController": "apps/business/notice/controllers/edit-notice-modal.controller"
+	},
+
+
+	"dependencies": {
+		"noticesController": {
+			"deps": ["notice", "noticeService", "deleteNoticeController", "editNoticeController"]
+		},
+		"createNoticeController":{
+		  "deps": ["notice"]
+		},
+		"noticeService": {
+		  "deps": ["notice"]
+		},
+		"deleteNoticeController": {
+		  "deps": ["notice", "noticeService"]
+		},
+		"editNoticeController": {
+		  "deps": ["notice", "noticeService"]
+		}
+
+	},
+
+
+	"routes": {
+		"moduleName": "notice",
+		"states": [
+		  {
+			"name": "all-notices",
+      		"url": "/all-notices",
+			"templateUrl": "apps/business/notice/views/all-notices.view.html",
+			"controller": "noticesController",
+			"data": {
+        "roles": ["admin", "coordinator"]
+			}
+		},
+		  {
+			"name": "create-notice",
+			"url": "/create-notice",
+			"templateUrl": "apps/business/notice/views/create-notice.view.html",
+			"controller": "createNoticeController",
+			"data": {
+        "roles": ["admin", "coordinator"]
+			}
+		  },{
+        "name": "notice-board",
+        "url": "/notice-board",
+        "templateUrl": "apps/business/notice/views/notice-board.view.html",
+        "controller": "noticeBoardController",
+        "data": {
+          "roles": ["admin", "coordinator", "examiner", "examinee"]
+        }
+      }
+		]
+	}
+
+}

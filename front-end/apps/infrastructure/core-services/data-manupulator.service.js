@@ -1,9 +1,9 @@
 ﻿define(['angular'], function (angular) {
 
-    angular.module('core-services').service('dataManupulator', ['$http', "$rootScope","$q", function ($http, $rootScope,$q) {
-        var crudBaseUrl = "http://localhost:3000/crud/";
-        var authBase = "http://localhost:3000/";
-        var base = "http://localhost:3000/";
+    angular.module('core-services').service('dataManupulator', ['$http', "$rootScope","$q", "envService", function ($http, $rootScope,$q, envService) {
+        var crudBaseUrl = envService.base + "crud/";
+        var authBase = envService.base;
+        var base = envService.base;
     /*  var crudBaseUrl = "http://10.100.107.233:3000/crud/";
       var authBase = "http://10.100.107.233:3000/";
       var base = "http://10.100.107.233:3000/";*/

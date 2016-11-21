@@ -80,6 +80,21 @@
           "icon":"glyphicon glyphicon-inbox"
         }
       ]
+    },
+    {
+      "title": "Notice",
+      "menus": [
+        {
+          "title": "All notices",
+          "state": "all-notices",
+          "icon":"glyphicon glyphicon-list-alt"
+        },
+        {
+          "title": "Create notice",
+          "state": "create-notice",
+          "icon":"glyphicon glyphicon-plus-sign"
+        }
+      ]
     }
   ]
 }

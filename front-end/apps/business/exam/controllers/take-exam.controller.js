@@ -1,11 +1,11 @@
 define(['angular'], function (angular) {
 
   var exam = angular.module('exam').controller('takeExamController',
-    ['$scope', '$state', '$q', "$rootScope", "$uibModal","$http", 'dataManupulator', 'examService','identifier',
-      function (scope, $state, $q, $rootScope, $uibModal,$http, dataManupulator, examService,identifier) {
+    ['$scope', '$state', '$q', "$rootScope", "$uibModal","$http", 'dataManupulator', 'examService','identifier',"envService",
+      function (scope, $state, $q, $rootScope, $uibModal,$http, dataManupulator, examService,identifier, envService) {
 
         scope.pageTitle = "Take Exam";
-        scope.baseUrl = "http://localhost:3000/";
+        scope.baseUrl = envService.base;
         scope.bgColor = "background-color: BurlyWood;text-align:center;";
         var examToBeTaken;
         var questionIds = [], answers = [];
