@@ -20,18 +20,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="all-questions.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/apps/business/question/controllers/all-questions.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-              <folding>
-                <marker date="1479723339771" expanded="true" signature="2980:3192" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="template-config.coordinator.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-end/mocks/template-config.coordinator.json">
           <provider selected="true" editor-type-id="text-editor">
@@ -84,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data-manupulator.service.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="data-manupulator.service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-end/apps/infrastructure/core-services/data-manupulator.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+            <state relative-caret-position="340">
+              <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -108,17 +96,27 @@
         <entry file="file://$PROJECT_DIR$/back-end/exam-config.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+              <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="all-questions.view.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/apps/business/question/views/all-questions.view.html">
+      <file leaf-file-name="create-exam.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/front-end/apps/business/exam/controllers/create-exam.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="294">
+              <caret line="218" column="97" selection-start-line="218" selection-start-column="97" selection-end-line="218" selection-end-column="97" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="crudAuthorize.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/back-end/middlewares/crudAuthorize.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -162,6 +160,7 @@
         <option value="$PROJECT_DIR$/back-end/exam-config.js" />
         <option value="$PROJECT_DIR$/front-end/apps/business/exam/controllers/take-exam.controller.js" />
         <option value="$PROJECT_DIR$/front-end/apps/infrastructure/core-services/data-manupulator.service.js" />
+        <option value="$PROJECT_DIR$/front-end/apps/business/exam/controllers/create-exam.controller.js" />
       </list>
     </option>
   </component>
@@ -348,12 +347,12 @@
       <workItem from="1478412386680" duration="263000" />
       <workItem from="1478413305683" duration="1708000" />
       <workItem from="1479637015913" duration="3360000" />
-      <workItem from="1479707990525" duration="16630000" />
+      <workItem from="1479707990525" duration="17164000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87885000" />
+    <option name="totallyTimeSpent" value="88419000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1369" height="744" extended-state="0" />
@@ -403,20 +402,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/front-end/apps/infrastructure/template/views/template.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="53" column="189" selection-start-line="53" selection-start-column="189" selection-end-line="53" selection-end-column="189" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/back-end/controllers/auth/authenticate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/apps/infrastructure/template/controllers/template.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -485,14 +470,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/apps/business/exam/controllers/create-exam.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3774">
-          <caret line="222" column="24" selection-start-line="222" selection-start-column="24" selection-end-line="222" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -788,7 +765,7 @@
     <entry file="file://$PROJECT_DIR$/back-end/exam-config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -803,8 +780,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front-end/apps/infrastructure/core-services/data-manupulator.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        <state relative-caret-position="340">
+          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/node_modules/angular-formly/src/directives/formly-form.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="1127" column="14" selection-start-line="1127" selection-start-column="14" selection-end-line="1127" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/middlewares/crudAuthorize.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/apps/business/exam/controllers/create-exam.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="218" column="97" selection-start-line="218" selection-start-column="97" selection-end-line="218" selection-end-column="97" />
           <folding />
         </state>
       </provider>

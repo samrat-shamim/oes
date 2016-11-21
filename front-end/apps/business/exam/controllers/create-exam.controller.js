@@ -216,7 +216,7 @@
               } else {
                 generateExamQuestion(response);
 
-                dataManupulator.manupulate("insert", model).then(function (res) {
+                dataManupulator.manupulate("insert", {entityName: "exam", entity: scope.examModel}).then(function (res) {
                   if(res.data.success){
                     toastr.success("Exam created", "Success!");
                     $state.go('all-exams');
