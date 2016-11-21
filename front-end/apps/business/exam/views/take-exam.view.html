@@ -42,8 +42,9 @@
 
     <div style="text-align: center" ng-if="!examStarted && !examFinished">
       <br/><br/>
-      <button ng-if="ipAllowed" class="btn btn-success" ng-click="startExam()">Start Exam</button>
-      <h1 style="color: darkred" ng-if="!ipAllowed">Something is wrong! you can not take this exam.</h1>
+      <button ng-if="ipAllowed && screenStatus.success" class="btn btn-success" ng-click="startExam()">Start Exam</button>
+      <h1 style="color: darkred" ng-if="!ipAllowed">Something is wrong! you can not take this exam. IP not allowed.</h1>
+      <h1 style="color: darkred" ng-if="!screenStatus.success">Something is wrong! you can not take this exam. {{screenStatus.text}}</h1>
     </div>
     <div ng-if="examStarted && !examFinished">
       <div ng-repeat="question in questions" style="margin: 10px; border-color: #0000FF">

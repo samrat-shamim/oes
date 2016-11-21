@@ -121,7 +121,7 @@
         ;
 
         $urlRouterProvider
-            .otherwise('/access-denied');
+            .otherwise('/landing');
 
       /*  $httpProvider.interceptors.push(
            ['$q', '$location',
@@ -157,7 +157,12 @@
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
-            if (identifier.isIdentityResolved()) authorizer.authorize();
+          if($rootScope.authorized){
+            $rootScope.authorized = false;
+          }else{
+            authorizer.authorize();
+            event.preventDefault();
+          }
         });
     });
 

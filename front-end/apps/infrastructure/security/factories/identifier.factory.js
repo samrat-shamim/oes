@@ -18,11 +18,9 @@ factory('identifier', ['$q', '$http', '$timeout','$rootScope',
           },
           isInAnyRole: function (roles) {
               if (!_authenticated || !_identity.roles) return false;
-
               for (var i = 0; i < roles.length; i++) {
                   if (this.isInRole(roles[i])) return true;
               }
-
               return false;
           },
           authenticate: function (identity) {

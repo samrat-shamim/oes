@@ -162,7 +162,6 @@
         }
 
         function makePartialSearchFilter(object) {
-          console.log(object);
           filter = {};
           for (var key in object) {
             filter[key] = {

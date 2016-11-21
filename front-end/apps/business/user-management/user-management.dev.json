@@ -42,6 +42,7 @@
 			"templateUrl": "apps/business/user-management/views/all-users.view.html",
 			"controller": "usersController",
 			"data": {
+        "roles": ["admin"]
 			}
 		},
 		  {
@@ -50,6 +51,7 @@
 			"templateUrl": "apps/business/user-management/views/create-user.view.html",
 			"controller": "createUserController",
 			"data": {
+        "roles": ["admin"]
 			}
 		  }
 		]

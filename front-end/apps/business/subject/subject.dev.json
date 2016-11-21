@@ -38,6 +38,7 @@
 			"templateUrl": "apps/business/subject/views/all-subjects.view.html",
 			"controller": "subjectsController",
 			"data": {
+        "roles": ["admin", "coordinator"]
 			}
 		},
 		  {
@@ -46,6 +47,7 @@
 			"templateUrl": "apps/business/subject/views/create-subject.view.html",
 			"controller": "createSubjectController",
 			"data": {
+        "roles": ["admin", "coordinator"]
 			}
 		  }
 		]

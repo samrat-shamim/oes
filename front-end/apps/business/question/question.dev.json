@@ -42,6 +42,7 @@
 			"templateUrl": "apps/business/question/views/all-questions.view.html",
 			"controller": "questionsController",
 			"data": {
+        "roles": ["admin","examiner", "coordinator"]
 			}
 		},
 		  {
@@ -50,6 +51,7 @@
 			"templateUrl": "apps/business/question/views/create-question.view.html",
 			"controller": "createQuestionController",
 			"data": {
+        "roles": ["admin","examiner", "coordinator"]
 			}
 		  }
 		]

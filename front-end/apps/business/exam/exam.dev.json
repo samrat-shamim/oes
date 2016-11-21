@@ -153,6 +153,7 @@
         "templateUrl": "apps/business/exam/views/take-exam.view.html",
         "controller": "takeExamController",
         "data": {
+          "roles": ["examinee"]
         }
       },
       {
@@ -161,6 +162,7 @@
         "templateUrl": "apps/business/exam/views/applications.view.html",
         "controller": "applicationsController",
         "data": {
+          "roles": ["admin","coordinator"]
         }
       }
     ]

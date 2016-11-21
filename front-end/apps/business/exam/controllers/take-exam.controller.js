@@ -100,7 +100,28 @@ define(['angular'], function (angular) {
           $state.go("all-exams");
         }
 
+        function checkDevice() {
+          if((screen.height-$(window).height())>200 || (screen.width-$(window).width())>200)
+          {
+            return {
+              success: false,
+              text: "Window resized"
+            }
+          }
+            else if(screen.height<400 || screen.width<800){
+              return {
+                success: false,
+                text: "Device not allowed"
+              }
+            } else {
+            return{
+              success: true
+            }
+          }
+        }
+
         function init() {
+          scope.screenStatus = checkDevice();
           scope.ipAllowed = true;
           $http({
             method: 'POST',
