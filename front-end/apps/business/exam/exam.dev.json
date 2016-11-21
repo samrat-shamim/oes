@@ -128,6 +128,7 @@
         "templateUrl": "apps/business/exam/views/all-exams.view.html",
         "controller": "examsController",
         "data": {
+          "roles": ["admin","examiner", "coordinator", "examinee"]
         }
       },
       {
@@ -136,6 +137,7 @@
         "templateUrl": "apps/business/exam/views/create-exam.view.html",
         "controller": "createExamController",
         "data": {
+          "roles": ["admin","examiner", "coordinator"]
         }
       },{
         "name": "edit-exam",
