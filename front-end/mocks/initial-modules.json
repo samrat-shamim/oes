@@ -27,6 +27,9 @@
         "name": "subject",
         "type": "business"
     },{
+      "name": "notice",
+      "type": "business"
+    },{
         "name": "login",
         "type": "business"
     },

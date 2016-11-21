@@ -2,6 +2,7 @@
 	"paths": {
 		"notice": "apps/business/notice/notice.config",
 		"noticesController": "apps/business/notice/controllers/all-notices.controller",
+    "noticeBoardController": "apps/business/notice/controllers/notice-board.controller",
 		"createNoticeController":"apps/business/notice/controllers/create-notice.controller",
 		"noticeService": "apps/business/notice/services/notice.service",
 		"deleteNoticeController": "apps/business/notice/controllers/delete-notice-confirmation.controller",
@@ -13,6 +14,9 @@
 		"noticesController": {
 			"deps": ["notice", "noticeService", "deleteNoticeController", "editNoticeController"]
 		},
+    "noticeBoardController": {
+      "deps": ["notice", "noticeService", "deleteNoticeController", "editNoticeController"]
+    },
 		"createNoticeController":{
 		  "deps": ["notice"]
 		},

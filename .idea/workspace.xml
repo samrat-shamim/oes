@@ -72,51 +72,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="all-notices.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/controllers/all-notices.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="160" column="17" selection-start-line="160" selection-start-column="11" selection-end-line="160" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create-notice.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/controllers/create-notice.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="delete-notice-confirmation.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/controllers/delete-notice-confirmation.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit-notice-modal.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/controllers/edit-notice-modal.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="70" column="18" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="notice.service.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="notice.service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/services/notice.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+            <state relative-caret-position="51">
+              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="initial-modules.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-end/mocks/initial-modules.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notice-board.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/controllers/notice-board.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="65" selection-start-line="2" selection-start-column="65" selection-end-line="2" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notice-board.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/views/notice-board.view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notice.dev.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/notice.dev.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="75" selection-start-line="4" selection-start-column="75" selection-end-line="4" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -162,7 +162,6 @@
         <option value="$PROJECT_DIR$/front-end/apps/mainApp/services/env.service.js" />
         <option value="$PROJECT_DIR$/front-end/mocks/template-config.admin.json" />
         <option value="$PROJECT_DIR$/front-end/mocks/template-config.coordinator.json" />
-        <option value="$PROJECT_DIR$/front-end/apps/business/Notice/notice.dev.json" />
         <option value="$PROJECT_DIR$/front-end/apps/business/Notice/notice.config.js" />
         <option value="$PROJECT_DIR$/front-end/apps/business/Notice/controllers/all-notices.controller.js" />
         <option value="$PROJECT_DIR$/front-end/apps/business/Notice/controllers/create-notice.controller.js" />
@@ -173,6 +172,9 @@
         <option value="$PROJECT_DIR$/front-end/apps/business/Notice/views/delete-notice-confirmation-modal.view.html" />
         <option value="$PROJECT_DIR$/front-end/apps/business/Notice/views/create-notice.view.html" />
         <option value="$PROJECT_DIR$/front-end/apps/business/Notice/views/all-notices.view.html" />
+        <option value="$PROJECT_DIR$/front-end/mocks/initial-modules.json" />
+        <option value="$PROJECT_DIR$/front-end/apps/business/Notice/controllers/notice-board.controller.js" />
+        <option value="$PROJECT_DIR$/front-end/apps/business/Notice/notice.dev.json" />
       </list>
     </option>
   </component>
@@ -458,11 +460,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\oes\front-end\apps\business\Notice\views" />
+      <recent name="F:\oes\front-end\apps\business\Notice\controllers" />
       <recent name="F:\oes\front-end\apps\business" />
       <recent name="F:\oes\front-end\apps\business\question\views" />
       <recent name="F:\oes\front-end\apps\business\question\controllers" />
-      <recent name="F:\oes\front-end\mocks\question" />
-      <recent name="F:\oes\front-end\external-files" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="H:\OES\back-end\middlewares" />
@@ -550,12 +552,12 @@
       <workItem from="1478413305683" duration="1708000" />
       <workItem from="1479637015913" duration="3360000" />
       <workItem from="1479707990525" duration="17359000" />
-      <workItem from="1479741903232" duration="2008000" />
+      <workItem from="1479741903232" duration="2281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90622000" />
+    <option name="totallyTimeSpent" value="90895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1369" height="744" extended-state="0" />
@@ -605,28 +607,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/front-end/apps/business/subject/controllers/all-subjects.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1870">
-          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/apps/business/sample-one/sample-one.dev.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/apps/business/Login/Login.dev.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/apps/business/exam/controllers/all-exams.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -893,14 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/notice.dev.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/notice.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -985,8 +957,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/services/notice.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+        <state relative-caret-position="51">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/mocks/initial-modules.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/controllers/notice-board.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="65" selection-start-line="2" selection-start-column="65" selection-end-line="2" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/views/notice-board.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/apps/business/Notice/notice.dev.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="75" selection-start-line="4" selection-start-column="75" selection-end-line="4" selection-end-column="75" />
           <folding />
         </state>
       </provider>
