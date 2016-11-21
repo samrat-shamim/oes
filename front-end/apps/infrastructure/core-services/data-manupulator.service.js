@@ -4,6 +4,9 @@
         var crudBaseUrl = "http://localhost:3000/crud/";
         var authBase = "http://localhost:3000/";
         var base = "http://localhost:3000/";
+    /*  var crudBaseUrl = "http://10.100.107.233:3000/crud/";
+      var authBase = "http://10.100.107.233:3000/";
+      var base = "http://10.100.107.233:3000/";*/
 
         var actions = {
             getById: "crud",

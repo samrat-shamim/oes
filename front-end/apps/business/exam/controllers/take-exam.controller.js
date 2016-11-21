@@ -125,6 +125,7 @@ define(['angular'], function (angular) {
           scope.ipAllowed = true;
           $http({
             method: 'POST',
+            //url: "http://10.100.107.233:3000/getPermission",
             url: "http://localhost:3000/getPermission",
             headers: {'Content-Type': 'application/json'}
           }).then(function(response){
