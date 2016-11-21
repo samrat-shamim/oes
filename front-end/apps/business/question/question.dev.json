@@ -6,7 +6,8 @@
 		"editQuestionModalController": "apps/business/question/controllers/editQuestionModal.controller",
     "questionService": "apps/business/question/services/question.service",
     "deleteQuestionController": "apps/business/question/controllers/delete-question-confirmation.controller",
-    "viewQuestionController":"apps/business/question/controllers/view-question.controller"
+    "viewQuestionController":"apps/business/question/controllers/view-question.controller",
+    "importQuestionController":"apps/business/question/controllers/import-question.controller"
 	},
 
 
@@ -28,6 +29,9 @@
     },
     "viewQuestionController": {
       "deps": ["question", "questionService"]
+    },
+    "importQuestionController":{
+      "deps": ["question"]
     }
 
 	},
@@ -53,7 +57,16 @@
 			"data": {
         "roles": ["admin","examiner", "coordinator"]
 			}
-		  }
+		  },
+      {
+        "name": "import-question",
+        "url": "/import-question",
+        "templateUrl": "apps/business/question/views/import-question.view.html",
+        "controller": "importQuestionController",
+        "data": {
+          "roles": ["admin","examiner", "coordinator"]
+        }
+      }
 		]
 	}
 

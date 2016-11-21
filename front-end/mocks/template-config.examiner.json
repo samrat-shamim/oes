@@ -38,6 +38,10 @@
           "title": "Create question",
           "state": "create-question",
           "icon":"glyphicon glyphicon-plus-sign"
+        },{
+          "title": "Import question",
+          "state": "import-question",
+          "icon":"glyphicon glyphicon-upload"
         }
       ]
     },

@@ -164,6 +164,24 @@
           getAllSubject();
         }
 
+        scope.exportQuestions = function () {
+          var csvJson = [];
+          scope.selectedQuestions.forEach(function (item) {
+            var json = {
+              subjectId: item.subjectId,
+              difficultyLevel: item.difficultyLevel,
+              title: item.title,
+              optionA: item.optionA,
+              optionB: item.optionB,
+              optionC: item.optionC,
+              optionD: item.optionD,
+              correctAnswer: item.correctAnswer
+            }
+            csvJson.push(json);
+          })
+          alasql('SELECT * INTO CSV("questions.csv",{headers:true}) FROM ?', [csvJson]);
+        }
+
         init();
       }]);
 

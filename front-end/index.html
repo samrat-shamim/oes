@@ -7,7 +7,13 @@
     <title></title>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.3.4/alasql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.core.min.js"></script>
+  <script src="external-files/papaparse.min.js"></script>
+
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+
     <link href="styles/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="styles/preloader.css" rel="stylesheet"/>
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
@@ -15,16 +21,12 @@
     <link rel="stylesheet" type="text/css" href="apps/mainApp/styles/main.css" />
 </head>
 <body ng-controller="indexController">
-
     <app-loader  app-name="template" controller="templateController"
                 template-url="apps/infrastructure/template/views/template.view.html">
     </app-loader>
-
     <div id="loader-wrapper">
         <div id="loader"></div>
     </div>
-
-
 <script src="node_modules/requirejs/require.js" data-main="require-main.js"></script>
 
 </body>
