@@ -6,5 +6,6 @@ module.exports = {
   question: require('./question'),
   subject: require('./subject'),
   answer: require('./answer'),
-  application: require('./application')
+  application: require('./application'),
+  notice: require('./notice')
 };

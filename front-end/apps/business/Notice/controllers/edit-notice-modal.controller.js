@@ -33,12 +33,13 @@ define(['angular'], function (angular) {
                   },
                   {
                       key: 'description',
-                      type: 'input',
+                      type: 'textarea',
                       templateOptions: {
                           type: 'text',
-                          label: 'Description',
-                          placeholder: 'Enter description',
-                          required: true
+                          label: 'Details',
+                          placeholder: 'Enter details',
+                          required: true,
+                          rows: 10
                       }
                   }
               ];

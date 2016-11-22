@@ -49,21 +49,16 @@
                     "entityName": "subject"
                 };
                 model.entity = scope.subjectModel;
-                identifier.identity().then(
-                    function(res){
-                        model.entity.createdById = res.userId;
-                        dataManupulator.manupulate("insert",model).then(function (res) {
-                            if(res.data.success){
-                                toastr.success("Subject created", "Success!");
-                                $state.go("all-subjects");
-                            } else{
-                                toastr.error("Failed to create sucject", "Error!");
-                            }
-                        }, function (err) {
-                            toastr.error("Something went wrong, failed to create subject", "Error");
-                        });
+                dataManupulator.manupulate("insert",model).then(function (res) {
+                    if(res.data.success){
+                        toastr.success("Subject created", "Success!");
+                        $state.go("all-subjects");
+                    } else{
+                        toastr.error("Failed to create sucject", "Error!");
                     }
-                )
+                }, function (err) {
+                    toastr.error("Something went wrong, failed to create subject", "Error");
+                });
             }
 
         }]);

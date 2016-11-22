@@ -22,14 +22,23 @@
             }
             var timeOk;
             examDate = new Date(scope.selectedExams[0].schedule);
+            var expireDate = new Date (examDate);
+            expireDate.setMinutes ( examDate.getMinutes() + 30 );
+            expireDate = expireDate.getTime();
             examDate = examDate.getTime();
-            timeOk = examDate<=dateNow;
+
+
+
+
+
+
+            timeOk = examDate<=Date.now();
             scope.examHappend = timeOk;
             if(scope.selectedExams[0].taken){
               scope.seeResult = true;
-            } else if(timeOk && (scope.selectedExams[0].approved || !scope.selectedExams[0].needApproval)){
+            } else if(timeOk && expireDate>=dateNow && (scope.selectedExams[0].approved || !scope.selectedExams[0].needApproval)){
               scope.canTake = true;
-            } else if(!timeOk && scope.selectedExams[0].needApproval && !scope.selectedExams[0].applied){
+            } else if(!timeOk && scope.selectedExams[0].needApproval && !scope.selectedExams[0].applied && !scope.selectedExams[0].taken){
               scope.canApply = true;
             }
           } else if (scope.selectedExams.length > 1) {
@@ -153,7 +162,8 @@
           }
           getManyFilter.pageNumber = currentPage + 1;
           getManyFilter.pageSize = pageItems;
-          getManyFilter.sort.sortBy = orderBy;
+          getManyFilter.sort.sortBy = orderBy || orderByReverse;
+          getManyFilter.sort.sortOrder = orderBy?"dsc":"asc";
           getManyFilter.filters = filter;
           if(scope.roleWeight==1 && scope.initLoad)getManyFilter.filters['schedule'] = {"$gt":Date.now()};
           scope.initLoad = false;

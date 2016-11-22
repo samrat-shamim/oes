@@ -95,7 +95,8 @@
                     makePartialSearchFilter(filterByFields);
                     getManyFilter.pageNumber = currentPage + 1;
                     getManyFilter.pageSize = pageItems;
-                    getManyFilter.sort.sortBy = orderBy;
+                    getManyFilter.sort.sortBy = orderBy || orderByReverse;
+                    getManyFilter.sort.sortOrder = orderBy?"dsc":"asc";
                     getManyFilter.filters = filter;
                     getAllSubject();
                     scope.selectedSubjects = [];

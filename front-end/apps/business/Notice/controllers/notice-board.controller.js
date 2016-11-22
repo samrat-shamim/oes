@@ -1,8 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
     var notice = angular.module('notice').controller('noticeBoardController',
-        ['$scope', '$http', "$uibModal", 'dataManupulator', 'noticeService',
-            function (scope, http, $uibModal, dataManupulator, noticeService) {
+        ['$scope', '$filter', "$uibModal", 'dataManupulator', 'noticeService',
+            function (scope, $filter, $uibModal, dataManupulator, noticeService) {
                 scope.loading = true;
                 scope.totalItems = 0;
                 scope.notices = [];
@@ -32,40 +32,6 @@
                     }
                 })
 
-                scope.editSelected = function () {
-                    noticeService.setNoticeToBeEdited(scope.selectedNotices[0]);
-                    var modal = $uibModal.open({
-                        animation: true,
-                        ariaLabelledBy: 'modal-title-top',
-                        ariaDescribedBy: 'modal-body-top',
-                        templateUrl: 'apps/business/notice/views/edit-notice-modal.view.html',
-                        controller: 'editNoticeController'
-                    });
-                    noticeService.setModal(modal);
-                }
-                scope.viewSelected = function () {
-                    noticeService.setNoticeToBeViewed(scope.selectedNotices[0]);
-                    var modal = $uibModal.open({
-                        animation: true,
-                        ariaLabelledBy: 'modal-title-top',
-                        ariaDescribedBy: 'modal-body-top',
-                        templateUrl: 'apps/business/notice/views/view-notice-modal.view.html',
-                        controller: 'viewNoticeController'
-                    });
-                    noticeService.setModal(modal);
-                }
-
-                scope.deleteSelected = function () {
-                    noticeService.setNoticesToBeDeleted(scope.selectedNotices);
-                    var modal = $uibModal.open({
-                        animation: true,
-                        ariaLabelledBy: 'modal-title-top',
-                        ariaDescribedBy: 'modal-body-top',
-                        templateUrl: 'apps/business/notice/views/delete-notice-confirmation-modal.view.html',
-                        controller: 'deleteNoticeController'
-                    });
-                    noticeService.setModal(modal);
-                }
 
                 var getManyFilter = {
                     entityName: "notice",
@@ -95,7 +61,8 @@
                     makePartialSearchFilter(filterByFields);
                     getManyFilter.pageNumber = currentPage + 1;
                     getManyFilter.pageSize = pageItems;
-                    getManyFilter.sort.sortBy = orderBy;
+                    getManyFilter.sort.sortBy = orderBy || orderByReverse;
+                    getManyFilter.sort.sortOrder = orderBy?"dsc":"asc";
                     getManyFilter.filters = filter;
                     getAllNotice();
                     scope.selectedNotices = [];
@@ -132,20 +99,27 @@
 
                         if (angular.isArray(scope.allNotices)) {
                             scope.allNotices.forEach(function (item, index) {
-                                dataManupulator.manupulate("getById", {
-                                    entityName: 'notice',
-                                    entityId: item.noticeId
-                                }).then(function (res) {
-                                    scope.allNotices[index].notice = res.data.title;
-                                })
+                                scope.allNotices[index].createdAt = $filter('date')(new Date(item.createdAt), 'dd MMM, yyyy @ h:mma');
                             })
                         }
                     })
                 }
 
+                scope.viewSelected = function () {
+                    noticeService.setNoticeToBeViewed(scope.selectedNotices[0]);
+                    var modal = $uibModal.open({
+                        animation: true,
+                        ariaLabelledBy: 'modal-title-top',
+                        ariaDescribedBy: 'modal-body-top',
+                        templateUrl: 'apps/business/notice/views/view-notice-modal.view.html',
+                        controller: 'viewNoticeController'
+                    });
+                    noticeService.setModal(modal);
+                }
+
                 //getAllNotice();
 
-                scope.pageTitle = "All Notices";
+                scope.pageTitle = "Notice Board";
 
                 scope.options = {
                     scrollbarV: false

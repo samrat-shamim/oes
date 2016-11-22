@@ -5,7 +5,7 @@
 
     <!--<link href="bower_components/angular-data-table/release/material.css" rel="stylesheet"/>-->
 
-    <h1>{{pageTitle}}</h1>
+    <h1 style="text-align: center">{{pageTitle}}</h1>
     <div class="row">
 
         <div class="form-group col-sm-2 col-md-2">
@@ -19,18 +19,17 @@
 
         <div ng-if="showMenu" class="col-sm-6 col-md-6">
             <br/>
-            <button class="btn btn-danger"  ng-click="deleteSelected()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-            <button ng-click="editSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+            <button ng-click="viewSelected()" class="btn btn-primary" ng-hide="multiSelect"><span class="glyphicon glyphicon-eye-open"></span> See Details</button>
         </div>
 
     </div>
     <div style="background-color: lightblue">
-        <table ng-hide="loading" tr-ng-grid items='allNotices' enable-filtering="false" page-items="pageSize" total-items="totalItems" selected-items="selectedNotices" selection-mode="MultiRow"
+        <table ng-hide="loading" tr-ng-grid items='allNotices' enable-filtering="false" page-items="pageSize" total-items="totalItems" selected-items="selectedNotices" selection-mode="SingleRow"
                 on-data-required="loadMore(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
             <thead>
             <tr>
-                <th field-name="title" enable-filtering="true" display-name="Notice" enable-sorting="true"  display-align="left">
-                </th><th field-name="description" display-name="Description" enable-filtering="true" enable-sorting="false">
+                <th field-name="title" enable-filtering="true" display-name="Notice" enable-sorting="false"  display-align="left">
+                </th><th field-name="createdAt" display-name="Created At" enable-filtering="false" enable-sorting="true">
             </th>
             </tr>
             </thead>

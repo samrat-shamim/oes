@@ -20,50 +20,33 @@
                 },
                 {
                     key: 'description',
-                    type: 'input',
+                    type: 'textarea',
                     templateOptions: {
-                        type: 'text',
-                        label: 'Description',
-                        placeholder: 'Enter description',
-                        required: true
+                        type: 'input',
+                        label: 'Details',
+                        placeholder: 'Enter details',
+                        required: true,
+                        rows: 10
                     }
                 }
             ]
 
-          function setImgPathToDatabase(res) {
-            if(scope.uploadingImgFor == 'q'){
-              scope.noticeModel.titleFigure = res.fileName;
-            }else if(scope.uploadingImgFor == 'oa'){
-              scope.noticeModel.optionAFigure = res.fileName;
-            }else if(scope.uploadingImgFor == 'ob'){
-              scope.noticeModel.optionBFigure = res.fileName;
-            }else if(scope.uploadingImgFor == 'oc'){
-              scope.noticeModel.optionCFigure = res.fileName;
-            }else if(scope.uploadingImgFor == 'od'){
-              scope.noticeModel.optionDFigure = res.fileName;
-            }
-          }
 
             scope.createNotice = function(){
                 var model = {
                     "entityName": "notice"
                 };
                 model.entity = scope.noticeModel;
-                identifier.identity().then(
-                    function(res){
-                        model.entity.createdById = res.userId;
-                        dataManupulator.manupulate("insert",model).then(function (res) {
-                            if(res.data.success){
-                                toastr.success("Notice created", "Success!");
-                                $state.go("all-notices");
-                            } else{
-                                toastr.error("Failed to create sucject", "Error!");
-                            }
-                        }, function (err) {
-                            toastr.error("Something went wrong, failed to create notice", "Error");
-                        });
+                dataManupulator.manupulate("insert",model).then(function (res) {
+                    if(res.data.success){
+                        toastr.success("Notice created", "Success!");
+                        $state.go("all-notices");
+                    } else{
+                        toastr.error("Failed to create sucject", "Error!");
                     }
-                )
+                }, function (err) {
+                    toastr.error("Something went wrong, failed to create notice", "Error");
+                });
             }
 
         }]);
