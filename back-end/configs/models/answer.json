@@ -1,0 +1,6 @@
+{
+  "permissions": {
+    "modify": ["admin", "examinee"],
+    "read": ["admin", "examiner", "coordinator", "examinee"]
+  }
+}
